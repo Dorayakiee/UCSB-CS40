@@ -1,0 +1,191 @@
+\documentclass[12pt, oneside]{article}
+
+\input{../CS40packages.tex}
+\usepackage{enumitem}
+
+\title{HW4 Individual}
+\author{CS40 Fall'21\\\\\\
+Bharat Kathi (5938444)}
+\date{Due: Monday, Nov 1, 2021 at 10:00PM on Gradescope}
+\begin{document}
+\maketitle
+
+{\bf Integrity reminders for individual homeworks}
+\begin{itemize}
+\item ``Individual homeworks'' must be solely your own work. 
+\item You may not collaborate on individual homeworks with anyone or seek help from online tutors or entities outside the class.
+\item You may ask questions about the homework in office hours (of the instructor, TAs, and/or tutors) and 
+on Piazza.  However, the staff will only answer clarifying questions on these homeworks. You \emph{cannot} use any online resources about the course content other than the text
+book and class material from this quarter.
+\item Do not share written solutions or partial solutions for homework with other students. Doing so would dilute their learning experience and detract from their success in the class.
+\end{itemize}
+
+You will submit this assignment via Gradescope
+(\href{https://www.gradescope.com}{https://www.gradescope.com}) in the assignment called ``HW4-Individual''.
+
+\subsection*{Summary of Proof Strategies (so far)}
+In your proofs and disproofs of statements below, justify each  step
+by reference to  a component of the  following proof  strategies
+we  have discussed so far, and/or to relevant definitions and calculations.
+\begin{itemize}
+    \item A counterexample can be used to prove that  $\forall x P(x)$ is {\bf false}.
+    \item  A witness can be used  to  prove that  $\exists x P(x)$ is {\bf true}.
+    \item {\bf Proof of universal by exhaustion}: To prove that $\forall x \, P(x)$
+is true when $P$ has a finite domain, evaluate the predicate at {\bf each} domain element to confirm that it is always T.
+    \item  {\bf Proof by universal generalization}: To prove that $\forall x \, P(x)$
+is true, we can take an arbitrary element $e$ from the domain and show that $P(e)$ is true, without making any assumptions about $e$ other than that it comes from the domain.
+    \item To  prove  that $\exists x P(x)$ is {\bf false}, write the universal statement that is logically equivalent to its negation and then prove it true using universal generalization.
+    \item {\bf Strategies for conjunction}: To prove that $p \land q$ is true, have two subgoals: subgoal (1) prove $p$ 
+is  true; and, subgoal (2) prove $q$ is true. To prove that $p \land q$ is false, it's enough to prove that $p$ is false.
+ To prove that $p \land q$ is false, it's enough to prove that $q$ is false.
+    \item {\bf Proof of Conditional by Direct Proof}: To prove that the implication $p \to q$ is true, we can assume $p$ is true and use that assumption to show $q$ is true.
+    \item {\bf Proof of Conditional by Contrapositive Proof}: To prove that the implication $p \to q$ is true, we can assume $\neg q$ is true and use that assumption to show $\neg p$ is true.
+   
+\end{itemize}
+
+
+\newpage
+\section*{Assigned Questions}
+\begin{enumerate}
+
+\item \textbf{Theorem}: If $n$ and $m$ are odd integers, then $n^2+m^2$ is even. 
+
+For each of the following proof attempts of the theorem, explain where the proof uses invalid reasoning or skips essential steps.
+\begin{enumerate}
+    \item Let $n$ and $m$ be odd integers. Then $n=2k+1$ and $m=2j+1$. Plugging into the expression $n^2+m^2$ gives
+    \[n^2+m^2=(2k+1)^2+(2j+1)^2=4k^2+4k+1+4j^2+4j+1=2(2k^2+2k+2j^2+2j+1)\]
+    Since $k$ and $j$ are integers, $2k^2+2k+2j^2+2j+1$ is also an integer. Then $n^2+m^2$ equals to two times an integer, therefore $n^2+m^2$ is even.
+    
+    \begin{description}
+        \item[Answer:].\\
+        The definitions of k and j in the first part are missing.\\
+        $$ n = 2k + 1, k \in Z $$
+        $$ m = 2j + 1, j \in Z $$
+        The rest of the proof is correct, just needs to include that since $k \in Z$ and $j \in Z$, then $n^2+m^2$ will be equal to 2 times an integer.
+    \end{description}
+
+    \item Let $n$ and $m$ be odd integers. Since $n$ is an odd integer, then $n = 2k+1$ for some integer $k$. Since $m$ is an odd integer, then $m = 2j+1$ for some integer $j$. Plugging in $2k+1$ for $n$ and $2j+1$ for $m$ into the expression $n^2 + m^2$ gives
+    \[n^2+m^2=(2k+1)^2+(2j+1)^2\]
+    Since $n^2 + m^2$ is equal to two times an integer, then $n^2 + m^2$ is an even integer.
+    
+    \begin{description}
+        \item[Answer:].\\
+        This argument has an invalid conclusion. $n^2 + m^2$ is not equal to 2 times an integer, it is equal to the sum of the squares of two integers.
+    \end{description}
+    
+    \item Let $n$ and $m$ be odd integers. Since $n$ is an odd integer, then $n = 2k+1$ for some integer $k$. Since $m$ is an odd integer, then $m = 2k+1$ for some integer $k$. Plugging into the expression $n^2 + m^2$ gives
+    \[n^2+m^2=(2k+1)^2+(2k+1)^2=2(4k^2+4k+1)\]
+    Since $k$ is an integer, $4k^2+4k+1$ is also an integer. Since $n^2 + m^2$ is equal to two times an integer, then $n^2 + m^2$ is an even integer.
+
+    \begin{description}
+        \item[Answer:].\\
+        The beginning of this argument is invalid. It is assuming that $m=n$ as both $m$ and $n$ are being set to $2k+1$, which is not something that can be assumed. We have to assume that m and n are distinct for the argument to work. The conclusion given only works when $m=n$.
+    \end{description}
+
+\end{enumerate}
+
+\quad
+\item \textbf{Theorem}: If $w, x, y, z$ are non-zero integers where $w$ divides $x$ and $y$ divides $z$, then $wy$ divides $xz$.
+
+For each proof attempt of the theorem, explain where the proof uses invalid reasoning or skips essential steps.
+\begin{enumerate}
+    \item By assumption, $w$ divides $x$, so $x = kw$ for some integer $k$ and $w \neq 0$. Similarly, $z = ky$ for some integer $k$ and $y \neq 0$. Plug in the expression $kw$ for $x$ and $ky$ for $z$ in the expression $xz$ to get
+    \[xz=(kw)(ky)=(k^2)(wy)\]
+    Since $k$ is an integer, then $k^2$ is also an integer. Since $w \neq 0$ and $y \neq 0$, then $wy \neq 0$. Since $xz$ equals $wy$ times an integer and $wy \neq 0$, then $wy$ divides $xz$.
+    
+    \begin{description}
+        \item[Answer:].\\
+        Here we are saying that $x=kw$ and $z=ky$. However since we have different values of $x,w,z,y$, we cannot use the same value of $k$. We would have to rewrite the definitions to something like $x=kw$ and $z=jy$, where $k \in Z$ and $j \in Z$.
+    \end{description}
+
+    \item By assumption, $w$ divides $x$, so $x = kw$ for some integer $k$ and $w \neq 0$. Similarly, $z = jy$ for some integer $j$ and $y \neq 0$. Plug in the expression $kw$ for $x$ and $jy$ for $z$ in the expression $xz$ to get
+    \[xz=(kw)(jy)\]
+    Since $w \neq 0$ and $y \neq 0$, then $wy \neq 0$. Since $xz$ equals $wy$ times an integer and $wy \neq 0$, then $wy$ divides $xz$.
+    
+    \begin{description}
+        \item[Answer:].\\
+        There is a step missing here to show that since $k$ and $j$ are both integers, the product $kj$ will also be an integer. So this means that $(kw)(jy)$ is equal to $(wy)$ times an integer ($kj$).
+    \end{description}
+
+    \item By assumption, $w$ divides $x$, so $x = kw$ and $w \neq 0$. Similarly, $z = jy$ and $y \neq 0$. Plug in the expression $kw$ for $x$ and $jy$ for $z$ in the expression $xz$ to get
+    \[xz=(kw)(jy)=(kj)(wy)\]
+    Since $k$, $j$ are integers, then $kj$ is an integer. Since $w \neq 0$ and $y \neq 0$, then $wy \neq 0$. Since $xz$ equals $wy$ times an integer and $wy \neq 0$, then $wy$ divides $xz$.
+    \begin{description}
+        \item[Answer:].\\
+        Here the definitions $x=kw$ and $y=jy$ are given, but $k$ and $j$ are never defined. Since we are concluding that $wy$ divides $xz$, we need to state that we are assuming $k$ and $j$ are integers.
+    \end{description}
+\end{enumerate}
+
+\quad
+
+\item Consider the statement: The product of any integer and an even integer is even.
+\begin{enumerate}
+    \item Define predicates as necessary and write the symbolic form of the statement using quantifiers.
+    \begin{description}
+        \item[Answer:].\\
+        $p(x)$: x is integer\\
+        $q(x)$: x is even\\  
+        $\forall x \forall y ((p(x) \land q(y)) \rightarrow q(x * y))$
+    \end{description}
+    \item Prove or disprove the statement. Specify which proof strategy is used.
+    \begin{description}
+        \item[Answer:].\\
+        $x$ is only even if $x=2m$ where $m$ is some integer.\\
+        So lets define:\\
+        $m$ is some integer and $n$ is some integer\\
+        $n=2j$ where $j$ is some integer\\
+        $mn=m(2j)=2(mj)$\\
+        Since $m$ and $j$ are both integers and result in an integer when multiplied, our final result of $2(mj)$ must be an even integer.
+    \end{description}
+\end{enumerate}
+
+
+
+\quad
+
+\item Consider the statement: If $x$ and $y$ are integers such that $x > 1$, and $x \mid y$, then $x\nmid (y+1)$.
+\begin{enumerate}
+    \item Write the symbolic form of the statement using quantifiers.
+    \begin{description}
+        \item[Answer:].\\
+        Let $x,y \in Z$\\
+        $x > 1 \land x \mid y \rightarrow x \nmid (y+1)$\\
+    \end{description}
+    \item Prove or disprove the statement. Specify which proof strategy is used.
+    \begin{description}
+        \item[Answer:].\\
+        
+    \end{description}
+\end{enumerate}
+
+\quad
+
+\item Consider the statement: Every positive integer can be written as the sum of the squares of three integers.
+\begin{enumerate}
+    \item Write the symbolic form of the statement using quantifiers.
+    \begin{description}
+        \item[Answer:].\\
+        $(\forall n \in \mathbb{Z}^+)(\exists x,y,z \in \mathbb{Z})(n=x^2+y^2+z^2)$
+    \end{description}
+    \item Prove or disprove the statement. Specify which proof strategy is used.
+    \begin{description}
+        \item[Answer:].\\
+        Proof by counter-example:\\
+        Let $n=7$\\
+        Then $7=x^2+y^2+z^2$ where $x,y,z$ are all integers.\\
+        Now, $x^2 \leq 7, y^2 \leq 7, z^2 \leq 7$\\
+        The squares of integers less than or equal to 7 are 0,1,4.\\
+        It is not possible to result in 7 as a sum of these three integers.\\
+        Therefore, the positive integer 7 cannot be written as a sum of the squares or three integers.
+    \end{description}
+\end{enumerate}
+
+\quad
+
+
+
+\end{enumerate}
+
+
+
+\end{document}

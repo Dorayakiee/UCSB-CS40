@@ -1,0 +1,401 @@
+
+
+\documentclass{article}
+\usepackage[letterpaper, scale=0.89, centering]{geometry}
+\usepackage{amssymb,amsmath,pifont,amsfonts,comment,enumerate}
+\usepackage{currfile,xstring,hyperref,tabularx,graphicx,wasysym}
+\usepackage[labelformat=empty]{caption}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{multicol,multirow,array,listings,tabularx,lastpage,textcomp,booktabs}
+%\usepackage{mathptmx}
+
+
+% NOTE: This environment is credit @pnpo (https://tex.stackexchange.com/a/218450)
+\lstnewenvironment{algorithm}[1][] %defines the algorithm listing environment
+{   
+    \lstset{ %this is the stype
+        mathescape=true,
+        frame=tB,
+        numbers=left, 
+        numberstyle=\tiny,
+        basicstyle=\rmfamily\scriptsize, 
+        keywordstyle=\color{black}\bfseries,
+        keywords={,procedure, div, for, to, input, output, return, datatype, function, in, if, else, foreach, while, begin, end, }
+        numbers=left,
+        xleftmargin=.04\textwidth,
+        #1
+    }
+}
+{}
+\lstnewenvironment{java}[1][]
+{   
+    \lstset{
+        language=java,
+        mathescape=true,
+        frame=tB,
+        numbers=left, 
+        numberstyle=\tiny,
+        basicstyle=\ttfamily\scriptsize, 
+        keywordstyle=\color{black}\bfseries,
+        keywords={, int, double, for, return, if, else, while, }
+        numbers=left,
+        xleftmargin=.04\textwidth,
+        #1
+    }
+}
+{}
+
+\newcommand\abs[1]{\lvert~#1~\rvert}
+\newcommand{\st}{\mid}
+
+\newcommand{\A}[0]{\texttt{A}}
+\newcommand{\C}[0]{\texttt{C}}
+\newcommand{\G}[0]{\texttt{G}}
+\newcommand{\U}[0]{\texttt{U}}
+
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Sharelatex Example},
+    bookmarks=true,
+    pdfpagemode=FullScreen,
+}
+\usepackage{graphicx} % Required for inserting images
+
+\title{\scshape{Solutions To HW1}}
+\author{\scshape{Zixuan Chen}}
+\date{\scshape{June 2024}}
+%\fontsize{14pt}{17pt}\selectfont
+\begin{document}
+
+\maketitle
+
+\section*{Solution To Question 1}
+\hrule 
+\textbf{(a) : } \textit{How tall is Stroke Tower} is not a proposition as a question is neither true or false. \\[4pt]
+\textbf{(b) : } \textit{Storke Tower is as tall as 33 people stacked on top of each other} is a proposition. \\[4pt]
+The negation is : \textbf{Storke Tower is not as tall as 33 people stacked on top of each other.} 
+
+\section*{Solution To Question 2}
+\hrule
+\textbf{(a) : } $\lnot n$ \\[4pt]
+\textbf{(b) : } $t \land m$\\[4pt]
+\textbf{(c) : } $n \to \lnot m$\\[4pt]
+\textbf{(d) : } $\lnot m \to (n \lor t )$
+
+\section*{Solution To Question 3}
+\hrule
+\subsection*{(a) If 51 is an even number, then the sky is green.}
+\begin{itemize}
+    \item \(P\): "51 is an even number." This is False because 51 is an odd number.
+    \item \(Q\): "The sky is green." This is also False because, typically, the sky is blue.
+\end{itemize}
+
+Since \(P\) is false and \(Q\) is also false, the statement \(P \rightarrow Q\) is \textsc{True}.\\
+
+\subsection*{(b) If 51 is an odd number, then the sky is blue.}
+
+\begin{itemize}
+    \item \(P\): "51 is an odd number." This is true.
+    \item \(Q\): "The sky is blue." This is true.
+\end{itemize}
+
+Since both \(P\) and \(Q\) are true, the statement \(P \rightarrow Q\) is \textsc{True}.
+\newpage
+\section*{Solution To Question 4}
+\hrule
+\subsection*{(a) It either rains or it pours.}
+\[
+i \lor j
+\]
+
+\subsection*{(b) It is raining on our parade.}
+\[
+i \land l
+\]
+
+\subsection*{(c) We are having this parade, come rain or shine.}
+\[
+l
+\]
+
+\section*{Solution To Question 5}
+\hrule
+\subsection*{(a) Rafael can ride the elephant only if he is not afraid of heights.}
+
+Equivalent statement:
+\[ \text{If Rafael rides the elephant, then he is not afraid of heights.} \]
+
+\subsection*{(b) Rafael can ride the elephant if he is not afraid of heights.}
+
+Equivalent statement:
+\[ \text{If Rafael is not afraid of heights, then he rides the elephant.} \]
+
+\subsection*{(c) Being able to swim is a necessary skill needed for Tyra to learn to surf.}
+
+Equivalent statement:
+\[ \text{If Tyra learns to surf, then she is able to swim.} \]
+
+\subsection*{(d) Being able to swim is a sufficient skill needed for Tyra to learn to surf.}
+
+Equivalent statement:
+\[ \text{If Tyra is able to swim, then she learns to surf.} \]
+
+\newpage
+
+\section*{Solution To Question 6}
+\hrule
+\subsection*{(a) $\lnot p \to q \equiv \lnot q \to p$}
+\noindent\textbf{Proof}:
+\begin{align*}
+\lnot p \to q & \quad \text{(Given)} \\
+\lnot \lnot p \lor q & \quad \text{(Conditional Identities)} \\
+p \lor q & \quad \text{(Double Negative Law)}\\
+q \lor p & \quad \text{(Commutative Laws)}\\
+\lnot \lnot q \lor p & \quad \text{(Double Negative Law)}\\
+\lnot q \to p& \quad \text{(Conditional Identities)} 
+\end{align*}
+
+\subsection*{(b) $\lnot p \to (q \land \lnot q ) \equiv p$}
+\noindent\textbf{Proof}:
+\begin{align*}
+\lnot p \to (q \land \lnot q ) & \quad \text{(Given)}\\
+\lnot p \to F & \quad \text{(Complement Laws)}\\
+\lnot \lnot p \lor F & \quad \text{(Conditional Identities)}\\
+p \lor F & \quad \text{(Double Negative Laws)}\\
+p &\quad \text{(Identity Laws)}
+\end{align*}
+
+\subsection*{(c) $(p \land q \land \lnot r) \lor ( p \land \lnot q \land \lnot r) \equiv p \land \lnot r$}
+\noindent\textbf{Proof}:
+\begin{align*}
+(p \land q \land \lnot r) \lor ( p \land \lnot q \land \lnot r) & \quad \text{(Given)}\\
+(\lnot r \land p \land q) \lor ( \lnot r \land p \land \lnot q) & \quad \text{(Commutative Laws)}\\
+\lnot r \land ((p \land q) \lor (p \land \lnot q)) & \quad \text{(Distributive Laws)}\\
+\lnot r \land ( p \land (q \lor \lnot q)) &\quad \text{(Distributive Laws)}\\
+\lnot r \land (p \land T) & \quad \text{(Complement Laws)}\\
+\lnot r \land p& \quad \text{(Domination Laws)}\\
+p \land \lnot r & \quad \text{(Commutative Laws)}
+\end{align*}
+
+%\newpage
+\section*{Solution To Question 7}
+\hrule
+\[
+\begin{array}{|c|c|c|c|c|c|c|c|}
+\hline
+p & q & r & p \rightarrow q & q \rightarrow r & (p \rightarrow q) \land (q \rightarrow r) & p \rightarrow r & ((p \rightarrow q) \land (q \rightarrow r)) \rightarrow (p \rightarrow r) \\
+\hline
+T & T & T & T & T & T & T & T \\
+T & T & F & T & F & F & F & T \\
+T & F & T & F & T & F & T & T \\
+T & F & F & F & T & F & F & T \\
+F & T & T & T & T & T & T & T \\
+F & T & F & T & F & F & T & T \\
+F & F & T & T & T & T & T & T \\
+F & F & F & T & T & T & T & T \\
+\hline
+\end{array}
+\]
+From the truth table, we prove that this is a tautology.
+
+
+
+
+
+
+\section*{Solution To Question 8}
+\hrule
+
+Given the statements:
+\begin{itemize}
+    \item Andromeda: "Clytemnestra is the knave."
+    \item Brunhilda: "Andromeda is the knight."
+    \item Clytemnestra: "I am the spy."
+\end{itemize}
+\subsubsection*{Case 1: Andromeda is the knight}
+If Andromeda is the knight, she tells the truth. Therefore, her statement "Clytemnestra is the knave" is true. Thus:
+\begin{itemize}
+    \item Clytemnestra is the knave.
+    \item Brunhilda must be the spy.
+\end{itemize}
+We verify the statements:
+\begin{itemize}
+    \item Brunhilda says, "Andromeda is the knight." As the spy, she can tell the truth.
+    \item Clytemnestra says, "I am the spy." As the knave, she lies.
+\end{itemize}
+
+\subsubsection*{Case 2: Brunhilda is the knight}
+If Brunhilda is the knight, she tells the truth. Therefore, her statement "Andromeda is the knight" must be true. This is a contradiction.
+
+\subsubsection*{Case 3: Clytemnestra is the knight}
+If Clytemnestra is the knight, she tells the truth. Therefore, her statement "I am the spy" must be true. This is a contradiction.
+
+\subsection*{Conclusion}
+\begin{itemize}
+    \item Andromeda is the knight.
+    \item Brunhilda is the spy.
+    \item Clytemnestra is the knave.
+\end{itemize}
+
+
+
+
+
+\section*{Solution To Question 9}
+\hrule
+
+\[
+Q = (\neg p \land q \land r) \lor (\neg p \land \neg q \land r) \lor (p \land q \land r) \lor (p \land \neg q \land \neg r)
+\]
+
+
+
+\newpage
+
+\section*{Solution To Question 10}
+\hrule
+
+\subsection*{(a) An element from the set \( B \times A \times C \)}
+
+\[ (\text{foam}, \text{tall}, \text{non-fat}) \]
+
+\subsection*{(b) The set \( B \times C \) in roster notation}
+
+\[
+B \times C = \{(\text{foam}, \text{non-fat}), (\text{foam}, \text{whole}), (\text{no-foam}, \text{non-fat}), (\text{no-foam}, \text{whole})\}
+\]
+
+
+
+
+
+\section*{Solution To Question 11}
+\hrule
+\subsection*{(a) Negation of \(\forall x \exists y (P(x, y) \land Q(x, y))\)}
+
+\[
+\lnot (\forall x \exists y (P(x, y) \land Q(x, y)))
+\]
+\[
+\exists x \lnot (\exists y (P(x, y) \land Q(x, y)))
+\]
+\[
+\exists x \forall y \lnot (P(x, y) \land Q(x, y))
+\]
+\[
+\exists x \forall y (\lnot P(x, y) \lor \lnot Q(x, y))
+\]
+\subsection*{(b) Negation of \(\exists x \forall y (P(x, y) \rightarrow Q(x, y))\)}
+\[
+\lnot (\exists x \forall y (P(x, y) \rightarrow Q(x, y)))
+\]
+\[
+\forall x \lnot (\forall y (P(x, y) \rightarrow Q(x, y)))
+\]
+\[
+\forall x \exists y \lnot (P(x, y) \rightarrow Q(x, y))
+\]
+\[
+\forall x \exists y (P(x, y) \land \lnot Q(x, y))
+\]
+
+
+
+
+
+
+
+
+\section*{Solution To Question 12}
+\hrule
+
+- \( P(x) \): \( x \) showed up with a pencil.
+- \( C(x) \): \( x \) showed up with a calculator.
+
+\subsection*{(a) At least one of the students showed up with a pencil.}
+
+\[
+\exists x \, P(x)
+\]
+Negation:
+\[
+\lnot (\exists x \, P(x))
+\]
+\[
+\forall x \, \lnot P(x)
+\]
+English translation:
+\textit{Every student showed up without a pencil.}
+
+\subsection*{(b) Every student showed up with a pencil or a calculator (or both).}
+\[
+\forall x \, (P(x) \lor C(x))
+\]
+Negation:
+\[
+\lnot (\forall x \, (P(x) \lor C(x)))
+\]
+\[
+\exists x \, \lnot (P(x) \lor C(x))
+\]
+\[
+\exists x \, (\lnot P(x) \land \lnot C(x))
+\]
+English translation:
+\textit{There is at least a student who showed up without a pencil and without a calculator.}
+
+\subsection*{(c) Every student who showed up with a calculator also had a pencil.}
+\[
+\forall x \, (C(x) \rightarrow P(x))
+\]
+Negation:
+\[
+\lnot (\forall x \, (C(x) \rightarrow P(x)))
+\]
+\[
+\exists x \, \lnot (C(x) \rightarrow P(x))
+\]
+\[
+C(x) \rightarrow P(x) \equiv \lnot C(x) \lor P(x)
+\]
+\[
+\exists x \, (\lnot (\lnot C(x) \lor P(x)))
+\]
+\[
+\exists x \, (C(x) \land \lnot P(x))
+\]
+English translation:
+\textit{There is at least a student who showed up with a calculator and without a pencil.}
+
+\subsection*{(d) There is a student who showed up with both a pencil and a calculator.}
+\[
+\exists x \, (P(x) \land C(x))
+\]
+Negation:
+\[
+\lnot (\exists x \, (P(x) \land C(x)))
+\]
+\[
+\forall x \, \lnot (P(x) \land C(x))
+\]
+\[
+\forall x \, (\lnot P(x) \lor \lnot C(x))
+\]
+English translation:
+\textit{Every student showed up without a pencil or without a calculator (or both).}
+
+
+
+
+
+\end{document}
+

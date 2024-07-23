@@ -1,0 +1,248 @@
+\documentclass[12pt, oneside]{article}
+
+\input{../CS40packages.tex}
+\usepackage{enumitem}
+
+\title{HW1 Collaborative: Propositional Logic}
+\author{CS40 Fall'21\\\\\\
+Benjamin Cruttenden (4672440)\\\
+Bharat Kathi (5938444)\\\
+Sean Oh (4824231)\\\
+Marco Wong (4589198)}
+\date{Due: Thursday, Oct 7, 2021 at 10:00PM on Gradescope}
+\begin{document}
+\maketitle
+
+{\bf In this assignment,}
+
+You will practice reading and
+applying definitions to get comfortable working with mathematical language and propositional logic
+
+{\bf For all Collaborative HW assignments:}
+
+Collaborative homeworks may be done individually or in groups of up to 4 students. You may switch HW partners for different HW assignments.  Please ensure your name(s) and PID(s) are clearly visible on the first page of your homework submission.
+
+All submitted homework for this class must be typed. Diagrams may be hand-drawn and scanned and included in the typed document. You can use a word processing editor if you like (Microsoft Word, Open Office, Notepad, Vim, Google Docs, etc.) but you might find it useful to take this opportunity to learn LaTeX. LaTeX is a markup language used widely in computer science and mathematics. The homework assignments are typed using LaTeX and you can use the source files as templates for typesetting your solutions\footnote{To use this template, you will need to copy both the source file (extension \texttt{.tex})  you'll be editing
+and the file containing all the ``shortcut" commands we've defined for this class \href{https://drive.google.com/file/d/1FmQvgByKnNjTpIkAUw31TGWYrQZM-HK0/view?usp=sharing})} .
+
+
+{\bf Integrity reminders}
+\begin{itemize}
+\item Problems should be solved together, not divided up between the partners. The homework is
+designed to give you practice with the main concepts and techniques of the course, while getting to know and learn from your classmates.
+\item You may not collaborate on homework with anyone other than your group members.
+You may ask questions about the homework in office hours (of the instructor, TAs, and/or tutors) and 
+on Piazza.  You \emph{cannot} use any online resources about the course content other than the text
+book and class material from this quarter -- this is primarily to ensure that we all use consistent notation and
+definitions we will use this quarter.
+\item Do not share written solutions or partial solutions for homework with other students in the class who are not in your group. Doing so would dilute their learning experience and detract from their success in the class.
+\end{itemize}
+
+
+You will submit this assignment via Gradescope
+(\href{https://www.gradescope.com}{https://www.gradescope.com}) in the assignment called ``HW1-Collaborative''.
+
+\section*{Assigned Questions}
+\begin{enumerate}
+\item Determine whether each of the following sentences is a proposition. If the sentence is a proposition, then write its negation.
+\begin{enumerate}
+    \item Have a nice day.
+    \begin{description}
+        \item[Answer:] No, this is a command.
+    \end{description}
+    \item The soup is cold.
+    \begin{description}
+        \item[Answer:] Yes, this is a preposition. The negation would be "The soup is not cold".
+    \end{description}
+\end{enumerate}
+\item Express each English statement using the logical operations $\lor$, $\land$, $\neg$ and the propositional variables $t$, $n$, and $m$ defined below. The use of the word ``or'' means inclusive or.
+\begin{itemize}
+    \item $t$: The patient took the medication.
+    \item $n$: The patient had nausea.
+    \item $m$: The patient had migraines.
+\end{itemize}
+
+\begin{enumerate}
+    \item The patient had nausea and migraines
+    \begin{description}
+        \item[Answer:] $n \wedge m$
+    \end{description}
+    \item The patient took the medication, but still had migraines.
+    \begin{description}
+        \item[Answer:] $t \wedge m$
+    \end{description}
+    \item Despite the fact that the patient took the medication, the patient had nausea.
+    \begin{description}
+        \item[Answer:] $t \wedge n$
+    \end{description}
+    \item There is no way that the patient took the medication.
+    \begin{description}
+        \item[Answer:] $\lnot t$
+    \end{description}
+\end{enumerate}
+
+
+\item In this question practice expressing a set of conditions using logical operations.
+
+Consider the following pieces of identification a person might have in order to apply for a credit card:
+\begin{itemize}
+    \item $b$: Applicant presents a birth certificate.
+    \item $d$: Applicant presents a driver's license.
+    \item $m$: Applicant presents a marriage license.
+\end{itemize}
+
+Write a logical expression for the requirements under the following conditions:\footnote{Inclusive or is assumed unless explicitly stated otherwise.}
+\begin{enumerate}
+    \item The applicant must present either a birth certificate, a driver's license, or a marriage license.
+    \begin{description}
+        \item[Answer:] $b \vee d \vee m$
+    \end{description}
+
+    \item The applicant must present at least two of the following forms of identification: birth certificate, driver's license, marriage license.
+    \begin{description}
+        \item[Answer:] $(b \wedge d) \vee (b \wedge m) \vee (d \wedge m)$
+    \end{description}
+    
+    \item Applicant must present either a birth certificate or both a driver's license and a marriage license
+    \begin{description}
+        \item[Answer:] $b \vee (d \wedge m)$
+    \end{description}
+\end{enumerate}   
+
+\item Practice finding the truth values for conditional statements in English. Which of the following conditional statements are true and why?
+\begin{enumerate}
+    \item If February has 30 days, then 7 is an odd number.
+    \begin{description}
+        \item[Answer:] $F \rightarrow T = T$, Because February doesn’t have 30 days, then the 7 being odd or even is irrelevant and the conditional statement evaluates to true because no promise was broken.
+    \end{description}
+
+    \item If January has 31 days, then 7 is an even number.
+    \begin{description}
+        \item[Answer:] $T \rightarrow F = F$, It is true that January has 31 days, but it is false that 7 is an even number. If True implies F, it evaluates to True since the hypothesis is True but the conclusion is False because the promise was broken.
+    \end{description}
+\end{enumerate}
+\newpage
+\item Give an English sentence in the form ``If...then....'' that is equivalent to each sentence.
+\begin{enumerate}
+    \item Maintaining a B average is sufficient for Joe to be eligible for the honors program.
+    \begin{description}
+        \item[Answer:] If Joe maintains a B average, then he is eligible for the honors program.
+    \end{description}
+    
+    \item Maintaining a B average is necessary for Joe to be eligible for the honors program.
+    \begin{description}
+        \item[Answer:] If Joe is eligible for the honors program, then maintaining a B average is necessary.
+    \end{description}
+    
+    \item Rajiv can go on the roller coaster only if he is at least four feet tall.
+    \begin{description}
+        \item[Answer:] If Rajiv can go on the roller coaster, then he is at least four feet tall.
+    \end{description}
+    
+    \item Rajiv can go on the roller coaster if he is at least four feet tall.
+    \begin{description}
+        \item[Answer:] If Rajiv is at least four feet tall, then he can go on the roller coaster.
+    \end{description}
+\end{enumerate}
+
+
+\item  Show using truth tables or laws of propositional logic whether each logical expression is a tautology, contradiction or neither. Note: When writing the truth table follow the row sequence used in lecture and the book  (i.e. TT, TF, FT, FF)
+\begin{enumerate}
+    \item $(p \lor q) \lor (q \to p)$
+    \begin{description}
+        \item[Answer:] Expression is a tautology.
+        \begin{displaymath}
+            \begin{array}{|c c|c|}
+            p & q & (p\vee q) \vee (q\rightarrow p)\\
+            \hline
+            T & T & T\\
+            T & F & T\\
+            F & T & T\\
+            F & F & T\\
+            \end{array}
+        \end{displaymath} 
+    \end{description}
+    \item $(p \to q) \leftrightarrow (p \land \neg q)$
+    \begin{description}
+        \item[Answer:] Expression is a contradiction.
+        \begin{displaymath}
+            \begin{array}{|c c|c|}
+            p & q & (p\rightarrow q) \leftrightarrow (p \wedge \lnot q)\\
+            \hline
+            T & T & F\\
+            T & F & F\\
+            F & T & F\\
+            F & F & F\\
+            \end{array}
+        \end{displaymath} 
+    \end{description}
+\end{enumerate}
+
+
+
+\item There are three kinds of people on an island: knights who always tell the truth, knaves who always lie, and spies who can either lie or tell the truth. You encounter three people, A, B, and C. You know one of these people is a knight, one is a knave, and one is a spy. Each of the three people knows the type of person each of other two is. A says “C is the knave,” B says “A is the knight,” and C says “I am the spy.”. If possible, determine whether there is a unique solution and determine who the knave, knight, and spy are. When there is no unique solution, list all possible solutions or state that there are no solutions.
+
+\begin{description}
+    \item[Answer:]  Let\\
+    p: A is a knight\\  
+    q: B is a knight\\
+    r:  C is a knight\\
+    s: A is a knave\\
+    t: B is a knave\\
+    u: C is a knave\\\\
+
+    A: u\\
+    B: p\\
+    C: $\lnot (r \wedge u)$\\\\
+
+    Our compound proposition is $u \wedge p\wedge \lnot (r \wedge u)$.
+    
+    \begin{displaymath}
+        \begin{array}{|c c c|c|}
+        p & q & r & u \wedge p \wedge \lnot (r \wedge u)\\
+        \hline
+        T & T & T & F\\
+        T & T & F & F\\
+        T & F & T & T\\
+        T & F & F & F\\
+        F & T & T & F\\
+        F & T & F & F\\
+        F & F & T & F\\
+        F & F & F & F\\
+        \end{array}
+    \end{displaymath}
+
+    There is a unique solution: A is a knight, B is a spy, and C is a knave\\\\\\
+    Looking at the truth table, we know that “p” is true and “u” is true. P states that A is a knight, and U states that C is a knave. That means we know that B must be a spy.
+\end{description}
+
+\item Use the Disjunctive Normal form to construct a proposition $Q$ whose truth table is as below:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$p$ & $q$ & $r$ & $Q$ \\ \hline \hline
+T&T&T& T \\ \hline
+T&T&F& F \\ \hline
+T&F&T& F \\ \hline
+T&F&F& T \\ \hline
+F&T&T& T \\ \hline
+F&T&F& F \\ \hline
+F&F&T& T \\ \hline
+F&F&F& F \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{description}
+    \item[Answer:] The proposition using disjunctive normal form is $(p \wedge q \wedge r) \vee (p \wedge \lnot q \wedge \lnot r) \lor (\lnot p \land q \land r) \lor (\lnot p \land \lnot q \land r)$
+\end{description}
+
+\end{enumerate}
+
+\section*{Attributions}
+
+Thanks to \href{http://cseweb.ucsd.edu/~minnes/}{Mia Minnes} and \href{https://jpolitz.github.io/}{Joe Politz} for the original version of the instructions. All materials created by them is licensed under a \href{http://creativecommons.org/licenses/by-nc/4.0/}{Creative Commons Attribution-Non Commercial 4.0} International License.
+
+
+
+\end{document}

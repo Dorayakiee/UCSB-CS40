@@ -1,0 +1,454 @@
+\documentclass[12pt, oneside]{article}
+
+\input{../CS40packages.tex}
+\usepackage{enumitem}
+
+\title{HW4 Individual}
+\author{CS40 Spring '22\\\\
+Bharat Kathi (5938444)}
+\date{Due: Friday, May 6, 2022 at 11:59PM on Gradescope}
+\begin{document}
+\maketitle
+
+{\bf Integrity reminders for individual homeworks}
+\begin{itemize}
+\item ``Individual homeworks'' must be solely your own work. 
+\item You may not collaborate on individual homeworks with anyone or seek help from online tutors or entities outside the class.
+\item You may ask questions about the homework in office hours (of the instructor, TAs, and/or tutors) and 
+on Piazza.  However, the staff will only answer clarifying questions on these homeworks. You \emph{cannot} use any online resources about the course content other than the text
+book and class material from this quarter.
+\item Do not share written solutions or partial solutions for homework with other students. Doing so would dilute their learning experience and detract from their success in the class.
+\end{itemize}
+
+You will submit this assignment via Gradescope
+(\href{https://www.gradescope.com}{https://www.gradescope.com}) in the assignment called ``HW4-Individual''.
+
+\subsection*{Summary of Proof Strategies (so far)}
+In your proofs and disproofs of statements below, justify each  step
+by reference to  a component of the  following proof  strategies
+we  have discussed so far, and/or to relevant definitions and calculations.
+\begin{itemize}
+    \item A counterexample can be used to prove that  $\forall x P(x)$ is {\bf false}.
+    \item  A witness can be used  to  prove that  $\exists x P(x)$ is {\bf true}.
+    \item {\bf Proof of universal by exhaustion}: To prove that $\forall x \, P(x)$
+is true when $P$ has a finite domain, evaluate the predicate at {\bf each} domain element to confirm that it is always T.
+    \item  {\bf Proof by universal generalization}: To prove that $\forall x \, P(x)$
+is true, we can take an arbitrary element $e$ from the domain and show that $P(e)$ is true, without making any assumptions about $e$ other than that it comes from the domain.
+    \item To  prove  that $\exists x P(x)$ is {\bf false}, write the universal statement that is logically equivalent to its negation and then prove it true using universal generalization.
+    \item {\bf Strategies for conjunction}: To prove that $p \land q$ is true, have two subgoals: subgoal (1) prove $p$ 
+is  true; and, subgoal (2) prove $q$ is true. To prove that $p \land q$ is false, it's enough to prove that $p$ is false.
+ To prove that $p \land q$ is false, it's enough to prove that $q$ is false.
+    \item {\bf Proof of Conditional by Direct Proof}: To prove that the implication $p \to q$ is true, we can assume $p$ is true and use that assumption to show $q$ is true.
+    \item {\bf Proof of Conditional by Contrapositive Proof}: To prove that the implication $p \to q$ is true, we can assume $\neg q$ is true and use that assumption to show $\neg p$ is true.
+   
+\end{itemize}
+
+
+\newpage
+\section*{Assigned Questions}
+\begin{enumerate}
+
+
+
+
+% \item Consider the predicate  $F(a,b)  = ``a \text{ is a factor of } b"$ over  the domain $\mathbb{Z}^{\neq 0} \times \mathbb{Z}$ that was introduced in lecture. Consider the following quantified
+% statements
+% \label{factoring}
+
+% \begin{multicols}{2}
+% \begin{enumerate}[label=(\roman*)]
+% \item $\forall x \in \mathbb{Z} ~(F(1,x))$
+% \item $\forall x \in \mathbb{Z}^{\neq 0} ~(F(x,1))$
+% \item $\exists x \in \mathbb{Z} ~(F(1,x))$
+% \item $\forall x \in \mathbb{Z}^{\ne 0} ( \neg F(x,1))$
+% \item $\forall x \in \mathbb{Z}^{\neq 0} ~\exists y \in \mathbb{Z} ~(F(x,y))$
+% \item $\exists x \in \mathbb{Z}^{\neq 0} ~\forall y \in \mathbb{Z} ~(F(x,y))$
+% \item $\forall y \in \mathbb{Z} ~\exists x \in \mathbb{Z}^{\neq 0} ~(F(x,y))$
+% \item $\exists y \in \mathbb{Z} ~\forall x \in \mathbb{Z}^{\neq 0} ~(F(x,y))$
+% \end{enumerate}
+% \end{multicols}
+
+% \begin{enumerate}
+
+% \item ({\it Graded for correctness of choice and fair effort completeness in justification}) 
+% Which of the statements (i) - (viii) is being {\bf proved} by the following proof?
+
+% \begin{quote}
+%   By universal generalization, {\bf choose} $e$ to be an {\bf arbitrary} non-zero integer. 
+%   We need to show $\exists b \in \mathbb{Z} (F(e,b))$. By definition of the  predicate $F$, we can rewrite 
+%   this goal as $\exists b \in \mathbb{Z}  \exists c \in \mathbb{Z}~(b = c \cdot e)$. We pick the {\bf witnesses} $b = e$  and $c = 1$. $b$ is an integer and therefore in the domain. Similarly, $c$ is an integer and therefore in the domain. Plugging the value of the witnesses $b$ and $c$, we get 
+%   $b = c \cdot e \to e = 1 \cdot e \to e = e$, as required. Since the predicate $\exists b \in \mathbb{Z} (F(e,b))$ evaluates to true 
+%   for the arbitrary, non-zero, integer $e$, the claim has been proved.
+  
+%   \hfill $\blacksquare$
+% \end{quote}
+
+
+% {\it Hint: It may be useful to 
+% identify the key words in the proof that indicate proof strategies.}
+
+% \item ({\it Graded for correctness of choice and fair effort completeness in justification}) 
+% Which of the statements (i) - (viii) is being {\bf disproved} by the following proof? 
+
+% \begin{quote}
+%   To disprove the statement, we need to find a counterexample. We choose $2$, which is a nonzero
+%   integer so in the domain. We need to show $ \neg F(2,1)$. By definition of the predicate $F$, we 
+%   can rewrite this goal as $\neg \exists c \in \mathbb{Z}~(1 = c \cdot 2)$. Evaluating this statement, $1 = c \cdot 2 \to c = 1/2$. Since $1/2$ is not an integer, $c$ is not in the domain. Therefore, the predicate $F(2,1)$ is false. So the counterexample works to 
+%   disprove the original statement.
+%   \hfill $\blacksquare$
+% \end{quote}
+
+% {\it Hint: It may be useful to 
+% identify the key words in the proof that indicate proof strategies.}
+
+
+
+% \end{enumerate}
+
+
+
+\item \textbf{Theorem}: If $n$ and $m$ are odd integers, then $n \cdot m$ is odd. 
+
+For each of the following proof attempts of the theorem, explain where the proof uses invalid reasoning or skips essential steps.
+\begin{enumerate}
+    \item Let $n$ and $m$ be odd integers. Then $n=2k+1$ and $m=2j+1$. Plugging into the expression $n\cdot m$ gives
+    \[n \cdot m = (2k+1)(2j+1)=2(j\cdot k+j+k)+1\]
+    Since $k$ and $j$ are integers, $j\cdot k+j+k$ is also an integer. Then $n\cdot m$ equals to two times an integer plus one, therefore $n\cdot m$ is odd.
+    
+    \begin{description}
+        \item[Answer:] The proof should state that the definition of an odd number is being used to show that n = 2k + 1 and m = 2j + 1. The proof should also state that k and j are some arbitrary integers. The steps in multiplying (2k+1) and (2j+1) need to be shown. The result is missing a coeffcient of 2 in front of $j * k$.
+    \end{description}
+    
+    \item Let $n$ and $m$ be odd integers. Since $n$ is an odd integer, then $n = 2k+1$ for some integer $k$. Since $m$ is an odd integer, then $m = 2j+1$ for some integer $j$. Plugging in $2k+1$ for $n$ and $2j+1$ for $m$ into the expression $n\cdot m$ gives
+    \[n\cdot m=(2k+1)(2j+1)\]
+    Since $n\cdot m$ is equal to two times an integer plus one, then $n\cdot m$ is an odd integer.
+    
+    \begin{description}
+        \item[Answer:] The proof needs to show the steps in multiplying (2k+1) and (2j+1).
+    \end{description}
+    
+    \item Let $n$ and $m$ be odd integers. Since $n$ is an odd integer, then $n = 2k+1$ for some integer $k$. Since $m$ is an odd integer, then $m = 2k+1$ for some integer $k$. Plugging into the expression $n\cdot m$ gives
+    \[n\cdot m=(2k+1)(2k+1)=2(2k^2+2k)+1\]
+    Since $k$ is an integer, $2k^2+2k+1$ is also an integer. Since $n\cdot m$ is equal to two times an integer plus one, then $n\cdot m$ is an odd integer.
+
+    \begin{description}
+        \item[Answer:] Since m and n are two distinct integers, they need sepereate defintions for being odd numbers. They cannot both use the variable k. In the current setup, m and n are both equal to 2k+1 which would mean that m and n are equal.
+    \end{description}
+
+\end{enumerate}
+
+\quad
+% \item \textbf{Theorem}: If $w, x, y, z$ are non-zero integers where $w$ divides $x$ and $y$ divides $z$, then $wy$ divides $xz$.
+
+% For each proof attempt of the theorem, explain where the proof uses invalid reasoning or skips essential steps.
+% \begin{enumerate}
+%     \item By assumption, $w$ divides $x$, so $x = kw$ for some integer $k$ and $w \neq 0$. Similarly, $z = ky$ for some integer $k$ and $y \neq 0$. Plug in the expression $kw$ for $x$ and $ky$ for $z$ in the expression $xz$ to get
+%     \[xz=(kw)(ky)=(k^2)(wy)\]
+%     Since $k$ is an integer, then $k^2$ is also an integer. Since $w \neq 0$ and $y \neq 0$, then $wy \neq 0$. Since $xz$ equals $wy$ times an integer and $wy \neq 0$, then $wy$ divides $xz$.
+    
+%     \item By assumption, $w$ divides $x$, so $x = kw$ for some integer $k$ and $w \neq 0$. Similarly, $z = jy$ for some integer $j$ and $y \neq 0$. Plug in the expression $kw$ for $x$ and $jy$ for $z$ in the expression $xz$ to get
+%     \[xz=(kw)(jy)\]
+%     Since $w \neq 0$ and $y \neq 0$, then $wy \neq 0$. Since $xz$ equals $wy$ times an integer and $wy \neq 0$, then $wy$ divides $xz$.
+    
+%     \item By assumption, $w$ divides $x$, so $x = kw$ and $w \neq 0$. Similarly, $z = jy$ and $y \neq 0$. Plug in the expression $kw$ for $x$ and $jy$ for $z$ in the expression $xz$ to get
+%     \[xz=(kw)(jy)=(kj)(wy)\]
+%     Since $k$, $j$ are integers, then $kj$ is an integer. Since $w \neq 0$ and $y \neq 0$, then $wy \neq 0$. Since $xz$ equals $wy$ times an integer and $wy \neq 0$, then $wy$ divides $xz$.
+% \end{enumerate}
+
+
+\item \textbf{Theorem} For all non-zero integers, $x, y, z$, if $x$ does not divide $yz$, then $x$ does not divide $y$ 
+
+For each of the following proof attempts of the theorem, explain where the proof uses invalid reasoning or skips essential steps.
+\quad
+\begin{enumerate}
+    \item We prove this by contrapositive. Let $x,y, z$ be non-zero integers. We assume that $x$ divides $y$. Then $y=kx$. So, \[zy= z(kx)=(kz)x\] Since $z, k$ are integers, $zk$ is also an integer. So, $x$ divides $yz$.
+    
+    \begin{description}
+        \item[Answer:] The proof should explicitly state that the definition of being divisible is used, and that k is some arbitrary integer. It also needs to show some steps and that z is being multiplied to both sides of the equation. It should also explicitly state that yz is of the form mx, where m = zk is some integer.
+    \end{description}
+
+    \item We prove this by contrapositive. Let $x,y, z$ be non-zero integers. We assume that $x$ divides $y$. So, $y=kx$ for some integer $k$. Since $zk$ is also an integer, we conclude that $x$ divides $zy$, thus proving the theorem.
+    
+    \begin{description}
+        \item[Answer:] The proof is missing all the steps to show that yz is of the form mx, where m = zk is an integer and x is nonzero.
+    \end{description}
+
+    \item We prove this by contrapositive. Let $x,y, z$ be non-zero integers. Assume that $x$ divides $y$. So, $x=ky$ for some integer $k$. We further assume that $ky=ayz$ for some integer $a$, and show that $x$ divides $yz$. We divide  $ky=ayz$ out to get $a=\frac{k}{z}$. Since $k, z$ are both integers, $kz$ is also an integer, thus proving that $x$ divides $yz$.
+
+    \begin{description}
+        \item[Answer:] The proof has an incorrect definition of x | y, and also assumes that x | yz.
+    \end{description}
+
+\end{enumerate}
+
+\item Consider the statement: The sum of any two integers is odd if and only if at least one of them is odd.
+\begin{enumerate}
+    \item Define predicates as necessary and write the symbolic form of the statement using quantifiers.
+    
+    \begin{description}
+        \item[Answer:] .\\
+        Let O(n) be the predicate "n is odd". \\
+        $\forall x \in \mathbb{Z}, \forall y \in \mathbb{Z} (O(x+y) \leftrightarrow (O(x) \lor O(y)))$
+    \end{description}
+    
+    \item Prove or disprove the statement. Specify which proof strategy is used.
+    
+    \begin{description}
+        \item[Answer:] .\\
+        Disproving by counterexample. \\
+        Let x = 1 and y = 1. \\
+        The proposition is now $(O(1+1) \leftrightarrow (O(1) \lor O(1)))$\\
+        Since $1+1=2$ and 2 is not even, the left side of our conditional is false, while the right side is true.\\
+        Our conditional is equivalent to $F \leftrightarrow T$ which evaluates to $F$.\\
+        Therefore, the statement is disproven.
+    \end{description}
+
+\end{enumerate}
+
+\quad
+
+\item Consider the statement: If $x$ and $y$ are integers such that $x + y \geq 5$, then $x > 2$ or $y > 2$.
+\begin{enumerate}
+    \item Write the symbolic form of the statement using quantifiers.
+    
+    \begin{description}
+        \item[Answer:] $\forall x \in \mathbb{Z} , \forall y \in \mathbb{Z} ((x+y \geq 5) \rightarrow (x > 2 \lor y>2))$
+    \end{description}
+    
+    \item Prove or disprove the statement. Specify which proof strategy is used.
+    
+    \begin{description}
+        \item[Answer:] .\\
+        Proof by contrapositive. \\
+        Let x and y be arbitrary integers. \\
+        Assume that $x \leq 2 \land y \leq 2$. \\
+        We will prove that $x+y < 5$. \\
+        Since $x \leq 2$ and $ y \leq 2$, adding the two results in $x+y \leq 4$.
+        Since $4<5$, we can say that $x+y<5$. \\
+        Therefore, our original statement is proved by the contrapositive.
+    \end{description}
+
+\end{enumerate}
+
+\quad
+
+\item Consider the statement: The average of two odd integers is an integer.
+\begin{enumerate}
+    \item Write the symbolic form of the statement using quantifiers.
+    
+    \begin{description}
+        \item[Answer:] $\forall x \in \mathbb{Z} , \forall y \in \mathbb{Z} ( ( (\exists k \in \mathbb{Z} (x=2k+1)) \land (\exists j \in \mathbb{Z} (y=2j+1) )) \rightarrow  (\frac{x+y}{2} \in \mathbb{Z} ))$
+    \end{description}
+
+    \item Prove or disprove the statement. Specify which proof strategy is used.
+
+    \begin{description}
+        \item[Answer:] .\\
+        Proof by direct proof.\\
+        Let x and y be arbitrary integers.\\
+        Assume that x and y are odd. We will prove that $\frac{x+y}{2}$ is an integer.\\
+        Since x is odd, that means that $x=2k+1$ for some intejer k. \\
+        Since y is odd, that means that $y=2j+1$ for some intejer j. \\
+        Substitute $x=2k+1$ and $y=2j+1$ into $\frac{x+y}{2}$. \\
+        $= \frac{(2k+1)+(2j+1)}{2}$ \\
+        $= \frac{(2k+2j+2)}{2}$ \\
+        $= \frac{2(k+j+1)}{2}$ \\
+        $= k+j+1$ \\
+        Since we know that k and j are integers, $k+j+1$ must also be an integer. \\
+        Therefore, $\frac{x+y}{2}$ is an integer.
+    \end{description}
+
+\end{enumerate}
+
+\quad
+
+\item Consider the statement: For any three consecutive integers, their product is divisible by 6.
+\begin{enumerate}
+    \item Write the symbolic form of the statement using quantifiers.
+    \begin{description}
+        \item[Answer:] $\forall x \in \mathbb{Z} , \forall y \in \mathbb{Z} , \forall z \in \mathbb{Z} ( ((y=x+1) \land (z = x+2)) \rightarrow (6 | xyz) )$
+    \end{description}
+    \item Prove or disprove the statement. Specify which proof strategy is used.
+    \begin{description}
+        \item[Answer:] .\\
+        Proof by cases. \\
+        Since x, y, and z are all consecutive, we can write them as the following: \\
+        $x = x$ \\
+        $y = x+1$ \\
+        $z = x+3$ \\
+        Our 3 consecutive numbers are now x, x+1, and x+2. \\
+        So $xyz = x(x+1)(x+2)$ \\
+        Since 6 = 2 x 3, an integer that is divisble by both 2 and 3 must also be divisible by 6. \\
+        Therefore, we can prove $6|x(x+1)(x+2)$ is divisble by 6 by proving $(2|x(x+1)(x+2) \land 3|x(x+1)(x+2))$. \\
+        
+        Lets look at $2|x(x+1)(x+2)$ first.\\
+        
+        Case 1: x is even. \\
+        This means that $x=2k$, for some integer k since x is even. \\
+        Substitute $x=2k$ into $x(x+1)(x+2)$. \\
+        $x(x+1)(x+2) = 2k(2k+1)(2k+2)$ \\
+        $x(x+1)(x+2)$ can be written as $2m$ where $m = k(2k+1)(2k+2)$. \\
+        Since k is an integer, $k(2k+1)(2k+2)$ is also an integer, making $m$ an integer as well. \\
+        Therefore, $x(x+1)(x+2)$ is divisble by 2. \\
+        
+        Case 2: x is odd. \\
+        This means that $x=2k+1$, for some integer k since x is odd. \\
+        Substitute $x=2k+1$ into $x(x+1)(x+2)$. \\
+        $x(x+1)(x+2) = (2k+1)(2k+2)(2k+3)$ \\
+        $= (2k+1)(2(k+1))(2k+3)$ \\
+        $= 2(2k+1)(k+1)(2k+3)$ \\
+        $x(x+1)(x+2)$ can be written as $2m$ where $m = (2k+1)(k+1)(2k+3)$. \\
+        Since k is an integer, $(2k+1)(k+1)(2k+3)$ is also an integer, making $m$ an integer as well. \\
+        Therefore, $x(x+1)(x+2)$ is divisble by 2. \\
+
+        Now that we have proven $2|x(x+1)(x+2)$, lets look at $3|x(x+1)(x+2)$. \\
+
+        Case 1: x is a multiple of 3. \\
+        This means that $x=3k$ for some integer k. \\
+        Substitute $x=3k$ into $x(x+1)(x+2)$. \\
+        $x(x+1)(x+2) = 3k(3k+1)(3k+2)$ \\
+        $x(x+1)(x+2)$ can be written as $3m$ where $m = k(3k+1)(3k+2)$. \\
+        Since k is an integer, $k(3k+1)(3k+2)$ is also an integer, making $m$ an integer as well. \\
+        Therefore, $x(x+1)(x+2)$ is divisble by 3. \\
+
+        Case 2: x is one number greater than a multiple of 3. \\
+        This means that $x=3k+1$ for some integer k. \\
+        Substitute $x=3k+1$ into $x(x+1)(x+2)$. \\
+        $x(x+1)(x+2) = (3k+1)(3k+2)(3k+3)$ \\
+        $= (3k+1)(3k+2)(3(k+1))$ \\
+        $= 3(3k+1)(3k+2)(k+1)$ \\
+        $x(x+1)(x+2)$ can be written as $3m$ where $m = (3k+1)(3k+2)(k+1)$. \\
+        Since k is an integer, $(3k+1)(3k+2)(k+1)$ is also an integer, making $m$ an integer as well. \\
+        Therefore, $x(x+1)(x+2)$ is divisble by 3. \\
+
+        Case 3: x is two numbers greater than a multiple of 3. \\
+        This means that $x=3k+2$ for some integer k. \\
+        Substitute $x=3k+2$ into $x(x+1)(x+2)$. \\
+        $x(x+1)(x+2) = (3k+2)(3k+3)(3k+4)$ \\
+        $= (3k+1)(3(k+1))(3k+4)$ \\
+        $= 3(3k+1)(k+1)(3k+4)$ \\
+        $x(x+1)(x+2)$ can be written as $3m$ where $m = (3k+1)(k+1)(3k+4)$. \\
+        Since k is an integer, $(3k+1)(k+1)(3k+4)$ is also an integer, making $m$ an integer as well. \\
+        Therefore, $x(x+1)(x+2)$ is divisble by 3. \\
+
+        Now that we have proven both $2|x(x+1)(x+2)$ and $3|x(x+1)(x+2)$, we have proven that $6|x(x+1)(x+2)$.\\
+        Therefore, we have proven that $6|xyz$.
+    \end{description}
+\end{enumerate}
+
+\quad
+
+\item Consider the following statements:
+\label{quant_statements}
+\begin{enumerate}[label=(\roman*)]
+    \item If $x$ and $y$ are even integers, then $x+y$ is an even integer.
+    \item If $x+y$ is an even integer, then and $x$ and $y$ are both even integers.
+    \item If $x$ and $y$ are integers and $x^2 = y^2$, then $x=y$.
+    \item If $x$ and $y$ are real numbers and $x<y$, then $x^2 < y^2$.
+    \item If $x$ and $y$ are positive real numbers and  $x<y$, then $x^2 < y^2$.
+\end{enumerate}
+
+\begin{enumerate}
+    \item ({\it Graded for correctness\footnote{This means your solution will be
+evaluated not only on the correctness of your answers, but on your ability to 
+present your ideas clearly and logically. You should explain how you arrived at your conclusions, using 
+mathematically sound reasoning. Whether you use formal proof techniques or write a more informal argument for why 
+something is true, your answers should always be well-supported. Your goal should be to convince the reader that 
+your results and methods are sound.}}) Express the statements (i) - (v) as quantified statements. Define any predicates as needed.
+
+\begin{description}
+    \item[Answer:] .\\
+    Let F(x) be defined as "x is even" \\\\
+    (i) $\forall x \in \mathbb{Z}, \forall y \in \mathbb{Z} ((F(x) \land F(y)) \rightarrow F(x+y))$ \\
+    (ii) $\forall x \in \mathbb{Z}, \forall y \in \mathbb{Z} (F(x+y) \rightarrow (F(x) \land F(y)))$ \\
+    (iii) $\forall x \in \mathbb{Z}, \forall y \in \mathbb{Z} ((x^2=y^2) \rightarrow (x=y))$ \\
+    (iv) $\forall x \in \mathbb{R}, \forall y \in \mathbb{R} ((x<y) \rightarrow (x^2 < y^2))$ \\
+    (v) $\forall x \in \mathbb{R^+}, \forall y \in \mathbb{R^+} ((x<y) \rightarrow (x^2<y^2))$
+\end{description}
+
+\item ({\it Graded for correctness of choice and fair effort completeness in justification}\footnote{This means that for the justification, you will get full credit so long as your submission 
+demonstrates honest effort to answer the question. You will not be penalized for an incorrect justification.}) What are the error(s) in the following attempted proof for statement (ii)?
+
+\begin{quote}
+  We prove this by contrapositive. So, by \textbf{universal generalization} let $x$ and $y$ be arbitrary integers, such that $x$ and $y$ are not both even. Without loss of generality, suppose that $x$ is even and $y$ is odd. Then $x=2k$ for some integer $k$ and $y=2j+1$ for some integer $j$. $x+y=2k+2j+1=2(k+j)+1$. Since $j$ and $k$ are both integers, $j+k$ is too. Therefore, $x+y$ is odd. This proves the contrapositive, thus proving the claim. \hfill{$\blacksquare$}
+\end{quote}
+
+\begin{description}
+    \item[Answer:] Universal generalization can only be used with the cases "x is even and y is odd" and "x is odd and y is even" wihtout loss of generality. The proof for these two cases does not work for the case "both x and y are odd". So a seperate proof must be used for this case.
+\end{description}
+
+\item Write the correct version of the proof for statement (ii) if it is true or provide a counterexample to disprove it if it is not.
+
+\begin{description}
+    \item[Answer:] Counterexample: x = 5, y = 5 \\
+    The sum $x+y=10$ which is even.\\
+    However, both $x$ and $y$ are odd (not even), rendering statement (ii) false.
+\end{description}
+
+\item ({\it Graded for correctness of choice and fair effort completeness in justification}) 
+Which of the statements (i) - (v) is being {\bf disproved} by the following proof?
+
+\begin{quote}
+  To disprove the statement, we need to find a counterexample. We need to show that there exist some $x$ and $y$ in the domain such that
+  $\neg ~(~(x^2=y^2) \to (x=y)~)$. Rewriting this goal using the disjunctive form of the implication and applying De Morgan's Law, we need to show  $~(~(x^2=y^2) \land \neg(x=y)~)$.
+  
+  We choose the witnesses $x = -1$ and $y=1$, which are both in the domain and satisfy the condition $x^2 =y^2$. However, since $-1\neq 1$, the counterexample works to disprove the original statement.
+  \hfill{$\blacksquare$}
+\end{quote}
+
+\begin{description}
+    \item[Answer:] Statement (iii) is being disproved by this proof.\\
+    Since they are trying to find a counterexample using $\neg ~(~(x^2=y^2) \to (x=y)~)$, that means they are trying to disprove the statement $(~(x^2=y^2) \to (x=y)~)$, which is statement (iii).
+\end{description}
+
+\end{enumerate}
+\item
+We define the set of balanced parentheses $S$ recursively as follows:
+
+Basis: the string $()$ is in $S$
+
+Recursive rules:
+
+\begin{enumerate}
+    \item $\forall x \in S( (x) \in S)$
+    \item $\forall x \in S \forall y \in S (xy \in S)$ where $xy$ means the concatenation of $x$ and $y$
+\end{enumerate}
+
+Using structural induction, prove that for any string $a$ in $S$, the number of left parentheses in $x$ is equal to the number of right parentheses in $x$.
+
+\begin{description}
+    \item[Answer:] .\\
+    Let $L[x]$ return the number of left parentheses in $x$. \\
+    Let $R[x]$ return the number of right parentheses in $x$.\\
+    
+    Theorem: $\forall s \in S (L[s] = R[s])$ \\
+
+    Proof by Induction. \\
+    Base Case: s = (). L[()] = R[()] = 1. \\
+    Inductive Step: Assuming that $x \in S$ and $y \in S$, then L[x] = R[x] and L[y] = R[y]. Then we consider the following 2 cases depending on which was the last recursive rule.\\
+
+    Case 1: $s=(x)$, where $x \in S$. We assume that L[x] = R[x] and prove that L[s] = R[s].\\
+    
+    $L[s] = L[(x)]$ , Since $s=(x)$.\\
+    $= 1+L[x]$ , Since (x) has one more ( than x.\\
+    $= 1+R[x]$ , By the inductive hypothesis.\\
+    $= R[(x)]$ , Since (x) has one more ) than x.\\
+    $= R[s]$ , Since $s=(x)$.\\
+
+    Case 2: $s=xy$, where $x \in S$ and $y \in S$. We assume the inductive hypothesis and prove that L[s] = R[s].\\
+
+    $L[s] = L[xy]$, Since $s=xy$.\\
+    $=L[x] + L[y]$ \\
+    $=R[x]+R[y]$, By the inductive hypothesis.\\
+    $=R[xy]$ \\
+    $=R[s]$, Since $s=xy$. \\
+
+    Therefore, L[s] = R[s].
+
+\end{description}
+
+\end{enumerate}
+
+
+
+\end{document}

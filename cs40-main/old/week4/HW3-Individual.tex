@@ -1,0 +1,201 @@
+\documentclass[12pt, oneside]{article}
+
+\input{../CS40packages.tex}
+\usepackage{enumitem}
+
+\title{HW3 Individual}
+\author{CS40 Fall'21\\\\\\
+Bharat Kathi (5938444)}
+\date{Due: Monday, Oct 25, 2021 at 10:00PM on Gradescope}
+
+\begin{document}
+\maketitle
+
+{\bf Integrity reminders for individual homeworks}
+\begin{itemize}
+\item ``Individual homeworks'' must be solely your own work. 
+\item You may not collaborate on individual homeworks with anyone or seek help from online tutors or entities outside the class.
+\item You may ask questions about the homework in office hours (of the instructor, TAs, and/or tutors) and 
+on Piazza.  However, the staff will only answer clarifying questions on these homeworks. You \emph{cannot} use any online resources about the course content other than the text
+book and class material from this quarter.
+\item Do not share written solutions or partial solutions for homework with other students. Doing so would dilute their learning experience and detract from their success in the class.
+\end{itemize}
+
+You will submit this assignment via Gradescope
+(\href{https://www.gradescope.com}{https://www.gradescope.com}) in the assignment called ``HW3-Individual''.
+
+\subsection*{Summary of Proof Strategies (so far)}
+In your proofs and disproofs of statements below, justify each  step
+by reference to  a component of the  following proof  strategies
+we  have discussed so far, and/or to relevant definitions and calculations.
+\begin{itemize}
+    \item A counterexample can be used to prove that  $\forall x P(x)$ is {\bf false}.
+    \item  A witness can be used  to  prove that  $\exists x P(x)$ is {\bf true}.
+    \item {\bf Proof of universal by exhaustion}: To prove that $\forall x \, P(x)$
+is true when $P$ has a finite domain, evaluate the predicate at {\bf each} domain element to confirm that it is always T.
+    \item  {\bf Proof by universal generalization}: To prove that $\forall x \, P(x)$
+is true, we can take an arbitrary element $e$ from the domain and show that $P(e)$ is true, without making any assumptions about $e$ other than that it comes from the domain.
+    \item To  prove  that $\exists x P(x)$ is {\bf false}, write the universal statement that is logically equivalent to its negation and then prove it true using universal generalization.
+   
+    \item {\bf Proof of Conditional by Direct Proof}: To prove that the implication $p \to q$ is true, we can assume $p$ is true and use that assumption to show $q$ is true.
+
+\end{itemize}
+
+\newpage
+\section*{Assigned Questions}
+
+\begin{enumerate}
+
+\item ({\it Graded for correctness}) Is the following argument valid or invalid? Prove your answer by replacing each proposition with a variable to obtain the form of the argument. Then prove that the form is valid or invalid using truth tables. 
+
+I will buy a new car and a new house only if I get a job.\\
+I am not going to get a job.\\
+I will buy a new house.\\
+Therefore, I will not buy a new car.
+
+\begin{description}
+    \item[Answer:] .\\
+    p: I will buy a new car.\\
+    q: I will buy a new house\\
+    r: I will get a job.\\\\
+
+    $r \rightarrow (p \land q)$ (premise 1)\\
+    $\lnot r$ (premise 2)\\
+    $q$ (premise 3)\\
+    $\therefore \lnot p$ (conclusion)\\\\
+    \begin{displaymath}
+        \begin{array}{|c c c|c c c|c|}
+        p & q & r & r \rightarrow (p \land q) & \lnot r & q & \lnot p\\
+        \hline
+        T & T & T & T & F & T & F\\
+        T & T & F & T & T & T & F\\
+        T & F & T & F & F & F & F\\
+        T & F & F & T & T & F & F\\
+        F & T & T & F & F & T & T\\
+        F & T & F & T & T & T & T\\
+        F & F & T & F & F & F & T\\
+        F & F & F & T & F & F & T\\
+        \end{array}
+    \end{displaymath}\\
+    From this truth table, we can conclude that the given argument is valid since that when all the premises are true, the conclusion is also true (row 6).
+\end{description}
+
+
+\item({\it Graded for correctness}) Imagine that the friend from last homework comes back to assert that:
+
+The statement
+
+\[
+\forall x (~P(x) \lor  Q(x)~) 
+\]
+
+implies the statement
+
+\[
+(\forall x P(x)) \lor (\forall x Q(x)) 
+\]
+
+This time, instead of simply making an assertion they provide the following mathematical argument:
+\begin{quote}
+
+(1) $\forall x(P(x) \lor Q(x))$ \hfill{Premise}
+
+(2) $P(c) \lor Q(c)$\text{ for some $c$ in the domain}
+\hfill{Existential instantiation from (1)}
+
+(3) $P(c)$ \hfill{Simplification from (2)}
+
+(4) $\forall x P(x)$ \hfill{Universal generalization from (3)}
+
+(5) $Q(c)$ \hfill{Simplification from (2)}
+
+(6) $\forall xQ(x)$
+\hfill{Universal generalization from (5)}
+
+(7) $(\forall xP(x)) \lor (\forall xQ(x))$
+\hfill{Addition from (4) and (6)}
+
+\hfill{$\blacksquare$}
+
+\end{quote}
+
+\begin{enumerate}
+
+\item ({\it Graded for correctness\footnote{This means your solution will be
+evaluated not only on the correctness of your answers, but on your ability to 
+present your ideas clearly and logically. You should explain how you arrived at your conclusions, using 
+mathematically sound reasoning. Whether you use formal proof techniques or write a more informal argument for why 
+something is true, your answers should always be well-supported. Your goal should be to convince the reader that 
+your results and methods are sound.}}) Prove to your friend that they made a mistake by identifying \textbf{all of the error(s)} in their argument and the specific steps where they made each error. Explain the errors clearly enough that a student in CS 40 who may be 
+struggling with the material can still follow along with your reasoning.
+\begin{description}
+    \item[Answer:] .\\
+    From the given statement $\forall x (P(x) \lor Q(x))$, we can deduce that $P \land Q \implies P$ or $P \land Q \implies Q$.\\
+    However, we cannot deduce $P \lor Q \implies P$ or $P \lor Q \implies Q$ from that statement.\\
+    In step (3), the incorrect deduction is made that $P \lor Q \implies P$.\\
+    In step (5), the incorrect deduction is made that $P \lor Q \implies Q$.\\
+
+\end{description}
+\item ({\it Graded for fair effort completeness}\footnote{This means you will get full credit so long as your submission 
+demonstrates honest effort to answer the question. You will not be penalized for incorrect answers.} ) Show that for any choice of $P(x)$ and $Q(x)$, the hypothesis $\exists x (~P(x) \lor  Q(x)~)$ implies the conclusion $(\exists x P(x)) \lor (\exists x Q(x))$
+\begin{description}
+    \item[Answer:] .\\
+    Hypothesis: $\exists x (P(x) \lor Q(x))$\\
+    Conclusion: $(\exists x P(x)) \lor (\exists x Q(x))$\\
+    Negation of Hypothesis: $\lnot \exists x (P(x) \lor Q(x)) \equiv \forall x \lnot P(x) \land \forall x \lnot Q(x)$\\\\
+    (1) $\forall x \lnot P(x) \land \forall x \lnot Q(x)$\\
+    (2) $\forall x \lnot P(x)$ - simplification from (1)\\
+    (3) $\lnot P(a)$ - Existential Instantiation\\
+    (4) $\forall x \lnot Q(x)$ - simplification from (1)\\
+    (5) $\lnot Q(a)$ - Existential Instantiation\\
+    (6) $\forall x (P(x) \lor Q(x))$ - hypothesis\\
+    (7) $P(a) \lor Q(a)$ - Existential Instantiation\\
+
+\end{description}
+
+\end{enumerate}
+
+\item({\it Graded for correctness}) Justify the rule of universal transitivity, which states that if $\forall x(P(x) \to Q(x))$ and $\forall x(Q(x) \to R(x))$ are true, then $\forall x(P(x)\to R(x))$ is true, where the domains of all quantifiers are the same.
+\begin{description}
+    \item[Answer:] .\\
+    Assume $\forall x (P(x) \rightarrow Q(x))$ is true.\\
+    This means that for all x, if P(x) is true then Q(x) is also true.\\
+    Therefore, if we have some value a, $P(a) \rightarrow Q(a)$ is true.\\\\
+    Similary, we assume $\forall x (Q(x) \rightarrow R(x))$ is true.\\
+    This means that for all x, if Q(x) is true then R(x) is also true.\\
+    Therefore, if we have some value a, $Q(a) \rightarrow R(a)$ is true.\\\\
+    Using Hypothetical Syllogism, we can infer that since $P(a) \rightarrow Q(a)$ and $Q(a) \rightarrow R(a)$, then $P(a) \rightarrow R(a)$.\\
+    Lastly, we can generalize this into $\forall x (P(x) \rightarrow R(x))$
+\end{description}
+
+\item ({\it Graded for correctness}) Assuming that the domains of all quantifiers are the same, use rules of inference to show that if $
+\forall x(P(x)\lor Q(x))  \land \forall x((\neg P(x)\land Q(x)) \to R(x))
+$ then, $\forall x(\neg R(x) \to P(x))$ \\
+
+\begin{description}
+    \item[Answer:] .\\
+    (1) $\forall (P(x) \lor Q(x))$ - premise\\
+    (2) $\forall x ((\lnot P(x) \land Q(x)) \rightarrow R(x))$ - premise\\
+    (3) $(\lnot P(a) \land Q(a)) \rightarrow R(a)$ - Universal instantiation\\
+    (4) $\lnot R(a)$ - Premise for direct proof\\
+    (5) $\lnot (\lnot P(a) \land Q(a))$ - modus tollens\\
+    (6) $P(a) \lor \lnot Q(a)$ - DeMorgan's Law, universal instantiation\\
+    (7) $P(a) \lor P(a)$\\
+    (8) $P(a)$\\
+    (9) $\lnot R(a) \rightarrow P(a)$\\
+    (10) $\forall x (\lnot R(x) \rightarrow P(x))$
+\end{description}
+
+
+
+
+
+
+
+\end{enumerate}
+
+
+
+
+
+\end{document}

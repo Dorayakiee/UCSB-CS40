@@ -1,0 +1,146 @@
+\documentclass[12pt, oneside]{article}
+
+\input{../CS40packages.tex}
+\usepackage{enumitem}
+
+\title{HW9 Collaborative}
+\author{CS40 Fall'21\\\\\\
+Benjamin Cruttenden (4672440)\\\
+Bharat Kathi (5938444)\\\
+Sean Oh (4824231)\\\
+Marco Wong (4589198)}
+\date{Due: Thursday, Dec 02, 2021 at 10:00PM on Gradescope}
+\begin{document}
+\maketitle
+
+{\bf In this assignment,}
+
+You will have more practice with proof strategies learned so far and using functions to compare the sizes of sets.
+
+
+{\bf For all HW assignments:}
+
+Please see the instructions and policies for assignments on the class website and on the writeup for HW1.  In particular, these policies address
+\begin{multicols}{2}
+\begin{itemize}
+\item Collaboration policy
+\item Where to get help
+\item Typing your solutions
+\item Expectations for full credit
+\end{itemize}
+\end{multicols}
+
+
+You will submit this assignment via Gradescope
+(\href{https://www.gradescope.com}{https://www.gradescope.com}) in the assignment called ``HW9-Collabrative''.
+
+\newpage
+
+{\bf Assigned questions}
+
+\begin{enumerate}
+
+
+
+
+\item Let $B = \{0, 1\}$. $B^n$ is the set of binary strings with $n$ bits. Define the set $E_n$ to be the set of binary strings with $n$ bits that have an even number of $1$'s. Note that zero is an even number, so a string with zero $1$'s (i.e., a string that is all $0$'s) has an even number of $1$'s.
+\begin{enumerate}
+    \item Find a bijection between $B^9$ and $E_{10}$ and prove that your function is a bijection.
+    \begin{description}
+        \item[Answer:] .\\
+        $B9: 2^9 = 512$ different combinations\\
+        $E10: (2^10)/2 = 1024/2 = 512$ different combinations\\
+        $|B^9| = |E_10|$\\
+        $|B^9| = 2^9 = 512$\\
+        $|E_10| = 1024/2 = 512$\\
+        $512 = 512$ so there is a bijection\\\\
+        $000000000 \rightarrow 0000000000\\
+        000000001 \rightarrow 0000000011\\
+        000000010 \rightarrow 0000000101\\
+        000000011 \rightarrow 0000000110$\\
+        $f: E_10 -> B^9$\\
+        $f(es) = e$, where $es$ in $E_{10}$ and $s$ in $\{0,1\}$\\\\
+        Proof:\\\\
+        f is well defined:\\
+        Consider arbitrary $es$ in $E_{10}$. WTS it maps to exactly one element of $B^9$.\\
+        Since $es$ in $E_{10}$, it is a binary string with 10 bits.\\
+        Since $s$ in $\{0,1\}$ it is a binary string with 1 bit.\\
+        Removing $s$ from $es$ gives a binary string with 9 bits, so e in $B^9$.\\
+        Thus, each input for f maps to exactly 1 output.\\\\
+        f is one-to-one:\\
+        For $a,b$ in domain $E_{10}$, if $f(a) = f(b)$, then $a = b$\\
+        We want to prove that if  $f(a) = f(b)$, then $a = b$\\
+        Towards a direct proof, assume f(a) = f(b)\\
+        Since $f(a) = f(b)$, $e_a = e_b$, by definition of $f$.\\
+        Add arbitrary s in $\{0,1\}$ to both sides: $e_{as}$ = $e_{bs}$\\
+        Then, a = b\\
+    \end{description}
+    \item What is $\vert E_{10}\vert$?
+    \begin{description}
+        \item[Answer:] .\\
+        $|E_{10}| = (2^{10})/2 = 2^9 = 512$
+    \end{description}
+\end{enumerate}
+
+
+
+\item Prove that $| \mathbb{N} | \leq |\mathcal{P} ( \mathbb{N} ) |$ by showing that the witness function $f:  \mathbb{N} \to\mathcal{P}(\mathbb{N}) $ with $f(x) = \{x^2\}$ is one-to-one.
+
+
+\item Apply the pigeonhole principle/generalized pigeonhole principle to answer the following question. If the pigeonhole principle can not be applied, give a specific counterexample. 
+
+\begin{enumerate}
+    \item A team of four high jumpers all have a personal record that is at least $6$ feet and less than $7$ feet. Is it necessarily true that two of the team members must have personal records that are within (less than or equal to) four inches of each other?  Heights are measured to within a precision of $\frac{1}{4}$ inch. 
+    \item There are 121.4 million people in the United States who earn an annual income that is at least \$$10,000$ and less than $\$1000,000$ dollars. Annual income is rounded to the nearest dollar. Show that there are 123 people who earn the same annual income in dollars.
+
+\end{enumerate}
+
+
+
+\item For each of the functions below, indicate whether the function is onto, one-to-one, neither or both. Justify your choice using an appropriate proof strategy
+
+\begin{enumerate}
+    \item $h: \mathbb{Z} \to \mathbb{Z}. h(x) = x^3$
+    \item $g: \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z} \times \mathbb{Z}. g(x, y) = (1-y, 1-x)$
+
+\end{enumerate}
+
+\item Consider the binary relation $R$ on the set of integers define as $R_m= \{(a,b) \in \mathbb{Z} \times \mathbb{Z} \mid a - b = 3\cdot m\}$ for some positive integer $m$.  Prove or disprove that $R_m$ is a equivalence relation. 
+
+
+
+
+
+
+\item Extra credit: Recall the definitions of the greatest common divisor, gcd:
+\label{gcd_proof}
+{\bf Greatest common divisor} Let $a$ and $b$ be integers, not both zero. The largest integer $d$ such that 
+$d$ is a  factor of $a$ and $d$ is a factor of  $b$ is called the greatest common divisor of $a$ and $b$ 
+and is denoted by $gcd(a, b)$.
+
+
+{\bf Lemma 2:} For every two integers $a$ and  $b$, not both zero, with  $gcd(a,b) = 1$, it is not the case that both $a$
+is  even and $b$ is even.
+
+{\bf Proof} of Lemma 2:
+
+Towards a universal generalization, let $a$ and $b$ be integers, not both zero, with $gcd(a,b) = 1$. 
+We will proceed in a {\bf proof by contradiction} to show that it is not the case that both $a$ is even and $b$ is even.
+
+\ldots {\it Proof would continue here} \ldots
+
+
+Since the goal in a proof by contradiction is to prove $\lnot p \to (r \land \lnot r)$ for some propositions $p$ and $r$, what would be {\bf assumed} in the 
+next step of the proof?
+
+Write this assumption both symbolically and in English. 
+
+{\it You do not need to complete the proof for credit.}
+
+
+
+\end{enumerate}
+
+
+
+\end{document}

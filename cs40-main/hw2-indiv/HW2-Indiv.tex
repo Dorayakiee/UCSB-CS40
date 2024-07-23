@@ -1,0 +1,285 @@
+\documentclass[12pt, oneside]{article}
+
+\input{../CS40packages.tex}
+\usepackage{enumitem}
+
+\title{HW2-Individual: Basic Data Types and Predicate Logic}
+\author{CS40 Spring'22\\\\
+Bharat Kathi (5938444)}
+\date{Due: Tuesday, 4/19 at 11:59p on Gradescope}
+
+\begin{document}
+\maketitle
+
+{\bf In this assignment,}
+
+You will practice defining and using sets and functions in multiple ways, translating English statements to predicate logic, negating quantified statements, and using counterexample and witness-based arguments for predicates with infinite domains.
+
+
+{\bf Integrity reminders for individual homeworks}
+\begin{itemize}
+\item ``Individual homeworks'' must be solely your own work. 
+\item You may not collaborate on individual homeworks with anyone or seek help from online tutors or entities outside the class.
+\item You may ask questions about the homework in office hours (of the instructor, TAs, and/or tutors) and 
+on Piazza.  However, the staff will only answer clarifying questions on these homeworks. You \emph{cannot} use any online resources about the course content other than the text
+book and class material from this quarter.
+\item Do not share written solutions or partial solutions for homework with other students. Doing so would dilute their learning experience and detract from their success in the class.
+\end{itemize}
+
+
+You will submit this assignment via Gradescope
+(\href{https://www.gradescope.com}{https://www.gradescope.com}) in the assignment called ``HW2-Individual''.
+
+\section*{Assigned Questions}
+
+\begin{enumerate}
+
+\item The sets $A$, $B$, and $C$ are defined as follows:
+
+$A$ = \{and, but, or\}
+$B$ = \{furious, joyful, sorrowful\}
+$C$ = \{fast, slow\}
+
+Use the definitions for $C$, $A$, and $B$ to answer the questions. Express the elements using n-tuple notation, not string notation.
+
+\begin{enumerate}
+    \item Write an element from the set $B \times A \times C$.
+    \begin{description}
+        \item[Answer:] $( \text{joyful}, \text{but}, \text{slow} )$
+    \end{description}
+    \item Write the set $C \times B$ using set builder notation.
+    \begin{description}
+        \item[Answer:] $\{ (a,b) : a \in C, b \in B \}$
+    \end{description}
+\end{enumerate}
+
+ \item Write the negation of each of the following logical expressions so that all negations immediately precede predicates. In some cases, it may be necessary to apply one or more laws of propositional logic.
+
+\begin{enumerate}
+    \item $\forall x \exists y (P(x, y) \lor Q(x, y))$
+    \begin{description}
+        \item[Answer:] .\\
+        $\lnot [\forall x \exists y (P(x, y) \lor Q(x, y))]$ \\
+        $= \exists x \lnot [\exists y (P(x, y) \lor Q(x, y))]$ \\
+        $= \exists x \forall y \lnot[P(x, y) \lor Q(x, y)]$ \\
+        $= \exists x \forall y (\lnot P(x,y) \land \lnot Q(x,y))$
+    \end{description}
+    \item $\exists x \forall y (P(x, y) \to Q(x, y))$
+    \begin{description}
+        \item[Answer:] .\\
+        $\lnot [\exists x \forall y (P(x, y) \to Q(x, y))]$ \\
+        $= \forall x \lnot [\forall y (P(x, y) \to Q(x, y))]$ \\
+        $= \forall x \exists y \lnot [(P(x, y) \to Q(x, y))]$ \\
+        $= \forall x \exists y \lnot [\lnot (P(x, y) \lor Q(x, y))]$ \\
+        $= \forall x \exists y (P(x, y) \land \lnot Q(x, y))$ \\
+    \end{description}
+\end{enumerate}
+
+
+\item In the following question, the domain is a set of contestants on a dating show competing for your affection. Define the following predicates:
+\[
+    G(x): x \text{ will give you up} 
+\]
+\[
+    L(x): x \text{ will let you down}
+\]
+\[
+    T(x): x \text{ will tell a lie}
+\]
+Translate each statement given below into a logical expression. Then negate the expression by adding a negation operation to the beginning of the expression. Apply De Morgan's law until each negation operation applies directly to a predicate and then translate the logical expression back into English.
+
+
+
+\rule{0.5\textwidth}{.4pt}
+
+{\it Sample question and response that can be used as reference for the detail expected 
+in your answer:
+
+Sample question: Every contestant will let you down.
+
+Sample response:
+
+    $\forall x L(x)$
+    
+    Negation: $\neg \forall x L(x)$
+    
+    Applying De Morgan's law: $\exists x \neg L(x)$
+    
+    English: Some contestant will not let you down.
+
+} .
+
+\rule{0.5\textwidth}{.4pt}
+
+
+\begin{enumerate}
+    \item At least one of the contestants will tell a lie.
+    \begin{description}
+        \item[Answer:] .\\
+        $\exists x (T(x))$ \\
+        Negation: $\lnot \exists x (T(x))$ \\
+        De Morgan's: $\forall x (\lnot T(x))$ \\
+        English: Every student will tell the truth (will not lie).
+    \end{description}
+    \item Every contestant will give you up or let you down (or both).
+    \begin{description}
+        \item[Answer:] .\\
+        $\forall x (G(x) \lor L(x))$ \\
+        Negation: $\lnot \forall x (G(x) \lor L(x)))$ \\
+        De Morgan's: $\exists x (\lnot G(x) \land \lnot L(x))$ \\
+        English: There is a contestant who will not give you up and will not let you down.
+    \end{description}
+    \item Every contestant who will tell a lie will also give you up.
+    \begin{description}
+        \item[Answer:] .\\
+        $\forall x (T(x) \rightarrow G(x))$ \\
+        Negation: $\lnot \forall x (T(x) \rightarrow G(x))$ \\
+        De Morgan's: $\exists x (T(x) \land \lnot G(x))$ \\
+        English: There is a contestant who will tell and lie and will not give you up.
+    \end{description}
+    \item There is a contestant who will never give you up, never let you down and never tell a lie.
+    \begin{description}
+        \item[Answer:] .\\
+        $\exists x (\lnot G(x) \land \lnot L(x) \land \lnot T(X))$ \\
+        Negation: $\lnot \exists x (\lnot G(x) \land \lnot L(x) \land \lnot T(X))$ \\
+        De Morgan's: $\forall x (G(x) \lor L(x) \lor T(x))$ \\
+        English: Every contestant will give you up, let you down, or lie to you.
+    \end{description}
+\end{enumerate}
+
+
+\item Define the following predicates.
+    $Ate(x, y)$: $x$ ate $y$.
+    % $S(x, y)$: $x$ is a sibling of $y$.
+Define  $S_h$ to be the set of people that live in your apartment and $S_f$ to be the  set of the food items in the fridge.
+
+Translate each English sentence into a quantified logical expression. Define the domain of each variable inline.
+\begin{enumerate}
+    \item Sam ate all of the food in the fridge.
+    \begin{description}
+        \item[Answer:] $\forall x \in S_f, Ate(sam, x)$
+    \end{description}
+    \item At least one housemate ate nothing in the fridge.
+    \item \begin{description}
+        \item[Answer:] $\exists x \in S_h, \forall y \in S_f, (\lnot Ate(x,y))$
+    \end{description}
+\end{enumerate}
+
+
+
+\item Consider the following predicates, each of which has its domain as the set of all integers
+\label{q5}
+
+$E(x)$ is $T$ exactly when $x$ is odd, and is $F$ otherwise
+
+$T(x)$ is $T$ exactly when $x$ is a multiple of $2$, and is $F$ otherwise
+
+$M(x)$ is $T$ exactly when $x$ is a multiple of $5$, and is $F$ otherwise
+
+
+\rule{0.5\textwidth}{.4pt}
+
+{\it Sample response that can be used as reference for the detail expected 
+in your answer:} To prove that the statement $$\forall x ~E(x)$$ is false, we can use 
+the counterexample $x = 8$, which is not an odd number (its even).
+So the universal statement is false.
+
+
+\rule{0.5\textwidth}{.4pt}
+
+
+
+\begin{enumerate}
+\item ({\it Graded for correctness}) Use a counterexample to prove that the statement
+\[
+\forall x ( ~E(x) \to M(x) ~)
+\]
+is false.
+
+\begin{description}
+    \item[Answer:] Using the counterexample $x=3$ we can see that $E(x)$ returns true (3 is odd) but $M(x)$ returns false (3 is not a multiple of 5), rendering our universal statement false.
+\end{description}
+
+\item ({\it Graded for correctness}) Use a counterexample to prove that the statement
+\[
+\forall x ( E(x) \land T(x) ~)
+\]
+is false.
+
+\begin{description}
+    \item[Answer:] Using the counterexample $x=13$ we can see that $E(x)$ returns true (13 is odd) but $T(x)$ returns false (13 is not a multiple of 2), rendering our universal statement false.
+\end{description}
+
+\item ({\it Graded for correctness}) Use a witness to prove that the statement
+\[
+\exists x (~T(x) \land M(x) ~)
+\]
+is true.
+
+\begin{description}
+    \item[Answer:] Using the example $x=10$ we can see that $T(x)$ returns true (10 is a multiple of 2) and $M(x)$ also returns true (10 is a multiple of 5), rendering our existential statement true.
+\end{description}
+
+\item ({\it Graded for fair effort completeness}) Translate each of the statements in the previous two
+parts to English.
+\end{enumerate}
+
+\begin{description}
+    \item[Answer:] .\\
+    (b) Every number is odd and a multiple of 2.\\
+    (c) There exists a number which is a multiple of 2 and a multiple of 5.
+\end{description}
+
+\item Imagine a friend suggests the following argument to you because they believe universal quantifier distributes over disjunction:
+\label{q6}
+The statement
+\[
+\forall x (~P(x) \lor  Q(x)~) 
+\]
+
+is logically equivalent to 
+
+\[
+(\forall x P(x)) \lor (\forall x Q(x)) 
+\]
+
+
+
+
+
+({\it Graded for correctness\footnote{This means your solution will be
+evaluated not only on the correctness of your answers, but on your ability to 
+present your ideas clearly and logically. You should explain how you arrived at your conclusions, using 
+mathematically sound reasoning. Whether you use formal proof techniques or write a more informal argument for why 
+something is true, your answers should always be well-supported. Your goal should be to convince the reader that 
+your results and methods are sound.}}) Prove to your friend that they made a mistake by selecting a specific definition for $P(x)$ and $Q(x)$ and a domain of discourse with finite number of elements. Then show one statement is true while the other statement is false under this set of definitions. (Hint: You may use any of the predicates defined in the previous question). Include enough intermediate steps so that a student in CS 40 who may be 
+struggling with the material can still follow along with your reasoning.
+
+\begin{description}
+    \item[Answer:] .\\
+    Lets define P(x) and Q(x) as two predicates, each of which has its domain as the set \{1,2\}. \\\\
+    P(x): x is odd \\
+    Q(x): x is even \\\\
+    Let's look at our first statement: \\
+    $\forall x (P(x) \lor  Q(x))$ \\\\
+    When $x=1$, $P(1) \lor Q(1)$ evaluates to $T \lor F$ which is $T$.\\
+    When $x=2$, $P(1) \lor Q(1)$ evaluates to $T \lor T$ which is $T$.\\
+    Since $\forall x (P(x) \lor  Q(x))$ evaluated to true for all values of $x$ in its domain, we can confirm that it is true. \\\\
+    Now, lets look at the second statement:\\
+    $(\forall x P(x)) \lor (\forall x Q(x))$ \\\\
+    $P(1)$ evalutes to $T$ when $x=1$ and $F$ when $x=2$\\
+    This means that the statement $\forall x P(x)$ is false.\\
+    $Q(1)$ evalutes to $F$ when $x=1$ and $T$ when $x=2$\\
+    This means that the statement $\forall x Q(x)$ is false.\\
+    Therefore, our second statement $(\forall x P(x)) \lor (\forall x Q(x))$ evalutates to $F \lor F$ which is $F$.\\\\
+    Since our first statement ($\forall x (P(x) \lor  Q(x))$) was true but our second statement ($(\forall x P(x)) \lor (\forall x Q(x))$) was false, we can confirm that they are not logically equivalent.
+\end{description}
+
+\end{enumerate}
+
+\section*{Attributions}
+
+Thanks to \href{http://cseweb.ucsd.edu/~minnes/}{Mia Minnes} and \href{https://jpolitz.github.io/}{Joe Politz} for the original version of Q\ref{q5}. All materials created by them is licensed under a \href{http://creativecommons.org/licenses/by-nc/4.0/}{Creative Commons Attribution-Non Commercial 4.0} International License.
+
+
+\end{document}

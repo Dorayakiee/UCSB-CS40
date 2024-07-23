@@ -1,0 +1,283 @@
+\documentclass[12pt, oneside]{article}
+
+\input{../CS40packages.tex}
+\usepackage{enumitem}
+
+\title{HW4 Collaborative}
+\author{CS40 Fall'21\\\\\\
+Benjamin Cruttenden (4672440)\\\
+Bharat Kathi (5938444)\\\
+Sean Oh (4824231)\\\
+Marco Wong (4589198)}
+\date{Due: Thursday, Oct 28, 2021 at 10:00PM on Gradescope}
+\begin{document}
+\maketitle
+
+{\bf For all Collaborative HW assignments:}
+
+Collaborative homeworks may be done individually or in groups of up to 4 students. You may switch HW partners for different HW assignments. The lowest HW score will not be included in your overall HW average. Please ensure your name(s) and PID(s) are clearly visible on the first page of your homework submission.
+
+All submitted homework for this class must be typed. Diagrams may be hand-drawn and scanned and included in the typed document. You can use a word processing editor if you like (Microsoft Word, Open Office, Notepad, Vim, Google Docs, etc.) but you might find it useful to take this opportunity to learn LaTeX. LaTeX is a markup language used widely in computer science and mathematics. The homework assignments are typed using LaTeX and you can use the source files as templates for typesetting your solutions.\footnote{To use this template, you will need to copy both the source file (extension \texttt{.tex})  you'll be editing
+and the file containing all the ``shortcut" commands we've defined for this class \href{https://drive.google.com/file/d/1FmQvgByKnNjTpIkAUw31TGWYrQZM-HK0/view?usp=sharing})}
+
+
+{\bf Integrity reminders}
+\begin{itemize}
+\item Problems should be solved together, not divided up between the partners. The homework is
+designed to give you practice with the main concepts and techniques of the course, while getting to know and learn from your classmates.
+\item You may not collaborate on homework with anyone other than your group members.
+You may ask questions about the homework in office hours (of the instructor, TAs, and/or tutors) and 
+on Piazza.  You \emph{cannot} use any online resources about the course content other than the text
+book and class material from this quarter -- this is primarily to ensure that we all use consistent notation and
+definitions we will use this quarter.
+\item Do not share written solutions or partial solutions for homework with other students in the class who are not in your group. Doing so would dilute their learning experience and detract from their success in the class.
+\end{itemize}
+
+
+You will submit this assignment via Gradescope
+(\href{https://www.gradescope.com}{https://www.gradescope.com}) in the assignment called ``HW4-Collaborative''.
+
+\subsection*{Summary of Proof Strategies (so far)}
+In your proofs and disproofs of statements below, justify each  step
+by reference to  a component of the  following proof  strategies
+we  have discussed so far, and/or to relevant definitions and calculations.
+\begin{itemize}
+    \item A counterexample can be used to prove that  $\forall x P(x)$ is {\bf false}.
+    \item  A witness can be used  to  prove that  $\exists x P(x)$ is {\bf true}.
+    \item {\bf Proof of universal by exhaustion}: To prove that $\forall x \, P(x)$
+is true when $P$ has a finite domain, evaluate the predicate at {\bf each} domain element to confirm that it is always T.
+    \item  {\bf Proof by universal generalization}: To prove that $\forall x \, P(x)$
+is true, we can take an arbitrary element $e$ from the domain and show that $P(e)$ is true, without making any assumptions about $e$ other than that it comes from the domain.
+    \item To  prove  that $\exists x P(x)$ is {\bf false}, write the universal statement that is logically equivalent to its negation and then prove it true using universal generalization.
+    \item {\bf Strategies for conjunction}: To prove that $p \land q$ is true, have two subgoals: subgoal (1) prove $p$ 
+is  true; and, subgoal (2) prove $q$ is true. To prove that $p \land q$ is false, it's enough to prove that $p$ is false.
+ To prove that $p \land q$ is false, it's enough to prove that $q$ is false.
+    \item {\bf Proof of Conditional by Direct Proof}: To prove that the implication $p \to q$ is true, we can assume $p$ is true and use that assumption to show $q$ is true.
+    \item {\bf Proof of Conditional by Contrapositive Proof}: To prove that the implication $p \to q$ is true, we can assume $\neg q$ is true and use that assumption to show $\neg p$ is true.
+   
+\end{itemize}
+
+
+\newpage
+\section*{Assigned Questions}
+\begin{enumerate}
+
+
+
+\item Consider the predicate  $F(a,b)  = ``a \text{ is a factor of } b"$ over  the domain $\mathbb{Z}^{\neq 0} \times \mathbb{Z}$ that was introduced in lecture. Consider the following quantified
+statements
+\label{factoring}
+
+\begin{multicols}{2}
+\begin{enumerate}[label=(\roman*)]
+\item $\forall x \in \mathbb{Z} ~(F(1,x))$
+\item $\forall x \in \mathbb{Z}^{\neq 0} ~(F(x,1))$
+\item $\exists x \in \mathbb{Z} ~(F(1,x))$
+\item $\forall x \in \mathbb{Z}^{\ne 0} ( \neg F(x,1))$
+\item $\forall x \in \mathbb{Z}^{\neq 0} ~\exists y \in \mathbb{Z} ~(F(x,y))$
+\item $\exists x \in \mathbb{Z}^{\neq 0} ~\forall y \in \mathbb{Z} ~(F(x,y))$
+\item $\forall y \in \mathbb{Z} ~\exists x \in \mathbb{Z}^{\neq 0} ~(F(x,y))$
+\item $\exists y \in \mathbb{Z} ~\forall x \in \mathbb{Z}^{\neq 0} ~(F(x,y))$
+\end{enumerate}
+\end{multicols}
+
+\begin{enumerate}
+
+\item ({\it Graded for correctness of choice and fair effort completeness in justification}) 
+Which of the statements (i) - (viii) is being {\bf proved} by the following proof?
+
+\begin{quote}
+  By universal generalization, {\bf choose} $e$ to be an {\bf arbitrary} integer. 
+  We need to show $\exists y \in \mathbb{Z}^{\neq 0} (F(y,e))$. By definition of the  predicate $F$, we can rewrite 
+  this goal as $\exists y \in \mathbb{Z}^{\neq 0}  \exists c \in \mathbb{Z}~(e = c \cdot y)$. We pick the {\bf witnesses} $y = 1$  and $c = e$. $y$ is a non-zero integer and therefore in the domain. Similarly, $c$ is an integer and therefore in the domain. Plugging the value of the witnesses $y$ and $c$, we get 
+  $c \cdot y = e \cdot 1 = e$, as required. Since the predicate $\exists y \in \mathbb{Z}^{\neq 0} (F(y,e))$ evaluates to true 
+  for the arbitrary integer $e$, the claim has been proved.
+  
+  \hfill $\blacksquare$
+\end{quote}
+
+{\it Hint: It may be useful to 
+identify the key words in the proof that indicate proof strategies.}
+
+\begin{description}
+    \item[Answer:] Statement (vii). Taking the universal generalization of (vii) with arbitrary integer e as described in the proof gives $\exists x \in non-zero integer(F(x, e))$, which is equivalent to the statement to be shown true in the proof. Similarly, the predicate F from (vii) can be rewritten as shown in proof and we can choose witness $x = 1$ and $c = e$ to prove the statement true, proving the claim true.
+\end{description}
+
+\item ({\it Graded for correctness of choice and fair effort completeness in justification}) 
+Which of the statements (i) - (viii) is being {\bf disproved} by the following proof? 
+
+\begin{quote}
+  To disprove the statement, we need to find a counterexample. We choose $-1$, which is a nonzero
+  integer so in the domain. We need to show $ F(-1,1)$. By definition of the predicate $F$, we 
+  can rewrite this goal as $\exists c \in \mathbb{Z}~(1 = c \cdot -1)$. We pick the {\bf witness} $c = -1$, 
+  which is an integer and therefore in the domain. Plugging the value of the witness $c$, we get 
+  $c \cdot -1 = -1 \cdot -1 = 1$, as required. So the counterexample works to 
+  disprove the original statement.
+  \hfill $\blacksquare$
+\end{quote}
+
+{\it Hint: It may be useful to 
+identify the key words in the proof that indicate proof strategies.}
+
+\begin{description}
+    \item[Answer:] Statement (iv). Since the proof is by finding a counterexample, the statement must be a universal quantifier. We also see that in (iv), it says that for every x, x is not a factor of 1. The proof chooses x = -1 and shows that there in fact is an x that is a factor of 1, disproving the predicate by identifying a witness c = -1. 
+\end{description}
+
+\item ({\it Graded for correctness of evaluation of statement (is it true or false?) and fair effort completeness of the translation and proof}) Translate the following statement to English and then prove or disprove it:
+$$\forall x \in \mathbb{Z}^{\neq 0}~ \forall y \in \mathbb{Z}^{\neq 0} ~(~F(x,y) \to F(x,x+y)~)$$
+
+\begin{description}
+    \item[Answer:].\\
+    English: For every non-zero integer x and every non-zero integer y, if x is a factor of y then x is a factor of x + y.\\
+    Proof: \\
+    Towards a proof by universal generalization, choose arbitrary non-zero integers x and y. \\
+    To show: $(F(x,y) \rightarrow F(x, x+y))$. \\
+    Towards a direct proof, assume F(x,y) true, so we need to show $F(x, x+y) \equiv \exists c \in Z (x + y = c * x)$ true.\\
+    By definition, we can express $F(x,y)$ as $\exists k \in Z (y = k * x)$\\
+    We choose integer k = c - 1 and plug in: \\
+    $y = (c-1) * x$ \\
+    $y = c * x - x$ \\
+    $x + y = c * x$ \\
+    Since $\exists c \in Z (x + y = c * x)$ is true, the claim is proved.\\
+    QED
+\end{description}
+
+\end{enumerate}
+
+\item Consider the following statements:
+\label{quant_statements}
+\begin{enumerate}[label=(\roman*)]
+    \item If $x$ and $y$ are even integers, then $x+y$ is an even integer.
+    \item If $x+y$ is an even integer, then and $x$ and $y$ are both even integers.
+    \item If $x$ and $y$ are integers and $x^2 = y^2$, then $x=y$.
+    \item If $x$ and $y$ are real numbers and $x<y$, then $x^2 < y^2$.
+    \item If $x$ and $y$ are positive real numbers and  $x<y$, then $x^2 < y^2$.
+\end{enumerate}
+
+\begin{enumerate}
+    \item ({\it Graded for correctness\footnote{This means your solution will be
+evaluated not only on the correctness of your answers, but on your ability to 
+present your ideas clearly and logically. You should explain how you arrived at your conclusions, using 
+mathematically sound reasoning. Whether you use formal proof techniques or write a more informal argument for why 
+something is true, your answers should always be well-supported. Your goal should be to convince the reader that 
+your results and methods are sound.}}) Express the statements (i) - (v) as quantified statements. Define any predicates as needed.
+
+\begin{description}
+    \item[Answer:] .\\
+    Let x and y be integers\\
+    E(x): x is an even integer\\
+    i. $\forall x \in Z \forall y \in Z((E(x) \land E(y)) \rightarrow E(x+y))$\\
+    ii. $\forall x \in Z \forall y \in Z(E(x+y) \rightarrow (E(x) \land E(y)))$\\
+    iii. $\forall x \in Z \forall y \in Z((x^2 = y^2)  \rightarrow (x = y))$\\
+    iv. $\forall x \in R \forall y \in R((x < y)  \rightarrow (x^2 < y^2))$\\
+    v. $\forall x \in R+ \forall y \in R+((x < y)  \rightarrow (x^2 < y^2))$\\
+
+\end{description}
+
+\item ({\it Graded for correctness of choice and fair effort completeness in justification}\footnote{This means that for the justification, you will get full credit so long as your submission 
+demonstrates honest effort to answer the question. You will not be penalized for an incorrect justification.}) What are the error(s) in the following attempted proof for statement (i)?
+
+\begin{quote}
+  By universal generalization, {\bf choose} $x$ and $y$ to be {\bf arbitrary} even integers. 
+  Since even numbers are of the form $2k$, where $k$ is an integer, we can rewrite the hypothesis that $x$ and $y$ are both even as $\exists k \in \mathbb{Z}~(~(x = 2k) \land (y= 2k)~)$. We need to show that $(x + y)$ is even. 
+  Calculating $x+y$ as needed, 
+  $(x+y) = (2k + 2k) = 4k = 2 \cdot 2k$. Choose the witness $m = 2k$, which is an integer and therefore in the domain. Since we have shown that $\exists m \in \mathbb{Z}~( (x+y) = 2m)$, the claim has been proved. \hfill{$\blacksquare$}
+\end{quote}
+
+\begin{description}
+    \item[Answer:] This is incorrect here since k is being used as an arbitrary integer for both the cases of x and y. You would have to use 2 different arbitrary integers here rather than using the same one of k.
+\end{description}
+
+\item Write the correct version of the proof for statement (i).
+
+\begin{description}
+    \item[Answer:] By universal generalization, {\bf choose} $x$ and $y$ to be {\bf arbitrary} even integers. 
+  Since even numbers are of the form $2k$ and $2m$, where $k$ and $m$ is an integer, we can rewrite the hypothesis that $x$ and $y$ are both even as $\exists k \in \mathbb{Z}~(~(x = 2k) \land (y= 2m)~)$. We need to show that $(x + y)$ is even. 
+  Calculating $x+y$ as needed, 
+  $(x+y) = (2k + 2m) = 2(k + m)$. Choose the witness $n = (k + m) $, which is an integer and therefore in the domain. Since we have shown that $\exists m \in \mathbb{Z}~( (x+y) = 2n)$, the claim has been proved. \hfill{$\blacksquare$}
+\end{description}
+
+\item ({\it Graded for correctness of choice and fair effort completeness in justification}) 
+Which of the statements (ii) - (v) is being {\bf disproved} by the following proof?
+
+\begin{quote}
+  To disprove the statement, we need to find a counterexample. We need to show that there exist some $x$ and $y$ in the domain such that
+  $\neg ~(~(x<y) \to (x^2 < y^2)~)$. Rewriting this goal using the disjunctive form of the implication and applying De Morgan's Law, we need to show  $~(~(x<y) \land \neg(x^2 < y^2)~)$.
+  
+  We choose the witnesses $x = -2$ and $y=2$, which are both in the domain and satisfy the condition $x < y$. Squaring $x$ and $y$, we get $x^2 = y^2$. Since $x^2$ is not less than $y^2$, the counterexample works to 
+  disprove the original statement.
+  \hfill{$\blacksquare$}
+\end{quote}
+
+\begin{description}
+    \item[Answer:] Looking at the statements iv is trying to prove that if x and y are real numbers 
+    and $x < y$ then $x^2 < y^2$. So assuming x and y are in the domain of real numbers. Then p is equal to x < y and q is equal to $x^2 < y^2$. So writing out p and q into the form $(p \land \lnot q)$
+    We get $( (x < y) \land \lnot(x^2 < y^2 ))$. Which is exactly what the proof was trying to show. Meaning that statement iv was disproved by the proof. Statement v is similar but the reasoning that it isn’t disproving v is because in v x and y are assumed to be in the domain positive real numbers. The proof uses a witness x = -2 which wouldn’t be in statement v domain making the proof not applicable to it.    
+\end{description}
+
+\end{enumerate}
+
+
+\quad
+
+\item Consider the statement: If $n$ and $m$ are integers such that $n^2+m^2$ is odd, then $m$ is odd or $n$ is odd.
+\begin{enumerate}
+    \item Define predicates as necessary and write the symbolic form of the statement using quantifiers.
+    \begin{description}
+        \item[Answer:].\\
+        Let n and m be integers\\
+        E(x): x is an even integer\\
+        $\forall n \in Z \forall m \in Z(\lnot E(n^2+m^2) \rightarrow (\lnot E(n) \lor \lnot E(m)))$
+
+    \end{description}
+    \item Prove or disprove the statement. Specify which proof strategy is used.
+    \begin{description}
+        \item[Answer:].\\
+        Proof by contrapositive\\
+        Let n and m be two integers such that if m is and n is even, then n2 + m2  is even.\\
+        Since m is even, m = 2k, for some arbitrary integer k.\\
+        Since n is even, n = 2h, for some arbitrary integer h. \\
+        Plugging in m = 2k  and n = 2h into n2 + m2\\
+        $(2k)^2 + (2h)^2 = 4k^2 + 4h^2$ \\
+        $2(2k^2 + 2h^2)$\\
+        Since k and h are integers, then $2k^2 + 2h^2$ is also an integer\\
+        Since $n2 + m2 = 2f$, where f is equal to $2k^2 + 2h^2$ is an integer, then $n2 + m2$ is even\\
+        Since the contrapositive is true, then the original statement is true.
+    \end{description}
+\end{enumerate}
+
+\quad
+
+\item Consider the statement: If $n$ is an integer and $3n+2$ is even, then $n$ is even.
+\begin{enumerate}
+    \item Define predicates as necessary and write the symbolic form of the statement using quantifiers.
+    \begin{description}
+        \item[Answer:].\\
+        Let n be an integer\\
+        E(x): x is an even integer\\
+        $\forall n \in Z(E(3n + 2) \rightarrow E(n)) $
+    \end{description}
+    \item Prove or disprove the statement. Specify which proof strategy is used.
+    \begin{description}
+        \item[Answer:].\\
+        Theorem: If n is an integer and 3n + 2 is even, then n is even\\
+        Proof: Solving by Contrapositive (if n is odd, then 3n + 2 is odd)\\
+        Suppose that the conclusion is false making n odd\\
+        Then for some integer $k$, $n = 2k + 1 $\\
+        Plugging this value in. $3n + 2 = 3(2k + 1) + 2$\\
+        Since $3(2k + 1) + 2 = 6k + 3 +  2 = 6k + 5 = 6k + 4 + 1=2(3k + 2)+1.$ \\
+        Since $k$ is an integer, $3k + 2$ is also an integer. 	\\		
+        Then for some integer $j = 3k + 2$.\\
+                    Making $3n + 2$ odd because it is equal to $2j + 1$\\
+        By solving if $n$ is odd, then $3n + 2$ is odd. The contrapositive, If n is an integer and $3n + 2$ is even, then $n$ is even is also true
+
+    \end{description}
+\end{enumerate}
+
+
+\end{enumerate}
+\section*{Attributions}
+
+Thanks to \href{http://cseweb.ucsd.edu/~minnes/}{Mia Minnes} and \href{https://jpolitz.github.io/}{Joe Politz} for the original version of some of the questions on this homework. All materials created by them is licensed under a \href{http://creativecommons.org/licenses/by-nc/4.0/}{Creative Commons Attribution-Non Commercial 4.0} International License.
+
+\end{document}

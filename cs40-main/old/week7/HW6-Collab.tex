@@ -1,0 +1,186 @@
+\documentclass[12pt, oneside]{article}
+
+\input{../CS40packages.tex}
+\usepackage{enumitem}
+
+\title{HW6 Collaborative}
+\author{CS40 Fall'21\\\\\\
+Benjamin Cruttenden (4672440)\\\
+Bharat Kathi (5938444)\\\
+Sean Oh (4824231)\\\
+Marco Wong (4589198)}
+\date{Due: Thursday, Nov 11, 2021 at 10:00PM on Gradescope}
+\begin{document}
+\maketitle
+
+{\bf For all Collaborative HW assignments:}
+
+Collaborative homeworks may be done individually or in groups of up to 4 students. You may switch HW partners for different HW assignments.  Please ensure your name(s) and PID(s) are clearly visible on the first page of your homework submission.
+
+All submitted homework for this class must be typed. Diagrams may be hand-drawn and scanned and included in the typed document. You can use a word processing editor if you like (Microsoft Word, Open Office, Notepad, Vim, Google Docs, etc.) but you might find it useful to take this opportunity to learn LaTeX. LaTeX is a markup language used widely in computer science and mathematics. The homework assignments are typed using LaTeX and you can use the source files as templates for typesetting your solutions.\footnote{To use this template, you will need to copy both the source file (extension \texttt{.tex})  you'll be editing
+and the file containing all the ``shortcut" commands we've defined for this class \href{https://drive.google.com/file/d/1FmQvgByKnNjTpIkAUw31TGWYrQZM-HK0/view?usp=sharing})}
+
+{\bf Integrity reminders}
+\begin{itemize}
+\item Problems should be solved together, not divided up between the partners. The homework is
+designed to give you practice with the main concepts and techniques of the course, while getting to know and learn from your classmates.
+\item You may not collaborate on homework with anyone other than your group members.
+You may ask questions about the homework in office hours (of the instructor, TAs, and/or tutors) and 
+on Piazza.  You \emph{cannot} use any online resources about the course content other than the text
+book and class material from this quarter -- this is primarily to ensure that we all use consistent notation and
+definitions we will use this quarter.
+\item Do not share written solutions or partial solutions for homework with other students in the class who are not in your group. Doing so would dilute their learning experience and detract from their success in the class.
+\end{itemize}
+
+
+You will submit this assignment via Gradescope
+(\href{https://www.gradescope.com}{https://www.gradescope.com}) in the assignment called ``HW6-Collaborative''.
+
+\newpage
+
+\subsection*{Summary of Proof Strategies (so far)}
+In your proofs and disproofs of statements below, justify each  step
+by reference to  a component of the  following proof  strategies
+we  have discussed so far, and/or to relevant definitions and calculations.
+\begin{itemize}
+    \item A counterexample can be used to prove that  $\forall x P(x)$ is {\bf false}.
+    \item  A witness can be used  to  prove that  $\exists x P(x)$ is {\bf true}.
+    \item {\bf Proof of universal by exhaustion}: To prove that $\forall x \, P(x)$
+is true when $P$ has a finite domain, evaluate the predicate at {\bf each} domain element to confirm that it is always T.
+    \item  {\bf Proof by universal generalization}: To prove that $\forall x \, P(x)$
+is true, we can take an arbitrary element $e$ from the domain and show that $P(e)$ is true, without making any assumptions about $e$ other than that it comes from the domain.
+    \item To  prove  that $\exists x P(x)$ is {\bf false}, write the universal statement that is logically equivalent to its negation and then prove it true using universal generalization.
+    \item {\bf Strategies for conjunction}: To prove that $p \land q$ is true, have two subgoals: subgoal (1) prove $p$ 
+is  true; and, subgoal (2) prove $q$ is true. To prove that $p \land q$ is false, it's enough to prove that $p$ is false.
+ To prove that $p \land q$ is false, it's enough to prove that $q$ is false.
+    \item {\bf Proof of Conditional by Direct Proof}: To prove that the implication $p \to q$ is true, we can assume $p$ is true and use that assumption to show $q$ is true.
+    \item {\bf Proof of Conditional by Contrapositive Proof}: To prove that the implication $p \to q$ is true, we can assume $\neg q$ is true and use that assumption to show $\neg p$ is true.
+    \item {\bf Proof by Cases}: To prove $q$ when we know $p_1 \lor p_2$, show that $p_1 \to q$ and $p_2 \to q$.
+\end{itemize}
+
+\newpage
+
+{\bf Practice three useful proof strategies for comparing two sets:}
+
+\begin{center}
+\begin{tabular}{c|c|c}
+{\bf  Statement to Prove} & {\bf Logic Form} &{\bf Proof Strategy}\\
+\hline 
+$A \subseteq B$ & $\forall x  (x \in A  \to x  \in B)$ &For arbitrary $x \in A$, show that $x \in B$ \\
+$A \nsubseteq B$ &$\exists x  (x \in A  \land x  \notin B) $ & Find an element $x \in A$, such that $x \notin B$ \\
+$A = B$ & $\forall x  ( x\in A \leftrightarrow x \in B)$ & Show that $A \subseteq B$ and $B \subseteq A$ \\
+\end{tabular}
+\end{center}
+
+\section*{Assigned Questions}
+\begin{enumerate}
+\item Prove or disprove: $A \subseteq B$, where $A$ and $B$ are defined as follows:
+\[
+\begin{array}{l}
+A = \{x\in\mathbb{Z}^+ \mid (3 \mid x) \land (7 \mid x) \land (x < 30)\} \\
+B = \{x\in\mathbb{N} \mid x = 4k + 3\textrm{, where } k \in \mathbb{N}\}. \\
+\end{array}
+\]
+
+\begin{description}
+    \item[Answer:] .\\
+    For all x if x is in A then x is in B.\\
+    Claim is false.\\
+    Proof: $\forall x (A \rightarrow B)$\\
+    $gcd(3,7) = 1$\\
+    If $k \in Z$:\\
+    $x = 3 * 7 *  k$\\
+    $	x = 21 * k $\\
+    $21 < 30$, so this is true.\\
+    $21k = 4k + 3 $\\
+    $17k = 3, k = 3/17$\\
+    Which is not an integer therefore it is false.
+\end{description}
+
+\item Let $A = \{9k + 5 \mid k \in \mathbb{N}\}$ and $B = \{3k + 2 \mid k \in \mathbb{N}\}$. Prove or disprove that $A \subseteq B$.
+\begin{description}
+    \item[Answer:] .\\
+    For all x, if x in A, then x in B\\
+    $A = {x \in Z | \exists k \in N (x = 9k+5)}$\\
+    $B = {x \in Z | \exists j \in N (x = 3j+2)}$\\
+    Proof:  $\forall x(A \rightarrow B)$\\
+    Towards a proof by universal generalization, choose arbitrary integer x\\
+    Towards a direct proof, assume $x \in A$, the set of elements built from $9k+5$ where $k \in N$. We want to show $x \in B$. the set of elements built from $3k+2$ where $k \in N$.\\
+    Calculate: $x = 9k + 5 = 3(3k) + 3 + 2 = 3(3k) + 2 + 3 = 3(3k+1) + 2$\\
+    $3k+1$, for some arbitrary natural integer p, $x = 3p + 2$\\
+    This is the same as $3k + 2$, since k is some natural integer.
+\end{description}
+
+\item RNA is made up of strands of four different bases that match up in
+specific ways. The bases are elements of the set 
+$B  = \{\A, \C, \G, \U \}$.
+
+\label{roster_RNA}
+
+{\bf Definition} The set of RNA strands $S$ is defined (recursively) by:
+
+\[
+\begin{array}{ll}
+\textrm{Basis Step: } & \A \in S, \C \in S, \U \in S, \G \in S \\
+\textrm{Recursive Step: } & \textrm{If } s \in S\textrm{ and }b \in B \textrm{, then }sb \in S
+\end{array}
+\]
+
+A function \textit{rnalen} that computes the length of RNA strands in $S$ is defined by:
+\[
+\begin{array}{llll}
+& & \textit{rnalen}:S\to \mathbb{Z}^+ \\
+\textrm{Basis Step:} & \textrm{If } b \in B\textrm{ then } & \textit{rnalen}(b) & = 1 \\
+\textrm{Recursive Step:} & \textrm{If } s \in S\textrm{ and }b \in B\textrm{, then  } & \textit{rnalen}(sb) & = 1 + \textit{rnalen}(s)
+\end{array}
+\]Each of the sets below is described using set builder notation.  Rewrite them using the roster method.
+For example, the set described in set builder notation as
+\[
+\{ s \in S \mid \text{the leftmost base in $s$ is $\A$ and $rnalen(s) = 2$} \} 
+\]
+is described using the roster method by
+\[
+\{ \A\A , \A\C , \A\G, \A\U\}.
+\]
+Justifications aren't required for credit for this question,
+but it's good practice to think about how you would explain why your answer is correct.
+
+\begin{enumerate}
+\item \begin{align*}
+\{ s \in S \mid &\text{ the leftmost three bases in $s$ are $\U\A\G$ (in order),}\\
+&\text{the rightmost base of $s$ is not the same as its leftmost base, and $rnalen(s) = 3$} \}
+\end{align*}
+
+\begin{description}
+    \item[Answer:] $\{$UAG$\}$
+\end{description}
+
+\item 
+\[
+\{ s \in S \mid \text{ $s$ has at least one $\U$, there are twice as many $\C$s as $\A$s in $s$, and $rnalen(s) = 5$} \}
+\]
+\begin{description}
+    \item[Answer:] $\{$UCCAG, UCCAU$\}$
+\end{description}
+\end{enumerate}
+
+\item A subset $T$ of the integers is defined recursively as follows:
+
+\[
+\begin{array}{ll}
+\textrm{Basis Step: } & 2 \in T \\
+\textrm{Recursive Step: } & \textrm{If } k \in T\textrm{, then } k + 5 \in T
+\end{array}
+\]
+
+List the elements of $T$ whose absolute value is less than $20$
+\begin{description}
+    \item[Answer:] $T=\{2, 7, 12, 17\}$
+\end{description}
+\end{enumerate}
+
+\section*{Attributions}
+
+Thanks to \href{http://cseweb.ucsd.edu/~minnes/}{Mia Minnes} and \href{https://jpolitz.github.io/}{Joe Politz} for the original version of Q\ref{roster_RNA}. All materials created by them is licensed under a \href{http://creativecommons.org/licenses/by-nc/4.0/}{Creative Commons Attribution-Non Commercial 4.0} International License.
+
+\end{document}

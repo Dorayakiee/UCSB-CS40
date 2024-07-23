@@ -1,0 +1,229 @@
+\documentclass[12pt, oneside]{article}
+
+\input{../CS40packages.tex}
+\usepackage{enumitem}
+
+\title{HW1 Individual: Propositional Logic}
+\author{CS40 Fall'21\\\\Bharat Kathi (5938444)}
+\date{Due: Monday, Oct 11, 2021 at 10:00PM on Gradescope}
+
+\begin{document}
+\maketitle
+
+{\bf In this assignment,}
+
+You will practice reading and
+applying definitions to get comfortable working with mathematical language and propositional logic
+
+{\bf Integrity reminders for individual homeworks}
+\begin{itemize}
+\item ``Individual homeworks'' must be solely your own work. 
+\item You may not collaborate on individual homeworks with anyone or seek help from online tutors or entities outside the class.
+\item You may ask questions about the homework in office hours (of the instructor, TAs, and/or tutors) and 
+on Piazza.  However, the staff will only answer clarifying questions on these homeworks. You \emph{cannot} use any online resources about the course content other than the text
+book and class material from this quarter.
+\item Do not share written solutions or partial solutions for homework with other students. Doing so would dilute their learning experience and detract from their success in the class.
+\end{itemize}
+
+
+You will submit this assignment via Gradescope
+(\href{https://www.gradescope.com}{https://www.gradescope.com}) in the assignment called ``HW1-Individual''.
+
+\newpage
+\section*{Assigned Questions}
+\begin{enumerate}
+
+\item Express each statement in logic using the variables: 
+\begin{itemize}
+    \item $p$: It is windy.
+    \item $q$: It is cold.
+    \item $r$: It is raining.
+\end{itemize}
+
+\begin{enumerate}
+    \item It is windy and cold.
+    \begin{description}
+        \item[Answer:] $p\land q$
+    \end{description}
+    \item It is windy but not cold\
+    \begin{description}
+        \item[Answer:] $p\land \lnot q$
+    \end{description}
+    \item It is not true that it is windy or cold.
+    \begin{description}
+        \item[Answer:] $\lnot (p\lor q)$
+    \end{description}
+    \item It is raining and windy or it is cold.
+    \begin{description}
+        \item[Answer:] $r\land (p\lor q)$
+    \end{description}
+
+\end{enumerate}
+
+\item State the inverse, contrapositive, and converse of each conditional statement. Then indicate whether the inverse, contrapositive, and converse are true.
+\begin{enumerate}
+    \item If 3 is a prime number, then 5 is an even number.
+    \begin{description}
+        \item[Answer:] .
+        \begin{description}
+            \item[Inverse:] If 3 is not a prime number, then 5 is not an even number. ($F\rightarrow T = T$)
+            \item[Contrapositive:] If 5 is not an even number, then 3 is not a prime number. ($T\rightarrow F = F$)
+            \item[Converse:] If 5 is an even number, then 3 is a prime number. ($F\rightarrow T = T$)
+        \end{description}
+    \end{description}
+    \item If 5 is a negative number, then 3 is a positive number.
+    \begin{description}
+        \item[Answer:] .
+        \begin{description}
+            \item[Inverse:] If 5 is not a negative number, then 3 is not a positive number. ($T\rightarrow F = F$)
+            \item[Contrapositive:] If 3 is not a positive number, then 5 is not a negative number. ($F\rightarrow T = T$)
+            \item[Converse:] If 3 is a positive number, then 5 is a negative number. ($T\rightarrow F = F$)
+        \end{description}
+    \end{description}
+\end{enumerate}
+
+
+\item Define the following propositions:
+
+\begin{itemize}
+    \item $s$: a person is a senior
+    \item $y$: a person is at least 17 years of age
+    \item $p$: a person is allowed to park in the school parking lot
+\end{itemize}
+Express each of the following English sentences with a logical expression:
+\begin{enumerate}
+    \item A person is allowed to park in the school parking lot only if they are a senior and are at least seventeen years of age.
+    \begin{description}
+        \item[Answer:] $p\rightarrow (s\land y)$
+    \end{description}
+    \item A person can park in the school parking lot if they are a senior or at are least seventeen years of age.
+    \begin{description}
+        \item[Answer:] $(s\lor y)\rightarrow p$
+    \end{description}
+    \item Being at least 17 years of age is a necessary condition for being able to park in the school parking lot.
+    \begin{description}
+        \item[Answer:] $p\rightarrow y$
+    \end{description}
+    \item A person can park in the school parking lot if and only if the person is a senior and is at least 17 years of age.
+    \begin{description}
+        \item[Answer:] $p\leftrightarrow (s\land y)$
+    \end{description}
+    \item Being able to park in the school parking lot implies that the person is either a senior or is at least 17 years old.
+    \begin{description}
+        \item[Answer:] $p\rightarrow (s\lor y)$
+    \end{description}
+\end{enumerate}
+
+\item Translate each English sentence into a logical expression using the propositional variables defined below. Then negate the entire logical expression using parentheses and the negation operation. Apply De Morgan's law to the resulting expression and translate the final logical expression back into English.
+\begin{itemize}
+    \item $p$: the applicant has written permission from their parents
+    \item $e$: the applicant is at least 18 years old
+    \item $s$: the applicant is at least 16 years old
+\end{itemize}
+
+\begin{enumerate}
+    \item The applicant has written permission from their parents and is at least 16 years old.
+    \begin{description}
+        \item[Answer:] .\\
+        Logical Expression: $p\land s$\\
+        Negation: $\lnot (p\land s)$\\
+        Applying DeMorgan's Law: $\lnot p\lor \lnot s$\\
+        English Translation: The applicant does not have written permission from their parents or is less than 16 years old.
+    \end{description}
+    \item The applicant has written permission from their parents or is at least 18 years old.
+    \begin{description}
+        \item[Answer:] .\\
+        Logical Expression: $p\lor e$\\
+        Negation: $\lnot (p\lor e)$\\
+        Applying DeMorgan's Law: $\lnot p\land \lnot e$\\
+        English Translation: The applicant does not have written permission from their parents and is less than 18 years old.
+    \end{description}
+\end{enumerate}
+
+\item Use the laws of propositional logic to prove the following. Explicitly specify which laws are being used. The set of laws can be found in Section 1.5, Table 1.5.1.
+
+\begin{enumerate}
+    \item $\neg p \to \neg q \equiv q \to p$
+    \begin{description}
+        \item[Answer:] .\\
+        $\lnot p \rightarrow \lnot q \equiv q \rightarrow p$ (Contrapositive)
+    \end{description}
+    \item $p \land (\neg p \to q) \equiv p$
+    \begin{description}
+        \item[Answer:] .\\
+        $p \land (\lnot p \rightarrow q) \equiv p \land (\lnot(\lnot p) \lor q)$ (Conditional Identity)\\
+        $\equiv p \land (p \lor q)$ (Double Negation)\\
+        $\equiv p$ (Absorption Law)
+    \end{description}
+    \item $(p \to q) \land (p \to r) \equiv p \to (q \land r)$
+    \begin{description}
+        \item[Answer:] .\\
+        $(p \to q) \land (p \to r) \equiv (\lnot p \lor q) \land (\lnot p \lor r)$ (Conditional Identity)\\
+        $\equiv \lnot p \lor (q \land r)$ (Distributive Law)\\
+        $\equiv p \rightarrow (q \land r)$ (Conditional Identity)
+    \end{description}
+\end{enumerate}
+
+
+\item Express each of the sentences below using a logical expression. Then prove whether the two expressions are logically equivalent. Note: $x$ and $y$ are not variables that range over multiple values. Rather, they are some specific real numbers. Recall that if $x$ is not irrational, then $x$ is rational, and if $y$ is not rational, then $y$ is an irrational number. Hint: You don't need to prove or disprove the statements (a) and (b); we are just asking you to prove whether they are logically equivalent.
+
+\begin{enumerate}
+    \item If $x$ is a rational number and $y$ is an irrational number then $x-y$ is an irrational number.
+    \begin{description}
+        \item[Answer:] .\\
+        Let f(a): a is a rational number\\
+        Then, we can represent this sentence as $f(x) \land f(y) \rightarrow f(x-y)$.
+    \end{description}
+    \item  If $x$ is a rational number and $x-y$ is a rational number then $y$ is a rational number.
+    \begin{description}
+        \item[Answer:] .\\
+        Let f(a): a is a rational number\\
+        Then, we can represent this sentence as $f(x) \land f(x-y) \rightarrow f(y)$.
+    \end{description}
+\end{enumerate}
+	
+\item Solve the following logic puzzles that relate to inhabitants of the island of knights and knaves created by Smullyan, where knights always tell the truth and knaves always lie. You encounter two people, A and B. Determine, if possible, what A and B are if they address you in the ways described. If you cannot determine what these two people are, can you draw any conclusions? Note: These are two separate parts/puzzles.
+\begin{enumerate}
+    \item A says “The two of us are both knights,” and B says “A is a knave.”
+    \begin{description}
+        \item[Answer:] .\\
+        Let p: A is a knight\\
+        Let q: B is a knight\\
+        "The two of us are both knights": $p \land q$\\
+        "A is a knave": $\lnot p$\\\\
+        If A is a knight, then $p \land q$ must be true. However, this would mean that B is also a knight which would cause a contradiction with $\lnot p$.\\\\
+        However, if A is a knave, then $p \land q$ must be false. When B says "A is a knave", then the previous statement must be true, since it means that B is a knight and must be telling the truth about A being a knave.\\\\
+        A is a knave, B is a knight.
+    \end{description}
+    \item Both A and B say “I am a knight.”
+    \begin{description}
+        \item[Answer:] .\\
+        In this scenario, both A and B are saying that they are knights. Since knights always tell the truth and knaves always lie, and A and B are only making propositions about themselves, we could get any of the following possible solutions to this puzzle:\\\\
+        A is a knight, B is a knight\\
+        A is a knave, B is a knight\\
+        A is a knight, B is a knave\\
+        A is a knave, B is a knave
+    \end{description}
+\end{enumerate}
+
+\item Write the truth table the proposition $ ( p \rightarrow q) \rightarrow r$ and construct its Disjunctive Normal form.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+    $p$ & $q$ & $r$ & $ (p \rightarrow q) \rightarrow r$ \\ \hline \hline
+    F&F&F& F \\ \hline
+    F&F&T& T \\ \hline
+    F&T&F& F \\ \hline
+    F&T&T& T \\ \hline
+    T&F&F& T \\ \hline
+    T&F&T& T \\ \hline
+    T&T&F& F \\ \hline
+    T&T&T& T \\ \hline
+    \end{tabular}
+\end{center}
+\end{enumerate}
+
+\section*{Attributions}
+
+Thanks to \href{http://cseweb.ucsd.edu/~minnes/}{Mia Minnes} and \href{https://jpolitz.github.io/}{Joe Politz} for the original version of the instructions. All materials created by them is licensed under a \href{http://creativecommons.org/licenses/by-nc/4.0/}{Creative Commons Attribution-Non Commercial 4.0} International License.
+\end{document}

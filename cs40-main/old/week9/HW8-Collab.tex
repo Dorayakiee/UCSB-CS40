@@ -1,0 +1,305 @@
+\documentclass[12pt, oneside]{article}
+
+\input{../CS40packages.tex}
+\usepackage{enumitem}
+
+\title{HW8 Collaborative}
+\author{CS40 Fall'21\\\\\\
+Benjamin Cruttenden (4672440)\\\
+Bharat Kathi (5938444)\\\
+Sean Oh (4824231)\\\
+Marco Wong (4589198)}
+\date{Due: Monday, Nov 29, 2021 at 10:00PM on Gradescope}
+\begin{document}
+\maketitle
+
+{\bf In this assignment,}
+
+You will have more practice with induction and other proof strategies.
+
+
+{\bf For all HW assignments:}
+
+Please see the instructions and policies for assignments on the class website and on the writeup for HW1.  In particular, these policies address
+\begin{multicols}{2}
+\begin{itemize}
+\item Collaboration policy
+\item Where to get help
+\item Typing your solutions
+\item Expectations for full credit
+\end{itemize}
+\end{multicols}
+
+
+You will submit this assignment via Gradescope
+(\href{https://www.gradescope.com}{https://www.gradescope.com}) in the assignment called ``HW8''.
+
+
+In your proofs and disproofs of statements below, justify each  step
+by reference to the proof strategies
+we have discussed so far, and/or to relevant definitions and calculations. We include only induction-related strategies here; you can and should refer to past material to identify others.
+
+{\bf Proof by Mathematical Induction}: To prove a universal quantification over the set of  all integers greater than  or  equal to some base integer $b$:
+
+\begin{tabularx}{\textwidth}{l X}
+    Basis Step: & Show the statement holds for $b$. \\
+    Recursive Step: & Consider an arbitrary integer $n$ greater than or  equal to  $b$, assume
+    (as the {\bf induction hypothesis})  that the property holds  for $n$, and use  this and
+    other facts to  prove that  the property holds for $n+1$.
+\end{tabularx}
+
+{\bf Proof by Strong Induction} To prove that a universal quantification over the set of all integers greater than or equal to some  base integer $b$ holds,  pick a  fixed nonnegative integer  $j$ and then: \hfill 
+
+\begin{tabularx}{\textwidth}{l X}
+    Basis Step: & Show the statement holds for $b$, $b+1$, \ldots, $b+j$. \\
+    Recursive Step: & Consider an arbitrary integer $n$ greater than or  equal to  $b+j$, assume
+    (as the {\bf strong  induction hypothesis})  that the property holds  for {\bf each of} $b$, $b+1$, \ldots, $n$, 	
+    and use  this and
+    other facts to  prove that  the property holds for $n+1$.
+\end{tabularx}
+\newpage
+
+
+{\bf Assigned questions}
+
+\begin{enumerate}
+
+\item Assume $L$ is the set of linked lists defined recursively in HW7 and $toNum$ is a function from $L \to \mathbb{N}$ defined recursively as follows (also covered in Week 9 Monday's lecture):
+
+\[
+\begin{array}{ll}
+\textrm{Basis Step: } &   toNum([])  = 0\\
+
+\textrm{Recursive Step: } & \textrm{If } n \in \mathbb{N} \textrm{ and } l \in L \textrm{, then } toNum((n, l))  = 2^n \cdot 3^{toNum(l)}\\
+\end{array}
+\]
+
+
+Prove that $toNum$ is one-to-one.
+
+\begin{description}
+    \item[Answer:] .\\
+    $\forall l1 \in L \forall l2 \in  L (tonum(l1) = tonum(l2) \rightarrow (l1 = l2))$\\
+    Direct proof:\\
+    Assume tonum(l1) = tonum(l2)\\
+    Then: $2^n*3^{tonum(l1')} = 2^n*3^{tonum(l2')}$ // Divide both sides by $2^n$\\
+    $3^{tonum(l1')} = 3^{tonum(l2')}$\\\\
+    $N1 = n2$\\
+    $tonum(l1') = tonum(l2')$\\\\
+    Induction: on l1 choose arbitrary l2\\
+    Base case: l1 = []\\
+    WTS: tonum([]) = tonum(l2) $\rightarrow$ [] = l2\\
+    Direct proof:\\
+    Assume tonum([]) = tonum(l2)\\
+    0 = tonum(l2) by basis step\\
+    L2 = [] by basis step\\\\
+    Inductive Case: l1 = (n1,l1’). Choose arbitrary (n2,l2)\\
+    Assume as inductive hypothesis: $tonum(l1') = tonum(l2) \rightarrow (l1' = l2)$\\
+    WTS: $tonum((n1,l1')) = tonum(n2,l2) -> ((n1,l1') = (n2,l2))$\\
+    Direct proof:\\
+    Assume tonum((n1,l1’)) = tonum(n2,l2)\\
+    $2^{n1}*3^{tonum(l1')} = 2^{n2}*3^{tonum(l2)}$  //  by recursive step\\
+    $2^{n1-n2}*3^{tonum(l1')-tonum(l2)} = 1$\\
+    n1=n2\\
+    tonum(l1’) = tonum(l2)\\
+    $\Rightarrow$ (l1’ = l2)  //  by inductive hypothesis\\
+    $\Rightarrow $((n1,l1) = (n2,l2))  // by adding n1 and n2 to each side since n1 = n2
+\end{description}
+
+\item Define $P(n)$ to be the assertion that:
+\[ \sum_{j=1}^{n} j^2 = n(n+1)(2n+1)/6 \]
+Answer the questions that follow:
+\begin{enumerate}
+    \item Verify that $P(3)$ is true, and then express $P(k)$ and $P(k + 1)$
+    
+    \begin{description}
+        \item[Answer:] .\\
+        Verify P(3) $LHS = \sum_{j=1}^{3} j^2 = 3^2 + 2^2 + 1^2 = 9 + 4 + 1 = 14$\\
+        $RHS = 3(3 + 1)(2(3) + 1)/6 = 3*4*7/6 = 14$\\
+        LHS = RHS verifying P(3)\\
+        $P(k): \sum_{j=1}^{k} k^2 = k(k + 1)(2(k) + 1)/6$\\
+        $P(k): \sum_{j=1}^{k+1} (k+1)^2 = (k+1)(k + 1 + 1)(2(k+ 1) + 1)/6$ \\
+    \end{description}
+
+    \item What is the basis step for an inductive proof of $\forall n \in \mathbb{Z^+}(P(n))$
+    
+    \begin{description}
+        \item[Answer:] .\\
+        Basis Step, n = 1 so P(1) is the assertion that\\
+        $P(k): \sum_{j=1}^{1} j^2 = 1(1 + 1)(2(1) + 1)/6  $\\
+        Evaluating: $LHS = 1^2 = 1$\\
+        RHS = 1(2)(3)/6 = 6/6 = 1\\
+        LHS = RHS so n = 1 is true
+    \end{description}
+    
+    \item What would be the inductive hypothesis? What must be proven in the inductive step?
+    
+    \begin{description}
+        \item[Answer:] .\\
+        Inductive hypothesis would be that the assertion is true for n = k\\
+        So IH is P(k): $\sum_{j=1}^{k+1} k^2 = (k+1)(k + 1 + 1)(2(k+ 1) + 1)/6 $\\
+        And what must be prove is n = k + 1\\
+        So WTS is P(k+1): $\sum_{j=1}^{k+1} (k+1)^2 = (k+1)(k + 1 + 1)(2(k+ 1) + 1)/6 $\\
+        $= k^3/3 + 3k^2/2 + 13k/6 + 1$
+    \end{description}
+
+    \item Write the complete inductive proof for the provided assertion by combining all your answers from the previous parts
+\end{enumerate}
+
+\begin{description}
+    \item[Answer:] .\\
+    So by inductive proof over n\\
+    Basis Step, n = 1 so P(1) is the assertion that\\
+    $\sum_{j=1}^{1} j^2 = 1(1 + 1)(2(1) + 1)/6  $\\
+    Evaluating: LHS = $1^2$ = 1\\
+    RHS = 1(2)(3)/6 = 6/6 = 1\\
+    LHS = RHS so n = 1 is true\\\\
+    Inductive step: Now with that being true we form the IH of n = k being true,\\
+    So IH is P(k): $\sum_{j=1}^{k} (k)^2 = k(k + 1)(2(k) + 1)/6  = k^3/3 + k^2/2 + k/6$\\
+    We WTS that its true for n = k + 1 which is\\
+    P(k+1): $\sum_{j=1}^{k+1} (k+1)^2 = (k+1)(k + 1 + 1)(2(k+ 1) + 1)/6$\\
+    Evaluating LHS = $\sum_{j=1}^{k+1} (k+1)^2$\\
+    $= (k+1)^2 + \sum_{j=1}^{k} k^2$\\
+    $= k^2 + 2k + 1 + \sum_{j=1}^{k} k^2$\\
+    RHS = (k+1)(k + 1 + 1)(2(k+ 1) + 1)/6\\
+    $= k^3/3 + 3k^2/2 + 13k/6 + 1$\\
+    $= k^3/3 + k^2/2 + k^2 + k/6 + 2k + 1$\\
+    $= k^2 + 2k + 1 + \sum_{j=1}^{k} k^2$\\
+    LHS = RHS so proving it
+\end{description}
+
+\item ({\it Graded for correctness in evaluating statement 
+and for fair effort completeness in the justification}) Consider the functions $f_a: \mathbb{N} \to \mathbb{N}$ and $f_b: \mathbb{N} \to \mathbb{N}$ 
+defined recursively by 
+\[
+f_a(0) = 0 \qquad\text{and for each $n \in \mathbb{N}$,} \qquad f_a(n+1) = f_a(n) + 2n + 1
+\]
+\[
+f_b(0) = 0 \qquad\text{and for each $n \in \mathbb{N}$,} \qquad f_b(n+1) = 2f_b(n)
+\]
+Which of these two functions (if any) equals $2^n$ and which of these functions (if any) equals $n^2$? Use induction to prove the equality or use counterexamples to disprove it.
+
+\item ({\it Graded for correctness}) Prove the following statement:
+$$\exists n_0 \in \mathbb{N} \, \forall n \in \mathbb{Z}^{\geq n_0} \, (n^2 < 2^n)$$
+In your proof, you may use the following lemma:
+$$\exists n_0 \in \mathbb{N} \, \forall n \in \mathbb{Z}^{\geq n_0} \, (1+2n~ < n^2)$$
+
+\newpage
+\rule{0.5\textwidth}{.4pt}
+
+{\it Proof of lemma. This proof can also be used as reference for a possible approach for the statement you are trying to prove:} 
+
+To prove the existential claim, consider the witness $n_0 = 3$. We will prove that
+$$ \forall n \in \mathbb{Z}^{\geq 3} \, (1+2n~ < n^2)$$
+using mathematical induction.
+
+{\bf Basis step} For the basis step, we need to show that $1+2 \cdot 3 ~<~3^2$. Evaluating: $1+2 \cdot 3 = 1 + 6 =7$
+and $3^2 = 9$. Since $7< 9$, the basis step is complete.
+
+{\bf Recursive step} Consider arbitrary integer $n$ that is greater than or equal to $3$. Assume, as the induction hypothesis, 
+that $1 + 2n ~<~ n^2$. We need to show that $1+2(n+1)~ < (n+1)^2$. Calculating: 
+\begin{alignat*}{2}
+(n+1)^2 &= (n+1) (n+1) = n^2 + 2n + 1 && \\
+&> (1 + 2n) + 2n +1 &&\text{by the induction hypothesis} \\
+&> 2n + 2n + 1 && \text{since $1 > 0$} \\
+&> 2n + 2 \cdot 1 + 1 &&\text{since $n > 1$ by assumption that $n \geq 3$}\\
+&= 2(n+1) +1 = 1 + 2(n+1) &&\text{as required to complete the recursive step.}
+\end{alignat*}
+
+Thus, the universal quantification was proved using mathematical induction and so the witness $n_0 = 3$
+proves the existential. \hfill{$\blacksquare$}
+
+\rule{0.5\textwidth}{.4pt}
+
+\item ({\it Graded for fair effort completeness}) 
+Can the statement you proved above be used to prove or disprove the following statement? Why or why not?
+$$\exists n_0 \in \mathbb{N} \, \forall n \in \mathbb{Z}^{\geq n_0} \, (2^n < n^2)$$
+
+\item Prove the following upper bound for the given recurrence relation using strong induction.
+
+Define the sequence $\{a_n\}$ as follows:\\
+
+    $a_1 = a_2 = a_3 = 1$\\
+    $a_n = a_{n-1} + a_{n-2} + a_{n-3}$, for $n \geq 4$
+
+Prove that $$\forall n \in \mathbb{Z}^{\geq 1} \, (~a_n \leq 2^n~)$$
+
+\newpage
+\item Use induction to prove that the following algorithm is correct. Binary strings are the set of all strings of length 0 or more made up of characters from the set $\{0, 1\}$.
+% xiaoyong, please replace the pseudocode below with solution given in zybook exercise 8.4.8(a)
+
+
+\begin{algorithm}[caption={Recursively computing the set of all binary strings of a fixed length $n$}]
+procedure $\textit{StringSet}$($n$:a non-negative integer)
+
+$S$ := $\emptyset$
+if $n$ = $0$
+    Add $\lambda$ to $S$
+    return $(S)$ 
+end if
+$T$ := $StringSet(n-1)$
+for every $x\in T$
+    $y$ := $0x$
+    Add $y$ to $S$
+    $y$ := $1x$
+    Add $y$ to $S$
+end for
+return $(S)$ {output is $S$}
+
+    
+\end{algorithm}
+
+
+
+\item Let $W = \mathcal{P}(\{1,2,3,4,5\})$. 
+\label{proof_powerset}
+
+\rule{0.5\textwidth}{.4pt}
+
+{\it Sample response that can be used as reference for the detail expected 
+in your answer for parts (a) and (b) below:} 
+
+To give an example element in the set 
+$\{ X \in W ~|~ 1 \in X \} \cap \{ X \in W ~|~  2 \in X \}$,
+consider $\{ 1,2\}$. To prove that this is in the set, by definition of intersection, we need to show
+that $\{1,2\} \in \{ X \in W ~|~ 1 \in X \}$ and that $\{1,2\} \in \{ X \in W ~|~ 2 \in X \}$.
+\begin{itemize}
+\item By set builder notation, elements in $\{ X \in W ~|~ 1 \in X \}$ have to be elements of $W$ which have $1$ as an element. By definition of power set, elements of $W$ are subsets of $\{1,2,3,4,5\}$. Since
+each element in $\{1,2\}$ is an element of $\{1,2,3,4,5\}$, $\{1,2\}$ is a subset of $\{1,2,3,4,5\}$ 
+and hence is an element of $W$. Also, by roster method, $1 \in \{1,2\}$. Thus, $\{1,2\}$ satisfies the 
+conditions for membership in $\{ X \in W ~|~ 1 \in X \}$.
+\item Similarly, by set builder notation, elements in $\{ X \in W ~|~ 2 \in X \}$ have to be elements of $W$ 
+which have $2$ as an element. 
+By definition of power set, elements of $W$ are subsets of $\{1,2,3,4,5\}$. Since
+each element in $\{1,2\}$ is an element of $\{1,2,3,4,5\}$, $\{1,2\}$ is a subset of $\{1,2,3,4,5\}$ 
+and hence is an element of $W$. Also, by roster method, $2 \in \{1,2\}$. Thus, $\{1,2\}$ satisfies the 
+conditions for membership in $\{ X \in W ~|~ 2 \in X \}$.
+\end{itemize}
+
+\rule{0.5\textwidth}{.4pt}
+
+
+\begin{enumerate}
+\item Give two example elements in 
+\[
+W \times W.
+\]
+Justify your examples by explanations that include references to the relevant definitions.
+
+\item Give one example element in 
+\[
+\mathcal{P}(W)
+\]
+that is {\bf not} equal to $\emptyset$ or to $W$. Justify your example by an explanation that includes references to the relevant definitions.
+\end{enumerate}
+
+\item We define the following function: $$f: \{0,1\}^4 \rightarrow \{0,1\}^3,$$ where the output of $f$ is obtained by taking the input string and dropping the first bit. For example $f(1011) = 011$. Indicate whether the $f$ is onto, one-to-one, neither or both. If the function is not onto or not one-to-one, give an example showing why.
+
+\end{enumerate}
+
+
+\section*{Attributions}
+
+Thanks to \href{http://cseweb.ucsd.edu/~minnes/}{Mia Minnes} and \href{https://jpolitz.github.io/}{Joe Politz} for the original version of the instructions and select questions. All materials created by them is licensed under a \href{http://creativecommons.org/licenses/by-nc/4.0/}{Creative Commons Attribution-Non Commercial 4.0} International License.
+
+\end{document}

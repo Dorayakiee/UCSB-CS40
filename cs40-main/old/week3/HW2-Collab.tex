@@ -1,0 +1,173 @@
+\documentclass[12pt, oneside]{article}
+
+\input{../CS40packages.tex}
+\usepackage{enumitem}
+
+\title{HW2 Collaborative: Basic Data Types and Predicate Logic}
+\author{CS40 Fall'21\\\\\\
+Benjamin Cruttenden (4672440)\\\
+Bharat Kathi (5938444)\\\
+Sean Oh (4824231)\\\
+Marco Wong (4589198)}
+\date{Due: Thursday, Oct 14, 2021 at 10:00PM on Gradescope}
+
+\begin{document}
+\maketitle
+
+
+{\bf In this assignment,}
+
+You will practice defining and using sets and functions in multiple ways, describing sentences using predicate logic and evaluating quantified statements over finite domains.
+
+{\bf For all Collaborative HW assignments:}
+
+Collaborative homeworks may be done individually or in groups of up to 4 students. You may switch HW partners for different HW assignments. The lowest HW score will not be included in your overall HW average. Please ensure your name(s) and PID(s) are clearly visible on the first page of your homework submission.
+
+All submitted homework for this class must be typed. Diagrams may be hand-drawn and scanned and included in the typed document. You can use a word processing editor if you like (Microsoft Word, Open Office, Notepad, Vim, Google Docs, etc.) but you might find it useful to take this opportunity to learn LaTeX. LaTeX is a markup language used widely in computer science and mathematics. The homework assignments are typed using LaTeX and you can use the source files as templates for typesetting your solutions
+\footnote{To use this template, you will need to copy both the source file (extension \texttt{.tex})  you'll be editing and the file containing all the ``shortcut" commands we've defined for this class \href{https://drive.google.com/file/d/1FmQvgByKnNjTpIkAUw31TGWYrQZM-HK0/view?usp=sharing}{[link]}} .
+
+
+{\bf Integrity reminders}
+\begin{itemize}
+\item Problems should be solved together, not divided up between the partners. The homework is
+designed to give you practice with the main concepts and techniques of the course, while getting to know and learn from your classmates.
+\item You may not collaborate on homework with anyone other than your group members.
+You may ask questions about the homework in office hours (of the instructor, TAs, and/or tutors) and 
+on Piazza.  You \emph{cannot} use any online resources about the course content other than the text
+book and class material from this quarter -- this is primarily to ensure that we all use consistent notation and
+definitions we will use this quarter.
+\item Do not share written solutions or partial solutions for homework with other students in the class who are not in your group. Doing so would dilute their learning experience and detract from their success in the class.
+\end{itemize}
+
+
+You will submit this assignment via Gradescope
+(\href{https://www.gradescope.com}{https://www.gradescope.com}) in the assignment called ``HW2-Collaborative''.
+
+\section*{Assigned Questions}
+
+\begin{enumerate}
+
+\item Use the definitions for the sets given below to determine whether each statement is true or false. State the reason for your answer in each case.
+
+$A = \{ x \in \mathbb{Z}: x$ is an integer multiple of $3 \}$\\
+$B = \{ x \in \mathbb{Z}: x$ is a perfect square$\}$\\
+$C = \{1, 3, 7, 11\}$\\
+$D = \{3, 6, 9\}$\\
+
+Definition: An integer $x$ is a perfect square if there is an integer $y$ such that $x = y^2$.
+
+\begin{enumerate}
+    \item $27 ~\notin A$ 
+    \begin{description}
+        \item[Answer:] False, 27 is in the set of $\mathbb{Z}$ and a multiple of 3.
+    \end{description}
+    \item $27 ~\in B$ 
+    \begin{description}
+        \item[Answer:] False, 27 is in the set of $\mathbb{Z}$ but is not a perfect square.
+    \end{description}
+    \item $(\{3, 11\} \in C) \land (3 \in D)$ 
+    \begin{description}
+        \item[Answer:] False, because $\{3,11\}$ is not in C although 3 is in D. $F \land T$ is $F$.
+    \end{description}
+    
+\end{enumerate}
+
+
+
+\item Let  $S(x)$ be the statement ``$x$ is a student in CS40,'',  $C(x)$ be the statement ``$x$ has a cat,'' let $D(x)$ be the statement ``$x$ has a dog,'' and let $F(x)$ be the statement ``$x$ has a ferret.'' Express each of these statements in terms of $S(x)$, $C(x)$, $D(x)$, $F(x)$. Let the domain consist of all humans.
+\begin{enumerate}
+    \item Someone has a cat, a dog, and a ferret.
+    \begin{description}
+        \item[Answer:] $\exists x(C(x) \land D(x) \land F(x))$ 
+    \end{description}
+    \item No one has a cat, a dog, and a ferret.
+    \begin{description}
+        \item[Answer:] $\lnot \forall x(C(x) \land D(x) \land F(x))$ 
+    \end{description}
+    \item All students in CS40 class have a cat, a dog, or a ferret.
+    \begin{description}
+        \item[Answer:] $\forall x (S(x) \rightarrow (C(x) \lor D(x) \lor F(x)))$ 
+    \end{description}
+    \item Some student in CS40  has a cat and a ferret, but not a dog.
+    \begin{description}
+        \item[Answer:] $\exists x(S(x) \land C(x) \land \lnot D(x) \land F(x))$
+    \end{description}
+\end{enumerate}
+ 
+
+
+
+ \item Suppose that the domain of the propositional function $P(x)$ consists of the set \{-1, 0, 1, 2, 3\}. Write out each of these propositions using disjunctions, conjunctions, and negations.
+\begin{enumerate}
+    \item $\exists P(x) $
+    \begin{description}
+        \item[Answer:] $P(-1) \lor P(0) \lor P(1) \lor P(2) \lor P(3)$ (Disjunction)
+    \end{description}
+    \item $\forall P(x)$
+    \begin{description}
+        \item[Answer:] $P(-1) \land P(0) \land P(1) \land P(2) \land P(3)$ (Conjunction)
+    \end{description}
+    \item $\exists \neg P(x) $
+    \begin{description}
+        \item[Answer:] $\lnot P(-1) \lor\lnot P(0) \lor\lnot P(1) \lor\lnot P(2) \lor\lnot P(3)$ (Disjunction and Negations)
+    \end{description}
+    \item $\forall \neg P(x)$
+    \begin{description}
+        \item[Answer:] $\lnot P(-1) \land\lnot P(0) \land\lnot P(1) \land\lnot P(2) \land\lnot P(3)$ (Conjunction and Negations)
+    \end{description}
+    \item $\neg \exists P(x) $
+    \begin{description}
+        \item[Answer:] $\lnot(P(-1) \lor P(0) \lor P(1) \lor P(2) \lor P(3)) = \lnot P(-1) \land\lnot P(0) \land\lnot P(1) \land\lnot P(2) \land\lnot P(3)$
+    \end{description}
+    \item $\neg \forall P(x)$
+    \begin{description}
+        \item[Answer:] $\lnot(P(-1) \land P(0) \land P(1) \land P(2) \land P(3)) = \lnot P(-1) \lor\lnot P(0) \lor\lnot P(1) \lor\lnot P(2) \lor\lnot P(3)$
+    \end{description}
+\end{enumerate}
+
+\newpage
+
+\item In the following question, the domain is a set of students who show up for a test. Define the following predicates:
+
+$P(x)$: $x$ showed up with a pencil \\
+$C(x)$: $x$ showed up with a calculator\\
+
+Translate each statement into a logical expression. Then negate the expression by adding a negation operation to the beginning of the expression. Apply De Morgan's law until each negation operation applies directly to a predicate and then translate the logical expression back into English. 
+
+\rule{0.5\textwidth}{.4pt}
+
+{\it Sample response that can be used as reference for the detail expected 
+in your answer:} 
+
+Statement : Every student showed up with a calculator.
+
+Logical expression: $\forall x C(x)$\\
+Negation: $\neg \forall x C(x)$\\
+Applying De Morgan's law: $\exists x \neg C(x)$\\
+English: Some student showed up without a calculator.\\
+\rule{0.5\textwidth}{.4pt}
+
+
+\begin{enumerate}
+    \item Every student showed up with a pencil and a calculator. 
+    \begin{description}
+        \item[Answer:].\\
+        Logical Expression: $\forall x(P(x) \land C(x))$ \\
+        Negation: $\lnot \forall x(P(x) \land C(x))$\\
+        Applying DeMorgan's Law: $\exists x(\lnot P(x) \lor \lnot C(x))$\\
+        English: Some student showed up without a pencil or without a calculator.
+    \end{description}
+    \item Some student showed up with a pencil or a calculator
+    \begin{description}
+        \item[Answer:].\\
+        Logical Expression: $\exists x(P(x) \lor C(x))$ \\
+        Negation: $\lnot \exists x(P(x) \lor C(x))$\\
+        Applying DeMorgan's Law: $\forall x(\lnot P(x) \land \lnot C(x))$\\
+        English: Every student showed up without a pencil and without a calculator.
+    \end{description}
+\end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}

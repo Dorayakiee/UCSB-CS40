@@ -1,0 +1,365 @@
+\documentclass[12pt, oneside]{article}
+
+\input{../CS40packages.tex}
+\usepackage{enumitem}
+
+\title{HW7 Collaborative}
+\author{CS40 Fall'21\\\\\\
+Benjamin Cruttenden (4672440)\\\
+Bharat Kathi (5938444)\\\
+Sean Oh (4824231)\\\
+Marco Wong (4589198)}
+\date{Due: Thursday, Nov 18, 2021 at 10:00PM on Gradescope}
+\begin{document}
+\maketitle
+
+{\bf In this assignment,}
+
+You will work with recursively defined sets and functions and prove properties about them, practicing induction
+and other proof strategies.
+
+
+{\bf For all HW assignments:}
+
+Please see the instructions and policies for assignments on the class website and on the writeup for HW1.  In particular, these policies address
+\begin{multicols}{2}
+\begin{itemize}
+\item Collaboration policy
+\item Where to get help
+\item Typing your solutions
+\item Expectations for full credit
+\end{itemize}
+\end{multicols}
+
+
+You will submit this assignment via Gradescope
+(\href{https://www.gradescope.com}{https://www.gradescope.com}) in the assignment called ``HW7-Collaborative''.
+
+
+In your proofs and disproofs of statements below, justify each  step
+by reference to the proof strategies
+we have discussed so far, and/or to relevant definitions and calculations. We include only induction-related strategies here; you can and should refer to past material to identify others.
+
+
+\fbox{\parbox{\textwidth}{%
+{\bf Proof by Structural Induction}: To prove that $\forall x \in X \, P(x)$ where $X$ is a recursively defined set, prove two cases:
+    
+    \begin{tabularx}{\textwidth}{l X}
+    Basis Step: & Show the statement holds for elements specified in the basis step of the definition. \\
+    Recursive Step: & Show that if the statement is true for each of the elements used to construct
+new elements in the recursive step of the definition, the result holds for these new elements.
+\end{tabularx}
+}}
+
+\newpage
+
+
+\subsubsection*{RNA related definitions}
+
+Consider the following definitions related to RNA strands:\\
+
+{\bf Definition} Set of bases $B  =  \{ \A, \C, \U, \G \}$. The set of RNA strands $S$ is defined (recursively) by:
+\[
+\begin{array}{ll}
+\textrm{Basis Step: } & \A \in S, \C \in S, \U \in S, \G \in S \\
+\textrm{Recursive Step: } & \textrm{If } s \in S\textrm{ and }b \in B \textrm{, then }sb \in S
+\end{array}
+\]
+where $sb$ is string concatenation. \\
+
+{\bf Definition} The function \textit{rnalen} that computes the length of RNA strands in $S$ is defined recursively by
+$rnalen: S  \to \mathbb{Z}^+$
+
+\[
+\begin{array}{ll}
+\textrm{Basis Step: } &  \textrm{If } b \in B \textrm{, then } rnalen(b)  = 1\\
+
+\textrm{Recursive Step: } & \textrm{If } s \in S \textrm{ and } b \in B \textrm{, then } rnalen(sb)  = 1 + rnalen(s)\\
+\end{array}
+\]
+
+{\bf Definition} The function \textit{basecount} that computes the number of a given base $b$ appearing in a RNA strand $s$ is defined recursively by $basecount : S \times B \to\mathbb{N}$
+
+\begin{quote}
+Basis step: If  $b_1 \in B$, $b_2 \in B$, $basecount(b_1, b_2) =
+        \begin{cases}
+            1 & \textrm{when } b_1 = b_2 \\
+            0 & \textrm{when } b_1 \neq b_2 \\
+        \end{cases}$
+
+Recursive Step: If $s \in S$, $b_1 \in B$, $b_2 \in B$, $basecount(s b_1, b_2) =
+        \begin{cases}
+            1 + \textit{basecount}(s, b_2) & \textrm{when } b_1 = b_2 \\
+            \textit{basecount}(s, b_2) & \textrm{when } b_1 \neq b_2 \\
+        \end{cases}$
+\end{quote}
+
+{\bf Definition} The function $\textit{mutate} :  S \times B \to S$ is defined recursively as:
+
+\begin{quote}
+Basis step: If  $b_1 \in B$ and $b_2 \in B$, $mutate(b_1, b_2) =
+        \begin{cases}
+            b_2 & \textrm{when } b_1 = \A \\
+            b_1 & \textrm{when } b_1 \neq \A \\
+        \end{cases}$
+
+Recursive Step: If $s \in S$, $b_1 \in B$, $b_2 \in B$, $mutate(sb_1, b_2) =
+        \begin{cases}
+            \textit{mutate}(s, b_2)b_2 & \textrm{when } b_1 = \A \\
+            \textit{mutate}(s, b_2)b_1 & \textrm{when } b_1 \neq \A \\
+        \end{cases}$
+\end{quote}
+
+\newpage
+\subsubsection*{Linked list related definitions}
+
+{\bf Definition} The set of linked lists of natural numbers $L$ is defined by:
+\[
+\begin{array}{ll}
+    \textrm{Basis Step: } & [\,] \in L \\
+    \textrm{Recursive Step: } & \textrm{If } l \in L\textrm{ and }n \in \mathbb{N} \textrm{, then } (n, l) \in L
+\end{array}
+\]
+%
+%{\bf Definition} The function $\textit{length} : L \to \mathbb{N}$ that computes the length of a list is:
+%\[
+%\begin{array}{llll}
+%& & \textit{length} : L & \to \mathbb{N} \\
+%\textrm{Basis Step:} &  & \textit{length}([]) & = 0 \\
+%\textrm{Recursive Step:} & \textrm{If } l \in L\textrm{ and }n \in \mathbb{N}\textrm{, then  } & \textit{length}((n, l)) & = 1 + \textit{length}(l)
+%\end{array}
+%\]
+%{\bf Definition} The function $\textit{sum} : L \to \mathbb{N}$ that sums all the elements of a list is defined by:
+%\[
+%\begin{array}{llll}
+%& & \textit{sum} : L & \to \mathbb{N} \\
+%\textrm{Basis Step:} & & \textit{sum}([]) & = 0 \\
+%\textrm{Recursive Step:} & \textrm{If } l \in L, n \in \mathbb{N} & \textit{sum}((n, l)) & = n + \textit{sum}(l)
+%\end{array}
+%\]
+
+{\bf Definition} The function $\textit{removeTail} : L  \to L$ that removes the last node of a linked list (if it 
+exists) is defined by:
+\[
+\begin{array}{llll}
+& \textit{removeTail} : L \to L \\
+\textrm{Basis Step:} &  \textit{removeTail}([\,]) = [\,]\\
+\textrm{Recursive Step:} & \textrm{If } l \in L\textrm{ and }n \in \mathbb{N}\textrm{, then  }\\&\textit{removeTail}(~(n, l)~) 
+= 
+\begin{cases}
+   [\,], \textrm{when } l = [\,] \\
+   (n, removeTail(l)~),
+   \textrm{when } l \neq [\,] \\
+\end{cases}
+
+\end{array}
+\]
+
+{\bf Definition} The function $\textit{remove} : L \times \mathbb{N} \to L$ 
+that removes a single node containing a given value (if present) from a linked list is defined by:
+\[
+\begin{array}{llll}
+& & \textit{remove} : L \times \mathbb{N} & \to L \\
+\textrm{Basis Step:} & \textrm{If } m \in \mathbb{N}\textrm{ then } & \textit{remove}([\,], m) & = [\,] \\
+\textrm{Recursive Step:} & \textrm{If } l \in L, n \in \mathbb{N}, m \in \mathbb{N}\textrm{, then  } & \textit{remove}((n, l), m) & =
+    \begin{cases}
+       l & \textrm{when } n = m \\
+       (n, \textit{remove}(l, m)) & \textrm{when } n \neq m \\
+    \end{cases}
+\end{array}
+\]
+
+{\bf Definition:} The function $prepend : L \times \mathbb{N} \to L$ that adds an element at the front of a linked list is defined
+by:
+\[
+prepend(l, n) = (n, l)
+\]
+
+
+{\bf Definition} The function $\textit{append} : L \times \mathbb{N} \to L$ that adds an element at the end of a linked list is defined by:
+\[
+\begin{array}{llll}
+& & \textit{append} : L \times \mathbb{N} & \to L \\
+\textrm{Basis Step:} & \textrm{If } m \in \mathbb{N}\textrm{ then } & \textit{append}([\,], m) & = (m, [\,]) \\
+\textrm{Recursive Step:} & \textrm{If } l \in L\textrm{ and }n \in \mathbb{N}\textrm{ and }m \in \mathbb{N}\textrm{, then  } & \textit{append}((n, l), m) & = (n, \textit{append}(l, m))
+\end{array}
+\]
+
+\newpage
+
+\section*{Assigned Questions}
+Definitions related to RNA and linked list are listed on the previous two pages.
+\begin{enumerate}
+
+
+
+\item ({\it Graded for correctness}\footnote{This means your solution will be
+evaluated not only on the correctness of your answers, but on your ability to 
+present your ideas clearly and logically. You should explain how you arrived at your conclusions, using 
+mathematically sound reasoning. Whether you use formal proof techniques or write a more informal argument for why 
+something is true, your answers should always be well-supported. Your goal should be to convince the reader that 
+your results and methods are sound.}) Calculate the following function applications. Include all intermediate steps, with 
+justifications.
+
+
+\rule{0.5\textwidth}{.4pt}
+
+{\it Sample response that can be used as reference for the detail expected 
+in your answer for this part:} 
+
+Calculating $basecount(\A\G\G\G\C, \G )$, we have
+
+\begin{alignat*}{2}
+basecount  (\A\G\G\G\C,~\G) 
+&= basecount(\A\G\G\G, \G) & \text{By recursive step of basecount: $b_1 =\C$, $b_2 = \G$}\\
+&= 1 + basecount(\A\G\G, \G) & \text{By recursive step of basecount: $b_1 =\G$, $b_2 = \G$}\\
+&= 1 + 1 + basecount(\A\G, \G) & \text{By recursive step of basecount: $b_1 =\G$, $b_2 = \G$}\\
+&= 1 + 1 + 1 + basecount(\A, \G) & \text{By recursive step of basecount: $b_1 =\G$, $b_2 = \G$}\\
+&= 1 + 1 + 1 + 0 & \text{By basis step of $basecount$:  $b_1 = \A, b_2 = \G$}
+\end{alignat*}
+\rule{0.5\textwidth}{.4pt}
+
+\begin{enumerate}
+\item Calculate $basecount( ~mutate(\A\G\G\G\C, \C), \C~)$
+\begin{description}
+    \item[Answer:] .\\
+    mutate(AGGGC,C) = mutate(AGGG,C)C = mutate(AGG,C)GC = mutate(AG,C)GGC = mutate(A,C)GGGC = CGGGC\\\\
+    basecount(CGGGC,C) = 1 + basecount(CGGG,C) = 1 + basecount(CGG,C) = 1 + basecount(CG,C) = 1 + basecount(C,C) = 1 + 1 = 2
+\end{description}
+\item Calculate $mutate( ~mutate(\G\G\U\A\C\A\A, \U), \G~)$
+\begin{description}
+    \item[Answer:] .\\
+    mutate(GGUACAA,U) = mutate(GGUACA,U)U = mutate(GGUAC,U)UU = mutate(GGUA,U)CUU = mutate(GGU,U)UCUU = mutate(GG,U)UUCUU = mutate(G,U)GUUCUU = GGUUCUU\\\\
+    mutate(GGUUCUU,U) = mutate(GGUUCU,U)U = mutate(GGUUC,U)UU = mutate(GGUU,U)CUU = mutate(GGU,U)UCUU = mutate(GG,U)UUCUU = mutate(G,U)GUUCUU = GGUUCUU
+\end{description}
+\end{enumerate}
+
+
+\quad
+
+
+\item Provide a recursive definition of the function $\textit{copy} : S \times \mathbb{N} \to S$ that takes as input an RNA strand $s$ and a non-negative integer $j$ and gives as output $j$ copies of $s$ concatenated together. For example, if $s = \A\U\U\G$, then $copy(s,4) = \A\U\U\G\A\U\U\G\A\U\U\G\A\U\U\G$, and $copy(s,0) = \lambda$ where $\lambda$ denotes empty string. Give a recursive definition for $copy(s,j)$.
+\begin{description}
+    \item[Answer:] .\\
+    Definition The function copy : $S \times N \rightarrow S$ that takes as input an RNA strand s and a non-negative integer j and gives as output j copies of s concatenated together is defined recursively as:\\\\
+
+    Basis step: If $s \in S, copy(s,0) = \emptyset$
+
+    Recursive Step: if $s \in S$, and $j \in N$, then $copy(s,j) = (s * copy(s,j-1))$
+\end{description}
+\quad
+
+\item Prove by structural induction that $\forall s \in S~\forall t \in S~(rnalen(st) = (~rnalen(s) + rnalen(t)~)$ by using the recursive definition of $rnalen$.
+\begin{description}
+    \item[Answer:] .\\
+    Theorem: $\forall s \in S \forall \in S (rnalen(st) = ( rnalen(s) + rnalen(t) )$
+    
+    Proof: by structural induction
+
+    Base Case: $s \in B, t \in B (rnalen(st) = ( rnalen(s) + rnalen(t) )  s = A, t = A   rnalen(AA) = (rnalen(A) + rnalen(A)$\\
+
+    $LHS =  rnalen(AA) = 1 + rnalen(A)$ by recursive step of rnalen\\
+    1 + 1 = 2 by basis step of rnalen\\
+
+    $RHS = rnalen(A) + rnalen(A) = 1 + 1 = 2$ by basis step of rnalen\\
+    LHS = RHS\\
+    
+    Since rnalen(A) = rnalen(C) =  rnalen(G) = rnalen(U), this base case is proven for all $s \in B, t \in B$\\
+    
+    Inductive step: consider arbitary RNA strands $s = eb$ where $e \in S$ and $b \in B$ and strand $t = fg$ where $f \in S$ and $g \in B$ assume as inductive hypothesis that (rnalen(ef) = ( rnalen(e) + rnalen(f) )\\
+
+    I want to show that (rnalen(ebfg) = ( rnalen(eb) + rnalen(fg))\\
+    LHS: By the recursive step of rnalen,\\
+    rnalen(ebfg) = 2 + rnalen(ef) because b and g are in set B\\
+    RHS: By the recursive step of rnalen, \\
+    (rnalen(eb) + rnalen(fg)) = (1 + rnalen(e) + 1 + rnalen(f)) because b and g are in set B\\
+    This equals 2 + rnalen(e) + rnalen(f) by algebra\\
+    Setting LHS = RHS,\\
+    2 + rnalen(ef) = 2 + rnalen(e) + rnalen(f) \\
+    This equals rnalen(ef) =  rnalen(e) + rnalen(f) \\
+    This is the Inductive Hypothesis so therefore the proof is true
+\end{description}
+
+\item Consider the following alternate recursive definition of $\textit{removeTail}: L  \to L$ called $\textit{removeTailAlt}: L  \to L$.  A correct definition removes the last node of a linked list (if it exists). 
+
+\[
+\begin{array}{llll}
+& \textit{removeTailAlt} : L \to L \\
+\textrm{Basis Step:} &  \textit{removeTailAlt}([\,]) = [\,]\\
+\textrm{Recursive Step:} & \textrm{If } l \in L, m \in \mathbb{N}\textrm{, and }n \in \mathbb{N}\textrm{, then  }\\&\textit{removeTailAlt}(~(n, (m, l)~)) 
+= 
+\begin{cases}
+   (n, [\,]), \textrm{when } l = [\,] \\
+   (n, removeTailAlt((m,l))~),
+   \textrm{when } l \neq [\,] \\
+\end{cases}
+
+\end{array}
+\]
+
+Identify the error in the definition of $\textit{removeTailAlt}$ and provide evidence for your answer by showing how the application of the function on a sample input of your choosing does not work.
+
+
+\begin{description}
+    \item[Answer:] .\\
+    Test case: removeTailAlt(9,(8,(7,(6,[])))) = (9,removeTailAlt(8,(7,(6,[])))) = (9,(8,removeTailAlt(7,(6,[])))) = (9,(8,(7,[])))
+
+    removeTailAlt(4,[]) = ??
+
+    The error is in the basis step. The recursive step works as intended for |l| >2, but there is no case for |l| = 2. The basis step should be:\\
+    Basis Step: If $n \in N$ removeTailAlt(n,[]) = [], removeTailAlt([]) = []
+\end{description}
+
+\quad
+
+\item ({\it Each part graded for correctness in evaluating statement 
+and for fair effort completeness in the justification)} Statements like these are used to build the 
+specifications for programs, libraries, and data structures (APIs) which spell out the expected behavior
+of certain functions and methods. In this HW question, you will analyze whether and how order matters for the $remove$ and $prepend$
+functions.
+\begin{enumerate}
+\item Prove or disprove the following statement: 
+$$\forall l \in L \, \forall m \in \mathbb{N}~(~remove(~prepend(l,m),~m) = l~).$$
+
+\begin{description}
+    \item[Answer:] .\\
+    Theorem: $\forall l \in L \forall m \in N ( remove( prepend(l, m), m) = l )$.\\
+    Proof by structural induction on $l \in L$\\
+    Base Case: l = [], m = 0 so ( remove( prepend([], 0), 0) = [] ).\\
+    Evaluating: LHS = remove(prepend([], 0), 0)\\
+    prepend([], 0)  = (0,[]) by definition of prepend\\
+    remove((0,[]),0) = [] by recursive definition of remove\\
+    $[] = RHS$\\
+            
+    Inductive step: Consider arbitrary linked list l = (n, l’), n in N, l’ in L and m was some arbitrary natural number $m \in N$ we can assume that the IH is  remove( prepend(l’, m), m) = l’ ).\\
+
+    WTS: $remove( prepend(l, m), m) = l)  remove( prepend((n, l’), m), m) = (n, l’) )$.\\
+    Evaluating:\\
+    LHS = remove( prepend((n, l’), m), m) which equals\\
+    remove(m, (n, l’)), m)  by definition of prepend\\
+    (n, l’) by recursive step of remove\\
+    = RHS Since LHS = RHS we know it is true.
+\end{description}
+
+\item Prove or disprove the following statement: 
+$$\exists l \in L \, \exists m \in \mathbb{N}~(~remove(~prepend(l,m),~m) = l~).$$
+\end{enumerate}
+\begin{description}
+    \item[Answer:] .\\
+    $\exists l \in L \exists m \in N ( remove( prepend(l, m), m) = l )$\\
+    Choose witnesses: l = [], m = 0 so ( remove( prepend([], 0), 0) = [] ).\\
+    Evaluating: LHS = remove(prepend([], 0), 0)\\
+    prepend([], 0)  = (0,[]) by definition of prepend\\
+    remove((0,[]),0) = [] by recursive definition of remove\\
+    $[] = RHS $
+\end{description}
+
+
+\end{enumerate}
+\vfill
+
+\section*{Attributions}
+
+Thanks to \href{http://cseweb.ucsd.edu/~minnes/}{Mia Minnes} and \href{https://jpolitz.github.io/}{Joe Politz} for the original version of this homework. All materials created by them is licensed under a \href{http://creativecommons.org/licenses/by-nc/4.0/}{Creative Commons Attribution-Non Commercial 4.0} International License.
+
+\end{document}

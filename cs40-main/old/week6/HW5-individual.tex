@@ -1,0 +1,222 @@
+\documentclass[12pt, oneside]{article}
+
+\input{../CS40packages.tex}
+\usepackage{enumitem}
+
+\title{HW5 Individual}
+\author{CS40 Fall'21\\\\\\
+Bharat Kathi (5938444)}
+\date{Due: Monday, Nov 8, 2021 at 10:00PM on Gradescope}
+\begin{document}
+\maketitle
+
+{\bf Integrity reminders for individual homeworks}
+\begin{itemize}
+\item ``Individual homeworks'' must be solely your own work. 
+\item You may not collaborate on individual homeworks with anyone or seek help from online tutors or entities outside the class.
+\item You may ask questions about the homework in office hours (of the instructor, TAs, and/or tutors) and 
+on Piazza.  However, the staff will only answer clarifying questions on these homeworks. You \emph{cannot} use any online resources about the course content other than the text
+book and class material from this quarter.
+\item Do not share written solutions or partial solutions for homework with other students. Doing so would dilute their learning experience and detract from their success in the class.
+\end{itemize}
+
+You will submit this assignment via Gradescope
+(\href{https://www.gradescope.com}{https://www.gradescope.com}) in the assignment called ``HW4-Individual''.
+
+\newpage
+\section*{Assigned Questions}
+\begin{enumerate}
+
+
+
+\item Determine the value of $n$ based on the given information. Show your calculation steps.
+\begin{enumerate}
+    \item $n  \textbf{ div } 8 = 10$, $n \textbf{ mod } 8 = 5$
+    \begin{description}
+        \item[Answer:] .\\
+        $n = dq+r$\\
+        $n \textbf{ div } d = q$ and $n \textbf{ mod } d = r$\\
+        $n = 8(10) + r$ and $n=8(q)+5$\\
+        $q = 10$ and $r=5$\\
+        $n = 8(10)+5$\\
+        $n = 85$
+      \end{description}
+    \item $n  \textbf{ div } 3 = -10$, $n \textbf{ mod } 3 = 2$
+    \begin{description}
+        \item[Answer:] .\\
+        $n = dq+r$\\
+        $n \textbf{ div } d = q$ and $n \textbf{ mod } d = r$\\
+        $n = 3(-10) + r$ and $n=3(q)+2$\\
+        $q = -10$ and $r=2$\\
+        $n = 3(-10)+2$\\
+        $n = -28$
+      \end{description}
+\end{enumerate}
+
+\item Suppose that $(A72D781CC52)_{16} = x$. Express the value of $(A72D781CC527)_{16}$ in terms of $x$. Show your steps to justify your answer.
+
+\begin{description}
+    \item[Answer:] .\\
+    $(A72D781CC527)_{16}$\\
+    $= A(16)^11 + 7(16)^10+2(16)^9+...+5(16)^2+2(16)^1+7$\\
+    $= 16(A(16)^10 + 7(16)^9+2(16)^8+...+5(16)^1+2(16)^0) + 7$\\
+    $= 16((A72D781CC52)_{16})+7$\\
+    $= 16x+7$
+  \end{description}
+
+\item Some numbers and their prime factorizations are given below.
+\begin{itemize}
+    \item $140 = 2^2 \cdot 5 \cdot 7$
+    \item $175 = 5^2 \cdot 7$
+    \item $1083 = 3 \cdot 19^2$
+    \item $25480 = 2^3 \cdot 5 \cdot 7^2 \cdot 13$
+\end{itemize}
+
+Use these prime factorizations to compute the following quantities and justify your answers.
+\begin{enumerate}
+    \item $gcd(1083,140)$
+    \begin{description}
+    \item[Answer:] .\\
+        $140=2^2 * 5 * 7$\\
+        $1083=3*19^2$\\
+        Since there is no common prime factors among prime factors of both, the GCD is 1.
+    \end{description}
+    \item $gcd(25480,175)$
+    \begin{description}
+    \item[Answer:] .\\
+        $175=5^2 * 7$\\
+        $25480=2^3*5*7^2*13$\\
+        The common prime factors of both are 5 and 7, so the GCD is 35.
+    \end{description}
+\end{enumerate}
+
+
+
+
+\begin{algorithm}[caption={Euclid's algorithm in pseudocode}]
+procedure $\textit{gcd}$($x, y$:positive integers)
+$a$ := $x$
+$b$ := $y$
+if $a > b$
+  swap $a$ and $b$
+while $a\neq 0$
+  $r$ := $b \textbf{ mod } a$
+  $b$ := $a$
+  $a$ := $r$
+return $b$ {$gcd(x, y) = b$} 
+\end{algorithm}
+
+{\bf{Template of table to trace Euclid's algorithm}}
+
+\begin{minipage}{3.2in}
+\begin{tabular}{c|c|c|c|c|c|c|}
+$x$ & $y$  & $r$ & $a$ & $b$ & $a \neq 0$?\\
+\hline 
+ &  &  &  &  &\\
+ &  &  &  &  &\\
+ &  &  &  &  &\\
+ &  &  &  &  &\\
+\end{tabular}
+$gcd( x , y) = ?$
+\end{minipage}
+
+\item For each of the following inputs: (a) Use the template of the table provided above to trace Euclid's algorithm, (b) find the gcd of the two numbers using the algorithm (c) check whether the multiplicative inverse exists and if it does, find the inverse of x mod y.
+\begin{enumerate}
+    \item x=52 and y=77
+    \begin{description}
+    \item[Answer:] .\\
+    \begin{tabular}{c|c|c|c|c|c|c|}
+        $x$ & $y$  & $r$ & $a$ & $b$ & $a \neq 0$?\\
+        \hline 
+            52 & 77 & 25 & 25 & 52 & T\\
+            52 & 77 & 2 & 2 & 25 & T\\
+            52 & 77 & 1 & 1 & 2 & T\\
+            52 & 77 & 0 & 0 & 1 & F\\
+        \end{tabular}\\\\
+        $gcd(52,77)$ is 1.\\
+        Inverse is 40.
+    \end{description}
+    \item x=630 and y=147
+    \begin{description}
+        \item[Answer:] .\\
+        \begin{tabular}{c|c|c|c|c|c|c|}
+            $x$ & $y$  & $r$ & $a$ & $b$ & $a \neq 0$?\\
+            \hline 
+                630 & 147 & 42 & 42 & 147 & T\\
+                630 & 147 & 21 & 21 & 42 & T\\
+                630 & 147 & 0 & 0 & 21 & F\\
+            \end{tabular}\\\\
+            $gcd(52,77)$ is 21.\\
+            Inverse does not exist.
+        \end{description}
+\end{enumerate}
+
+
+
+\item Below is the pseudocode for a greedy algorithm for making change given a total amount $n$ and $r$ coins of denomination $c_1, c_2,\ldots,c_r$.
+
+
+\begin{algorithm}[caption={Change making algorithm in pseudocode}]
+procedure $\textit{change}$($c_1,c_2,…,c_r$:values of denominations of coins, where $c_1>c_2>…>c_r$;$n$:a positive integer)
+
+for i:= 1 to r
+  $d_i$:= $0$ {$d_i$ counts the  number of coin of denomination $c_i$ used}
+  while $n \geq c_i$
+    $d_i$ := $d_i + 1$ {Add a coin of denomination $c_i$}
+    $n$ := $n - c_i$
+    
+return $d_1, d_2,...,d_r$ {$d_i$ the number of coins of denomination $c_i$ in the change for i=1, 2,...,r}
+\end{algorithm}
+
+\begin{enumerate}
+    \item In the particular case where the four denominations are quarters, dimes, nickels, and pennies, we have $c_1 = 25$, $c_2 = 10$, $c_3 = 5$, and $c_4 = 1$. Trace the algorithm by filling the table below for $\textit{change}$($25, 10, 5, 1; 67$)
+    
+\begin{minipage}{3.2in}
+\begin{tabular}{c|c|c|c|c|c|c|}
+$n$ & $i$  & $d_1$ & $d_2$ & $d_3$ & $d_4$& $n \geq c_i$?\\
+\hline 
+ 67 & 1 & 0 &  &  & & T\\
+ 42 & 1 & 1 &  &  & & T\\
+ 17 & 1 & 2 &  &  & & F\\
+ 17 & 2 &  & 0 &  & & T\\
+ 7 & 2 &  & 1 &  & & F \\
+ 7 & 3 & & & 0 & & T \\
+ 2 & 3 & & & 1 & & F \\
+ 2 & 4 & & & & 0 & T \\
+ 1 & 4 & & & & 1 & T \\
+ 0 & 4 & & & & 2 & F \\
+
+\end{tabular}\\\\
+$change(25, 10, 5, 1; 67) = (2,1,1,2)$
+\end{minipage}
+    \item Write the pseudocode of an algorithm covered in lecture that uses the same approach as the one presented above but solves a different problem. Describe the main differences between the two algorithms.
+\end{enumerate}
+
+\item Devise an algorithm that finds the first term of a sequence of positive integers that is less than the immediately preceding term of the sequence. Please present the algorithm in pseudocode (similar to Q5).
+\begin{algorithm}[caption={Location of first term less than next term algorithm}]
+    procedure $\textit{getlocation}$($b_1,b_2,…,b_n$:list of n positive integers)
+    location := 0
+    i := 2
+    while $i <= n$ and location := 0
+        if $b_i < b_{i-1}$
+            location := i
+        else
+            i := i + 1
+    return location
+    \end{algorithm}
+
+\item For positive integers $a$, $b$, and $c$ prove that if $gcd(a,b)=1$ and $a \mid bc$, then $a \mid c$.
+\begin{description}
+    \item[Answer:] .\\
+        Since $gcd(a,b)=1$, there exists two integers $x$, $y$ such that $1=ax+by$.\\
+        $c=cax+cby$\\
+        $c=(ac)x+(bc)y$\\
+        Since $a \mid bc$, then $a=(bc)y$ for some integer $y$.\\
+        Since $a \mid ac$, then $a=(ac)x$ for some integer $x$.\\
+        Combining these two, we can get $a \mid ((ac)x+(bc)y)$.\\
+        This then simplifies to $a \mid c$.
+    \end{description}
+\end{enumerate}
+
+
+\end{document}

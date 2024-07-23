@@ -1,0 +1,159 @@
+\documentclass[12pt, oneside]{article}
+
+\input{../CS40packages.tex}
+\usepackage{enumitem}
+
+\title{HW6 Individual}
+\author{CS40 Fall'21\\\\\\
+Bharat Kathi (5938444)}
+\date{Due: Monday, Nov 15, 2021 at 10:00PM on Gradescope}
+\begin{document}
+\maketitle
+
+{\bf Integrity reminders for individual homeworks}
+\begin{itemize}
+\item ``Individual homeworks'' must be solely your own work. 
+\item You may not collaborate on individual homeworks with anyone or seek help from online tutors or entities outside the class.
+\item You may ask questions about the homework in office hours (of the instructor, TAs, and/or tutors) and 
+on Piazza.  However, the staff will only answer clarifying questions on these homeworks. You \emph{cannot} use any online resources about the course content other than the text
+book and class material from this quarter.
+\item Do not share written solutions or partial solutions for homework with other students. Doing so would dilute their learning experience and detract from their success in the class.
+\end{itemize}
+
+You will submit this assignment via Gradescope
+(\href{https://www.gradescope.com}{https://www.gradescope.com}) in the assignment called ``HW4-Individual''.
+
+\newpage
+
+{\bf Practice three useful proof strategies for comparing two sets:}
+
+\begin{center}
+\begin{tabular}{c|c|c}
+{\bf  Statement to Prove} & {\bf Logic Form} &{\bf Proof Strategy}\\
+\hline 
+$A \subseteq B$ & $\forall x  (x \in A  \to x  \in B)$ &For arbitrary $x \in A$, show that $x \in B$ \\
+$A \nsubseteq B$ &$\exists x  (x \in A  \land x  \notin B) $ & Find an element $x \in A$, such that $x \notin B$ \\
+$A = B$ & $\forall x  ( x\in A \leftrightarrow x \in B)$ & Show that $A \subseteq B$ and $B \subseteq A$ \\
+\end{tabular}
+\end{center}
+
+\section*{Assigned Questions}
+\begin{enumerate}
+\item Show that $A \nsubseteq B$, where $A$ and $B$ are defined as follows:
+\[
+\begin{array}{l}
+A = \{3k + 1 \mid k \in \mathbb{N}\}, \\
+B = \{4k + 1 \mid k \in \mathbb{N}\}. \\
+\end{array}
+\]
+
+\begin{description}
+    \item[Answer:] .\\
+        $k \in \mathbb{N}$\\
+        So by substituting in the first 4 values of $k$, we get:\\
+        $A = \{ 4,7,10,13,... \}$\\
+        $B = \{ 5,9,13,17,... \}$\\
+        Since there are some values in $A$ that are not in $B$, we can conclude that $A \nsubseteq B$.
+\end{description}
+
+\item Show that $A = B$, where $A$ and $B$ are defined as follows:
+\[
+\begin{array}{l}
+A = \{x\in\mathbb{Z} \mid x \textrm{ is a prime number and } 12 \leq x \leq 18\}, \\
+B = \{x\in\mathbb{Z} \mid x = 4k + 1\textrm{ for some } k \in \{3, 4\}\}. \\
+\end{array}
+\]
+
+\begin{description}
+    \item[Answer:] .\\
+        The only primes in between 12 and 18 are 13 and 17.\\
+        Therefore, $A = \{ 13,17 \}$.\\
+        Since $k \in \{3,4\}$, we can simplify $B$ as:\\
+        $B = \{4(3)+1,4(4)+1\}$\\
+        $B = \{13,17\}$\\
+        From this we can see that $A=B$.
+\end{description}
+
+\item Let $A = \{6k + 5 \mid k \in \mathbb{N}\}$ and $B = \{3k + 2 \mid k \in \mathbb{N}\}$. Show that $A \neq B$.
+
+\begin{description}
+    \item[Answer:] .\\
+        $k \in \mathbb{N}$\\
+        So by substituting in the first 4 values of $k$, we get:\\
+        $A = \{11,17,23,29,...\}$\\
+        $B = \{5,8,11,14,...\}$\\
+        Since there are some values in $A$ that are not in $B$, we can conclude that $A \neq B$.
+\end{description}
+
+\item Let $W = \mathcal{P}(\{1,2,3,4,5\})$. Consider the following statement and attempted proof:
+\label{proof_powerset2}
+
+$$\forall A \in W \, \forall B \in W ~\left(~((A \cap B) \subseteq A) \to (A \subseteq B)~\right)$$
+
+\begin{quote}
+(1) Towards a universal generalization argument, {\bf choose arbitrary} $A \in W, B \in W$.
+
+(2) We need {\bf to show} $((A \cap B) \subseteq A) \to (A \subseteq B)$.
+
+(3) Towards a proof of the conditional by the contrapositive, {\bf assume} $A \subseteq B$. We need {\bf to show} 
+that $(A \cap B) \subseteq A$.
+
+(4) By definition of subset inclusion, this means we need {\bf to show} 
+$\forall x ~( x \in A \cap B \to  x \in A  ~)$.
+
+
+(5) Towards a universal generalization, {\bf choose an arbitrary} $x$; we need {\bf to show} that \\
+$x \in A \cap B \to x \in A$.
+
+(6) Towards a direct proof, {\bf assume} $x \in A \cap B$. We need {\bf to show} $x \in A$.
+
+(7) By definition of set intersection, we have that $x \in A \land x \in B$.
+
+(8) By the definition of conjunction, $x \in A$, which is  what we needed to show.
+
+\hfill{$\blacksquare$}
+
+\end{quote}
+
+
+
+\begin{enumerate}
+    \item Demonstrate that this statement is invalid by providing and justifying a {\bf counterexample} (disproving the statement).
+    \begin{description}
+        \item[Answer:] .\\
+            Let $A = \{2,3\}$\\
+            Let $B=\{2\}$\\
+            Then, we get that $A \cap B = \{2\}$\\
+            Therefore $A \cap B \subseteq A$ but $A \subsetneq B$
+    \end{description}
+    \item  Explain why the attempted proof is invalid by identifying in which step a definition or proof strategy is used incorrectly, and describing how the definition or proof strategy was misused.
+    \begin{description}
+        \item[Answer:] The third step is incorrect. The contrapositive of $p \rightarrow q$ should be $\lnot q \rightarrow \lnot p$. The given proof is assuming $q$ in order to prove $p$.
+    \end{description}
+\end{enumerate}
+
+
+\item Give a recursive definition for each of the following sets $S$. Each set $S$ will be a subset of the set containing all binary strings. A string $x$ belongs to the recursively defined set $S$ if and only if $x$ has each of the following properties (provide a different definition for each part). Note that in each case, you may provide multiple rules for the recursive step of your definition.
+
+
+\begin{enumerate}
+    \item The set S consists of all strings (including the empty string) that have an even number of $1$'s but may have an even or odd number of zeros.
+    \begin{description}
+        \item[Answer:] If x belongs to S then x11 or 11x also belongs to S.
+    \end{description}
+    \item The set $S$ consists of all strings (including the empty string) that have the same number of 0's and 1's.
+    \begin{description}
+        \item[Answer:] If x belongs to S, then 0S1 or 1S0 also belongs to S.
+    \end{description}
+\end{enumerate}
+
+\item Apply your recursive definitions for $S$ for each part of the previous question to construct all elements of $S$ with length less than or equal to $4$. Provide your answer in roster notation.
+
+\begin{description}
+    \item[Answer:] .\\
+    $S = \{0,11,101,011\}$
+\end{description}
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,252 @@
+\documentclass[12pt, oneside]{article}
+
+\input{../CS40packages.tex}
+\usepackage{enumitem}
+
+\title{HW1 Propositional Logic}
+\author{CS40 Spring'22\\\\
+Bharat Kathi (5938444)}
+\date{Due:  on Gradescope}
+\begin{document}
+\maketitle
+
+
+\section*{Assigned Questions}
+\begin{enumerate}
+\item Determine whether each of the following sentences is a proposition. If the sentence is a proposition, then write its negation.
+\begin{enumerate}
+    \item How tall is Storke Tower?
+    \begin{description}
+        \item[Answer:] No, this is a question.
+    \end{description}
+    \item Storke Tower is as tall as 33 people stacked on top of each other.
+    \begin{description}
+        \item[Answer:] Yes, this is a proposition. The negation would be "Storke Tower is not as tall as 33 people stacked on top of each other".
+    \end{description}
+\end{enumerate}
+
+
+\item Express each English statement using the logical operations $\lor$, $\land$, $\neg$ and the propositional variables $t$, $n$, and $m$ defined below. The use of the word ``or'' means inclusive or.
+\begin{itemize}
+    % \item $t$: The patient took the medication.
+    % \item $n$: The patient had nausea.
+    % \item $m$: The patient had migraines.
+    \item $t$: My first flight was delayed.
+    \item $n$: I had a snack at the airport.
+    \item $m$: I made my final connection.
+\end{itemize}
+
+\begin{enumerate}
+    % \item The patient had nausea and migraines (n $\wedge$ m)
+    % \item The patient took the medication, but still had migraines.
+    % \item Despite the fact that the patient took the medication, the patient had nausea.
+    % \item There is no way that the patient took the medication.
+    \item I never snack at the airport.
+    \begin{description}
+        \item[Answer:] $\lnot n$
+    \end{description}
+    \item Even though my first flight was delayed, I still made my final connection.
+    \begin{description}
+        \item[Answer:] $t \land m$
+    \end{description}
+    \item Whenever I have a snack at the airport, I miss my final connection.
+    \begin{description}
+        \item[Answer:] $n \rightarrow \lnot m$
+    \end{description}
+    \item I miss my final connection only if I have a snack in the airport, or my flight was delayed.
+    \begin{description}
+        \item[Answer:] $(n \lor t) \leftrightarrow \lnot m$
+    \end{description}
+\end{enumerate}
+
+
+
+\item Practice finding the truth values for conditional statements in English. Which of the following conditional statements are true and why? 
+\begin{enumerate}
+    %\item If February has 30 days, then 7 is an odd number.
+    %\item If January has 31 days, then 7 is an even number.
+
+    \item If 51 is an even number, then the sky is green.
+    \begin{description}
+        \item[Answer:] $F \rightarrow F = T$, because 51 is an even number (F) and the sky is not green (F). Since our statement is that F implies F, this is True.
+    \end{description}
+    \item If 51 is an odd number, then the sky is blue.
+    \begin{description}
+        \item[Answer:] $T \rightarrow T = T$, because 51 is an odd number (T) and the sky is blue (T). Since our statement is that T implies T, this is True.
+    \end{description}
+\end{enumerate}
+
+
+\item In this question, practice expressing English colloquialisms using logical operations.
+
+Consider the following situations:
+\begin{itemize}
+    %\item $b$: Applicant presents a birth certificate.
+    %\item $d$: Applicant presents a driver's license.
+    %\item $m$: Applicant presents a marriage license.
+    \item $i$: It is raining.
+    \item $j$: It is pouring.
+    \item $k$: It is shining.
+    \item $l$: We are having a parade.
+
+\end{itemize}
+
+Write a logical expression to capture each of the following colloquialisms\footnote{Inclusive or is assumed unless explicitly stated otherwise.}:%for the requirements under the following conditions:
+\begin{enumerate} % order switched up
+
+    \item It either rains or it pours. 
+    \begin{description}
+        \item[Answer:] $(i \land \lnot j) \lor (\lnot i \land j)$
+    \end{description}
+    \item It is raining on our parade. 
+    \begin{description}
+        \item[Answer:] $i \land l$
+    \end{description}
+    \item We are having this parade, come rain or shine. 
+    \begin{description}
+        \item[Answer:] $(i \lor k) \rightarrow l$
+    \end{description}
+
+
+\end{enumerate}
+
+
+% \newpage
+
+
+\item Give an English sentence in the form ``If...then....'' that is equivalent to each sentence.
+\begin{enumerate}
+
+    \item Rafael can ride the elephant only if he is not afraid of heights.
+    \begin{description}
+        \item[Answer:] If Rafael can ride the elephant, then he is not afraid of heights.
+    \end{description}
+    \item Rafael can ride the elephant if he is not afraid of heights.
+    \begin{description}
+        \item[Answer:] If Rafael is not afraid of heights, then he can ride the elephant.
+    \end{description}
+    \item Being able to swim is a necessary skill needed for Tyra to learn to surf.
+    \begin{description}
+        \item[Answer:] If Tyrna can learn how to surf, they can swim.
+    \end{description}
+    \item Being able to swim is a sufficient skill needed for Tyra to learn to surf.
+    \begin{description}
+        \item[Answer:] If Tyrna can swim, they can learn how to surf.
+    \end{description}
+\end{enumerate}
+
+
+
+\item Use the laws of propositional logic listed in Section 1.5, Table 1.5.1 of the book to prove the following. Explicitly specify which laws are being used.
+
+\begin{enumerate}
+    \item $\neg p \to q \equiv \neg q \to p$
+    \begin{description}
+        \item[Answer:] .\\
+        $p \lor q \equiv \lnot q \rightarrow p$ (Conditional Law)\\
+        $q \lor p \equiv \lnot q \rightarrow p$ (Commutative Law)\\
+        $\lnot q \rightarrow p \equiv \lnot q \to p$ (Conditional Law)
+    \end{description}
+    \item $\neg p \to (q \land \neg q) \equiv p$
+    \begin{description}
+        \item[Answer:] .\\
+        $\lnot p \rightarrow (F) \equiv p$ (Complement Law)\\
+        $p \lor F \equiv p$ (Conditional Law)\\
+        $p \equiv p$ (Identity Law)
+    \end{description}
+    \item $(p \land q \land \neg r) \lor (p \land \neg q \land \neg r) \equiv p \land \neg r$
+    \begin{description}
+        \item[Answer:] .\\
+        $(p \land \lnot r \land q) \lor (p \land \lnot r \land \lnot q) \equiv p \land \lnot r$ (Commutative Law)\\
+        $(p \land \lnot r) \land (q \lor \lnot q) \equiv p \land \lnot r$ (Distributive Law)\\
+        $(p \land \lnot r) \land (T) \equiv p \land \lnot r$ (Complement Law)\\
+        $p \land \lnot r \equiv p \land \lnot r$ (Identity Law)\\
+    \end{description}
+
+\end{enumerate}
+
+\item Use any technique of your choice to show that $((p \to q ) \land (q \to r)) \to (p \to r)$ is a tautology
+
+\begin{description}
+    \item[Answer:] Using the truth table below we can see that the statement is True for every value of $p$, $q$, and $r$. Therefore, it is a tautology.\\
+    \begin{displaymath}
+        \begin{array}{|c c c|c|}
+        p & q & r & ((p \to q ) \land (q \to r)) \to (p \to r)\\
+        \hline
+        T & T & T & T\\
+        T & T & F & T\\
+        T & F & T & T\\
+        T & F & F & T\\
+        F & T & T & T\\
+        F & T & F & T\\
+        F & F & T & T\\
+        F & F & F & T\\
+        \end{array}
+    \end{displaymath}
+\end{description}
+
+\item There are three kinds of people on an island: knaves who always lie, knights who always tell the truth, and spies who can either lie or tell the truth. You encounter three people, Andromeda, Brunhilda, and Clytemnestra. You know one of these people is a knight, one is a knave, and one is a spy. Each of the three people knows the identity of the other two. Andromeda says “Clytemnestra is the knave,” Brunhilda says “Andromeda is the knight,” and Clytemnestra says “I am the spy.” Determine whether or not a unique solution exists, and if so, state who the knave, knight, and spy are. If there is no unique solution, list all possible solutions or state that there are no solutions.
+
+\begin{description}
+    \item[Answer:]  We first define the following:\\
+    p: Andromeda is a knight\\  
+    q: Brunhilda is a knight\\
+    r: Clytemnestra is a knight\\
+    s: Andromeda is a knave\\
+    t: Brunhilda is a knave\\
+    u: Clytemnestra is a knave\\\\
+
+    Andromeda says: u\\
+    Brunhilda says: p\\
+    Clytemnestra says: $\lnot (r \wedge u)$\\\\
+
+    Now we can create the compound proposition to figure out whether a solution exists: \\\\
+    $u \wedge p\wedge \lnot (r \wedge u)$
+    
+    \begin{displaymath}
+        \begin{array}{|c c c|c|}
+        p & q & r & u \wedge p \wedge \lnot (r \wedge u)\\
+        \hline
+        T & T & T & F\\
+        T & T & F & F\\
+        T & F & T & T\\
+        T & F & F & F\\
+        F & T & T & F\\
+        F & T & F & F\\
+        F & F & T & F\\
+        F & F & F & F\\
+        \end{array}
+    \end{displaymath}
+
+    From the above truth table, we can see that there is a unique solution: Andromeda is a knight, Brunhilda is a spy, and Clytemnestra is a knave\\\\\\
+    Looking at the truth table, we know that $p$ is true and $u$ is true. $p$ states that Andromeda is a knight, and $u$ states that Clytemnestra is a knave. That means we know that Brunhilda must be a spy.
+\end{description}
+
+\item Use the Disjunctive Normal form to construct a proposition $Q$ whose truth table is as below:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$p$ & $q$ & $r$ & $Q$ \\ \hline \hline
+F&T&T& T \\ \hline
+F&T&F& F \\ \hline
+F&F&T& T \\ \hline
+F&F&F& F \\ \hline
+T&T&T& T \\ \hline
+T&T&F& F \\ \hline
+T&F&T& F \\ \hline
+T&F&F& T \\ \hline
+
+\end{tabular}
+\end{center}
+
+\begin{description}
+    \item[Answer:] The proposition using disjunctive normal form is $(p \wedge q \wedge r) \vee (p \wedge \lnot q \wedge \lnot r) \lor (\lnot p \land q \land r) \lor (\lnot p \land \lnot q \land r)$
+\end{description}
+
+\end{enumerate}
+
+
+
+
+\end{document}
